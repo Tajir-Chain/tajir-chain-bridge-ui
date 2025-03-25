@@ -93,6 +93,7 @@ export interface Env {
         usdcToken: Token;
       };
   forceUpdateGlobalExitRootForL1: boolean;
+  frontendType: string;
   isDepositWarningEnabled: boolean;
   logoPath?: string;
   networkName?: string;
@@ -108,6 +109,7 @@ export interface Env {
         title?: string;
         url?: string;
       };
+      
   reportForm: ReportFormEnvEnabled | ReportFormEnvDisabled;
 }
 

@@ -14,7 +14,7 @@ type Nullable<Type> = {
 };
 
 declare global {
-  interface Window {
+  type Window = {
     ethereum?: ExternalProvider;
   }
 
@@ -31,7 +31,7 @@ declare module "@ethersproject/abstract-provider" {
 }
 
 declare module "@ethersproject/providers" {
-  interface BaseProvider {
+  type BaseProvider = {
     getTransaction(transactionHash: string): Promise<TypeSafeTransactionResponse | null>;
     getTransactionReceipt(transactionHash: string): Promise<TypeSafeTransactionReceipt | null>;
   }

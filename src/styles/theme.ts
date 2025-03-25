@@ -1,38 +1,84 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-export const theme = {
+
+export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const value = import.meta.env[key];
+  return typeof value === 'string' ? value : defaultValue;
+};
+
+export type Theme = {
+  breakpoints: {
+    upSm: string;
+  };
+  hoverTransition: string;
+  maxWidth: number;
+  palette: {
+    black: string;
+    error: {
+      light: string;
+      main: string;
+    };
+    grey: {
+      dark: string;
+      light: string;
+      main: string;
+      veryDark: string;
+    };
+    primary: {
+      dark: string;
+      light: string;
+      main: string;
+      mainRedesign: string;
+    };
+    success: {
+      light: string;
+      main: string;
+    };
+    transparency: string;
+    warning: {
+      light: string;
+      main: string;
+    };
+    white: string;
+  };
+  spacing: (value: number) => number;
+}
+
+
+export const theme: Theme = {
   breakpoints: {
     upSm: "@media (min-width: 480px)",
   },
   hoverTransition: "all 150ms",
   maxWidth: 644,
   palette: {
-    black: import.meta.env.VITE_THEME_COLOR_BLACK || "#0a0b0d",
+    black: getEnv("VITE_THEME_COLOR_BLACK", "#0a0b0d"),
     error: {
-      light: import.meta.env.VITE_THEME_COLOR_ERROR_LIGHT || "rgba(232,67,12,0.1)",
-      main: import.meta.env.VITE_THEME_COLOR_ERROR_MAIN || "#e8430d",
+      light: getEnv("VITE_THEME_COLOR_ERROR_LIGHT", "rgba(232,67,12,0.1)"),
+      main: getEnv("VITE_THEME_COLOR_ERROR_MAIN", "#e8430d"),
     },
     grey: {
-      dark: import.meta.env.VITE_THEME_COLOR_GREY_DARK || "#78798d",
-      light: import.meta.env.VITE_THEME_COLOR_GREY_LIGHT || "#f0f1f6",
-      main: import.meta.env.VITE_THEME_COLOR_GREY_MAIN || "#e2e5ee",
-      veryDark: import.meta.env.VITE_THEME_COLOR_GREY_VERY_DARK || "#363740",
+      dark: getEnv("VITE_THEME_COLOR_GREY_DARK", "#78798d"),
+      light: getEnv("VITE_THEME_COLOR_GREY_LIGHT", "#f0f1f6"),
+      main: getEnv("VITE_THEME_COLOR_GREY_MAIN", "#e2e5ee"),
+      veryDark: getEnv("VITE_THEME_COLOR_GREY_VERY_DARK", "#363740"),
     },
     primary: {
-      dark: import.meta.env.VITE_THEME_COLOR_PRIMARY_DARK || "#5a1cc3",
-      main: import.meta.env.VITE_THEME_COLOR_PRIMARY_MAIN || "#7b3fe4",
+      dark: getEnv("VITE_THEME_COLOR_PRIMARY_DARK", "#5a1cc3"),
+      light: getEnv("VITE_THEME_COLOR_PRIMARY_LIGHT", "#EEE8FF"),
+      main: getEnv("VITE_THEME_COLOR_PRIMARY_MAIN", "#7b3fe4"),
+      mainRedesign: getEnv("VITE_THEME_COLOR_PRIMARY_MAIN_REDESIGN", "#8950FA"),
     },
     success: {
-      light: import.meta.env.VITE_THEME_COLOR_SUCCESS_LIGHT || "rgba(0,255,0,0.1)",
-      main: import.meta.env.VITE_THEME_COLOR_SUCCESS_MAIN || "#54DC04",
+      light: getEnv("VITE_THEME_COLOR_SUCCESS_LIGHT", "rgba(0,255,0,0.1)"),
+      main: getEnv("VITE_THEME_COLOR_SUCCESS_MAIN", "#54DC04"),
     },
-    transparency: import.meta.env.VITE_THEME_COLOR_TRANSPARENCY || "rgba(8,17,50,0.5)",
+    transparency: getEnv("VITE_THEME_COLOR_TRANSPARENCY", "rgba(8,17,50,0.5)"),
     warning: {
-      light: import.meta.env.VITE_THEME_COLOR_WARNING_LIGHT || "rgba(225,126,38,0.1)",
-      main: import.meta.env.VITE_THEME_COLOR_WARNING_MAIN || "#e17e26",
+      light: getEnv("VITE_THEME_COLOR_WARNING_LIGHT", "rgba(225,126,38,0.1)"),
+      main: getEnv("VITE_THEME_COLOR_WARNING_MAIN", "#e17e26"),
     },
-    white: import.meta.env.VITE_THEME_COLOR_WHITE || "#ffffff",
+    white: getEnv("VITE_THEME_COLOR_WHITE", "#ffffff"),
   },
   spacing: (value: number): number => value * 8,
 };
 
-export type Theme = typeof theme;

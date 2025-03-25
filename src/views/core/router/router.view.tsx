@@ -1,4 +1,4 @@
-import { ComponentType, FC } from "react";
+import { ComponentType, FC, useMemo } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { useEnvContext } from "src/contexts/env.context";
@@ -9,11 +9,21 @@ import { BridgeConfirmation } from "src/views/bridge-confirmation/bridge-confirm
 import { BridgeDetails } from "src/views/bridge-details/bridge-details.view";
 import { Home } from "src/views/home/home.view";
 import { Login } from "src/views/login/login.view";
+import { LoginRedesign } from "src/views/login/login.view.redesign";
 import { NetworkError } from "src/views/network-error/network-error.view";
 import { Settings } from "src/views/settings/settings.view";
 import { PrivateRoute } from "src/views/shared/private-route/private-route.view";
 
-const components: Record<RouteId, ComponentType> = {
+const baseComponents: Record<RouteId, ComponentType> = {
+  activity: Activity,
+  bridgeConfirmation: BridgeConfirmation,
+  bridgeDetails: BridgeDetails,
+  home: Home,
+  login: LoginRedesign,
+  networkError: NetworkError,
+  settings: Settings,
+};
+const redesignComponents: Record<RouteId, ComponentType> = {
   activity: Activity,
   bridgeConfirmation: BridgeConfirmation,
   bridgeDetails: BridgeDetails,
@@ -25,6 +35,10 @@ const components: Record<RouteId, ComponentType> = {
 
 export const Router: FC = () => {
   const env = useEnvContext();
+  const components = useMemo<Record<RouteId, ComponentType>>(
+    () => ({ ...baseComponents, ...(env?.frontendType === 'redesign' ? redesignComponents : {}) }),
+    [env?.frontendType]
+  );
 
   const filteredRoutes =
     !env || areSettingsVisible(env)
