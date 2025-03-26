@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     react({
-      fastRefresh: false,
+      fastRefresh: true,
     }),
     svgr(),
     checker({

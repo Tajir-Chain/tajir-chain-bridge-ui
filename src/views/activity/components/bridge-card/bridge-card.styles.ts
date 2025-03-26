@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { createUseStyles } from "react-jss";
 
 import { Theme } from "src/styles/theme";

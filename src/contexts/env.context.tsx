@@ -42,6 +42,9 @@ const EnvProvider: FC<PropsWithChildren> = (props) => {
   }, [env, location, navigate, notifyError]);
 
   const value = useMemo(() => {
+    if (env && !env.frontendType) {
+      env.frontendType = 'base';
+    }
     return env;
   }, [env]);
 
