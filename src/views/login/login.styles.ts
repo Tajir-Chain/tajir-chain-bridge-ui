@@ -63,6 +63,9 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     margin: theme.spacing(5),
     padding: "4px 8px",
     transition: "all 0.3s ease-in-out",
+    [theme.breakpoints.upM]: {
+      margin: theme.spacing(3),
+    }
   },
   appNameIcon: {
     width: 16,
@@ -90,6 +93,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     maxWidth: theme.maxWidth,
     width: "100%",
   },
+
   login: {
     display: "flex",
     flexDirection: "column",
@@ -98,6 +102,10 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
   logo: {
     height: 120,
     marginBottom: theme.spacing(4),
+    [theme.breakpoints.upM]: {
+      height: 80,
+      marginBottom: theme.spacing(3),
+    }
   },
   networkBoxWrapper: {
     margin: [0, "auto", theme.spacing(3)],

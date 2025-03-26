@@ -37,7 +37,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           reportForm={env.reportForm}
         />
       )}
-      {/* {env && showNetworkOutdatedModal && env.outdatedNetworkModal.isEnabled && (
+      {env && showNetworkOutdatedModal && env.outdatedNetworkModal.isEnabled && (
         <ConfirmationModal
           message={
             <div>
@@ -65,7 +65,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           showCancelButton={false}
           title={env.outdatedNetworkModal.title}
         />
-      )} */}
+      )}
     </>
   );
 };
