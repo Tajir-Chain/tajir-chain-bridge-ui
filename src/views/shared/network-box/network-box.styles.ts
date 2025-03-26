@@ -56,7 +56,6 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
       cursor: "inherit",
       opacity: 0.75,
     },
-
     alignItems: "center",
     appearance: "none",
     background: theme.palette.white,
@@ -80,6 +79,9 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
   },
   buttonRounded: {
+    "&:hover": {
+      background: theme.palette.grey.light,
+    },
     alignItems: "center",
     border: "1px solid #EEE8FF",
     borderRadius: 28,
@@ -88,6 +90,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     height: 30,
     justifyContent: "center",
     padding: [theme.spacing(0), theme.spacing(1.5)],
+    transition: "all 0.2s ease-in-out",
   },
   buttons: {
     alignItems: "center",
@@ -100,6 +103,10 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "space-between",
     marginBottom: theme.spacing(2),
     width: "100%",
+    [theme.breakpoints.upM]: {
+      flexDirection: "column",
+      gap: theme.spacing(2),
+    },
   },
   largeTitle: {
     fontSize: 32,

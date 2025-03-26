@@ -1,12 +1,13 @@
-
 export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const value = import.meta.env[key];
-  return typeof value === 'string' ? value : defaultValue;
+  return typeof value === "string" ? value : defaultValue;
 };
 
 export type Theme = {
   breakpoints: {
+    upLg: string;
+    upM: string;
     upSm: string;
   };
   hoverTransition: string;
@@ -41,11 +42,12 @@ export type Theme = {
     white: string;
   };
   spacing: (value: number) => number;
-}
-
+};
 
 export const theme: Theme = {
   breakpoints: {
+    upLg: "@media (max-width: 1024px)",
+    upM: "@media (max-width: 768px)",
     upSm: "@media (min-width: 480px)",
   },
   hoverTransition: "all 150ms",
@@ -81,4 +83,3 @@ export const theme: Theme = {
   },
   spacing: (value: number): number => value * 8,
 };
-
