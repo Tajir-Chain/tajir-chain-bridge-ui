@@ -30,3 +30,28 @@ export const useNetworkSelectorStyles = createUseStyles((theme: Theme) => ({
     },
   },
 }));
+export const useNetworkSelectorRedesignStyles = createUseStyles((theme: Theme) => ({
+  networkButton: {
+    alignItems: "center",
+    backgroundColor: "transparent",
+    border: "1px solid rgba(0, 0, 0, 0.05)", 
+    borderRadius: 8,
+    cursor: "pointer",
+    display: "flex",
+    gap: theme.spacing(1),
+    justifyContent: "space-between",
+    maxWidth: 200,
+    padding: theme.spacing(1.25),
+    transition: theme.hoverTransition,
+  },
+  networkButtonText: {
+    display: "none",
+    fontSize: "14px !important",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    [theme.breakpoints.upSm]: {
+      display: "block",
+    },
+  },
+}));

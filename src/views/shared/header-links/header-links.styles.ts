@@ -11,6 +11,7 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
       maxHeight: 30,
       opacity: 0.6,
       width: 30,
+      zIndex: 99,
     },
   },
 
@@ -39,6 +40,7 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
     textDecoration: "none",
     transition: "color 0.3s",
     [theme.breakpoints.upM]: {
+      color: theme.palette.primary.mainRedesign,
       position: "relative",
       width: "100%",
     },
@@ -63,17 +65,19 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
     gap: theme.spacing(3),
 
     [theme.breakpoints.upM]: {
-      backdropFilter: "blur(15px)",
+      backdropFilter: "blur(35px)",
       backgroundColor: "transparent",
       borderRadius: 12,
       boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       flexDirection: "column",
-      fontSize: 18,
-      padding: theme.spacing(2),
+      fontSize: 26,
+      gap: theme.spacing(4),
+
+      padding: theme.spacing(3),
       position: "absolute",
       right: 15,
       top: 70,
-      width: 130,
+      width: 230,
     },
   },
   logo: {
@@ -87,7 +91,7 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
     marginInline: theme.spacing(3),
     marginTop: theme.spacing(3),
     [theme.breakpoints.upM]: {
-      margin:0,
+      margin: 0,
     },
   },
 }));

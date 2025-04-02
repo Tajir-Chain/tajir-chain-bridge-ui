@@ -1,19 +1,18 @@
 import copy from "copy-to-clipboard";
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
-import { ReactComponent as ArrowRightNoLineIcon } from "src/assets/icons/arrow-right-no-line.svg";
 import { ReactComponent as ArrowRightIcon } from "src/assets/icons/arrow-right-purple.svg";
 import { ReactComponent as CopyIcon } from "src/assets/icons/copy-outlined.svg";
+import { ReactComponent as CornerWhiteIcon } from "src/assets/icons/corner-right-white.svg";
 import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
 import { ReactComponent as WarningIcon } from "src/assets/icons/warning.svg";
-import { POLYGON_SUPPORT_URL } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { useUIContext } from "src/contexts/ui.context";
-import { Message, WalletName } from "src/domain";
+import { Message } from "src/domain";
 import { useCallIfMounted } from "src/hooks/use-call-if-mounted";
 import { isAsyncTaskDataAvailable, isMetaMaskUserRejectedRequestError } from "src/utils/types";
 import { Divider } from "src/views/divider/divider.view";
@@ -26,11 +25,7 @@ type ListValueObject = {
   onClick?: () => void;
 };
 
-type WalletListProps = {
-  onSelectWallet: (walletName: WalletName) => void;
-};
-
-export const NetworkBoxRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
+export const NetworkBoxRedesign = () => {
   const classes = useNetworkBoxRedesignStyles();
   const env = useEnvContext();
   const { addNetwork, connectedProvider } = useProvidersContext();
@@ -110,33 +105,27 @@ export const NetworkBoxRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
   );
 
   const onAddNetwork = (): void => {
+    setIsAddNetworkButtonDisabled(true);
     if (!polygonZkEVMChain) {
       return;
     }
-
-    setIsAddNetworkButtonDisabled(true);
     addNetwork(polygonZkEVMChain)
       .then(() => {
         callIfMounted(() => {
           openSnackbar(successMsg);
         });
-      }).then(() => {
-
-        onSelectWallet(WalletName.METAMASK)
-
       })
       .catch((error) => {
-        void parseError(error).then((parsed) => {
-          callIfMounted(() => {
+        callIfMounted(() => {
+          void parseError(error).then((parsed) => {
             if (parsed === "wrong-network") {
               openSnackbar(successMsg);
-            } else if (!isMetaMaskUserRejectedRequestError(error)) {
+            } else if (isMetaMaskUserRejectedRequestError(error) === false) {
               notifyError(error);
             }
           });
         });
       })
-
       .finally(() => {
         callIfMounted(() => {
           setIsAddNetworkButtonDisabled(false);
@@ -153,23 +142,17 @@ export const NetworkBoxRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
       <div className={classes.networkBox}>
         <div className={classes.connectWalletBox}>
           <div className={classes.titlesBox}>
-            <div className={classes.largeTitle}
-            >
-              {" "}
-              Connect a wallet
-              {/* <WalletList onSelectWallet={onSelectWallet} /> */}
-            </div>
-            <div className={classes.smallTitle}>Connect with Sepolia Testnet environment</div>
+            <div className={classes.largeTitle}>Add a network</div>
           </div>
 
           <a
             className={classes.buttonRounded}
-            href={POLYGON_SUPPORT_URL}
+            href="https://discord.gg/77vtmKNbkf"
             rel="noopener noreferrer"
             target="_blank"
           >
-            <WarningIcon className={classes.buttonIcon} />
-            Report an issue
+            <WarningIcon className={classes.reportIcon} />
+            <div className={classes.reportTitle}> Report an issue</div>
           </a>
         </div>
         <button
@@ -183,10 +166,10 @@ export const NetworkBoxRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
         >
           <div className={classes.buttonIconAndTitle}>
             <MetaMaskIcon className={classes.buttonIcon} />
-            Connect MetaMask
+            Add to MetaMask
           </div>
           <div>
-            <ArrowRightNoLineIcon className={classes.buttonArrow} />
+            <CornerWhiteIcon className={classes.buttonArrow} />
           </div>
         </button>
         <Divider />

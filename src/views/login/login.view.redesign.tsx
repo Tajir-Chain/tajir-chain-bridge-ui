@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { HeaderLinks } from "../shared/header-links/header-links.view.redesign";
 import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redesign";
+import { WalletListRedesign } from "./components/wallet-list/wallet-list.view.redesign";
 import { routerStateParser } from "src/adapters/browser";
 import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
 import { ReactComponent as ArrowDoubleIcon } from "src/assets/icons/arrow-double.svg";
 import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
-import { ReactComponent as Logo } from "src/assets/polygon-zkevm-logo.svg";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
@@ -65,7 +65,7 @@ export const LoginRedesign: FC = () => {
     return null;
   }
 
-  const logo = env.logoPath;
+  const name = env.networkName;
   const ethereumChain = env.chains[0];
   const deploymentName = getDeploymentName(ethereumChain);
   const appName = deploymentName !== undefined ? `${deploymentName} Bridge` : "Bridge";
@@ -74,12 +74,19 @@ export const LoginRedesign: FC = () => {
     <div className={classes.login}>
       <HeaderLinks />
       <div className={classes.contentWrapper}>
-        <Typography className={classes.appName} type="body1">
-          <ArrowDoubleIcon className={classes.appNameIcon} /> {appName}
-        </Typography>
-        {logo ? <img className={classes.logo} src={logo}></img> : <Logo className={classes.logo} />}
+        <div className={classes.networkTopBox}>
+          <Typography className={classes.appName} type="body1">
+            <ArrowDoubleIcon className={classes.appNameIcon} /> {appName}
+          </Typography>
+          <Typography className={classes.networkName} type="body1">
+            {name ? name : env.chains[1].name}
+          </Typography>
+        </div>
         <div className={classes.networkBoxWrapper}>
-          <NetworkBoxRedesign onSelectWallet={onCheckAndConnectProvider} />
+          <NetworkBoxRedesign />
+        </div>
+        <div className={classes.cardWrap}>
+          <WalletListRedesign onSelectWallet={onCheckAndConnectProvider} />
           {connectedProvider.status === "failed" && (
             <ErrorMessage error={connectedProvider.error} />
           )}
