@@ -54,13 +54,13 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   button: {
     "&:disabled": {
       cursor: "inherit",
-      opacity: 0.75,
     },
     alignItems: "center",
     appearance: "none",
-    background: theme.palette.white,
+    backgroundColor: theme.palette.primary.mainRedesign,
     border: "1px solid #EEE8FF",
     borderRadius: 8,
+    color: theme.palette.white,
     cursor: "pointer",
     display: "flex",
     justifyContent: "space-between",
@@ -77,6 +77,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   buttonIconAndTitle: {
     alignItems: "center",
     display: "flex",
+     lineHeight: 0,
   },
   buttonRounded: {
     "&:hover": {
@@ -86,11 +87,15 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     border: "1px solid #EEE8FF",
     borderRadius: 28,
     display: "flex",
-    fontSize: 14,
+    fontSize: 12,
     height: 30,
     justifyContent: "center",
-    padding: [theme.spacing(0), theme.spacing(1.5)],
+    padding: [theme.spacing(2), theme.spacing(1.5)],
     transition: "all 0.2s ease-in-out",
+    [theme.breakpoints.upM]: {
+      borderRadius: 50,
+      padding: 0,
+    },
   },
   buttons: {
     alignItems: "center",
@@ -98,15 +103,14 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     gap: theme.spacing(4),
     textAlign: "center",
   },
+  buttonText: {
+    lineHeight: 0,
+  },
   connectWalletBox: {
     display: "flex",
     justifyContent: "space-between",
     marginBottom: theme.spacing(2),
     width: "100%",
-    [theme.breakpoints.upM]: {
-      flexDirection: "column",
-      gap: theme.spacing(2),
-    },
   },
   largeTitle: {
     fontSize: 32,
@@ -120,6 +124,11 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   list: {
     width: "100%",
     wordBreak: "break-word",
+    [theme.breakpoints.upM]: {
+      display: "flex",
+      flexDirection: "column",
+      gap: theme.spacing(1),
+    },
   },
 
   listIcon: {
@@ -135,6 +144,10 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     padding: [theme.spacing(0.5), 0],
+    [theme.breakpoints.upM]: {
+      flexDirection: "column",
+      gap: theme.spacing(1),
+    },
   },
   listItemLabel: {
     fontSize: 14,
@@ -157,6 +170,10 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     padding: "4px 8px",
     transition: "all 0.3s ease-in-out",
+    [theme.breakpoints.upM]: {
+      padding: [theme.spacing(1), theme.spacing(2)],
+      width: "100%",
+    },
   },
   networkBox: {
     alignItems: "center",
@@ -164,11 +181,20 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     flexDirection: "column",
     padding: theme.spacing(2),
   },
-  smallTitle: {
-    color: "#78798d",
-    fontSize: 12,
-    fontWeight: 400,
+  reportIcon: {
+    marginRight: theme.spacing(0.5),
+    width: 15,
+    [theme.breakpoints.upM]: {
+      marginRight: 0,
+    },
   },
+  reportTitle: {
+    marginTop: theme.spacing(0.4),
+    [theme.breakpoints.upM]: {
+      display: "none",
+    },
+  },
+
   titlesBox: {
     display: "flex",
     flexDirection: "column",

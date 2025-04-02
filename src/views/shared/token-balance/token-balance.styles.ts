@@ -9,3 +9,19 @@ export const useTokenBalanceStyles = createUseStyles((theme: Theme) => ({
     gap: theme.spacing(0.25),
   },
 }));
+
+export const useTokenBalanceRedesignStyles = createUseStyles((theme: Theme) => ({
+  loader: {
+    alignItems: "center",
+    display: "flex",
+    gap: theme.spacing(0.25),
+  },
+  tokenBalance: {
+    [theme.breakpoints.upM]: {
+      maxWidth: "100%",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+    },
+  },
+}));

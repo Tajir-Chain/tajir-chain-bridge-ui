@@ -65,7 +65,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     transition: "all 0.3s ease-in-out",
     [theme.breakpoints.upM]: {
       margin: theme.spacing(3),
-    }
+    },
   },
   appNameIcon: {
     width: 16,
@@ -82,6 +82,9 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     textAlign: "center",
   },
   cardWrap: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(2),
     margin: [theme.spacing(3), 0],
     width: "100%",
   },
@@ -105,12 +108,26 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     [theme.breakpoints.upM]: {
       height: 80,
       marginBottom: theme.spacing(3),
-    }
+    },
   },
   networkBoxWrapper: {
     margin: [0, "auto", theme.spacing(3)],
     maxWidth: theme.maxWidth,
     width: "100%",
+  },
+
+  networkName: {
+    fontSize: 72,
+    [theme.breakpoints.upM]: {
+      fontSize: 22,
+    },
+  },
+  networkTopBox: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    marginBottom: theme.spacing(5),
   },
   poweredLogoBox: {
     alignItems: "center",
