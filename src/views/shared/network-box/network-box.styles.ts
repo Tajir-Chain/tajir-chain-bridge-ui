@@ -77,7 +77,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   buttonIconAndTitle: {
     alignItems: "center",
     display: "flex",
-     lineHeight: 0,
+    lineHeight: 0,
   },
   buttonRounded: {
     "&:hover": {
@@ -94,7 +94,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     transition: "all 0.2s ease-in-out",
     [theme.breakpoints.upM]: {
       borderRadius: 50,
-      padding: 0,
+      padding: `${theme.spacing(1)}px ${theme.spacing(0.9)}px ${theme.spacing(1.5)}px`,
     },
   },
   buttons: {

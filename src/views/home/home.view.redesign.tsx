@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { HeaderLinks } from "../shared/header-links/header-links.view.redesign";
 import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redesign";
 import { BridgeFormRedesign } from "./components/bridge-form/bridge-form.view.redesign";
 import { HeaderRedesign } from "./components/header/header.view.redesign";
@@ -59,7 +58,6 @@ export const HomeRedesign = (): JSX.Element => {
 
  return (
   <div className={classes.contentWrapper}>
-   <HeaderLinks/>
    <HeaderRedesign/>
    {connectedProvider.status === "successful" && (
     <>

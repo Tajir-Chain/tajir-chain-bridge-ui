@@ -6,6 +6,7 @@ import { RouteId, routes } from "src/routes";
 import { areSettingsVisible } from "src/utils/feature-toggles";
 import { Activity } from "src/views/activity/activity.view";
 import { BridgeConfirmation } from "src/views/bridge-confirmation/bridge-confirmation.view";
+import { BridgeConfirmationRedesign } from "src/views/bridge-confirmation/bridge-confirmation.view.redesign";
 import { BridgeDetails } from "src/views/bridge-details/bridge-details.view";
 import { Home } from "src/views/home/home.view";
 import { HomeRedesign } from "src/views/home/home.view.redesign";
@@ -17,7 +18,7 @@ import { PrivateRoute } from "src/views/shared/private-route/private-route.view"
 
 const baseComponents: Record<RouteId, ComponentType> = {
   activity: Activity,
-  bridgeConfirmation: BridgeConfirmation,
+  bridgeConfirmation: BridgeConfirmationRedesign,
   bridgeDetails: BridgeDetails,
   home: HomeRedesign,
   login: LoginRedesign,

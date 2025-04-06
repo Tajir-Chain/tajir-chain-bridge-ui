@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { HeaderLinks } from "../shared/header-links/header-links.view.redesign";
 import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redesign";
 import { WalletListRedesign } from "./components/wallet-list/wallet-list.view.redesign";
 import { routerStateParser } from "src/adapters/browser";
@@ -72,7 +71,6 @@ export const LoginRedesign: FC = () => {
 
   return (
     <div className={classes.login}>
-      <HeaderLinks />
       <div className={classes.contentWrapper}>
         <div className={classes.networkTopBox}>
           <Typography className={classes.appName} type="body1">
