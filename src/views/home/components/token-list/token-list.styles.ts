@@ -222,6 +222,9 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   tokenBalanceWrapper: {
     marginLeft: "auto",
+     [theme.breakpoints["upM"]]: {
+       marginLeft: 0,
+    }
   },
   tokenButton: {
     "&:hover": {
@@ -239,12 +242,16 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     padding: theme.spacing(2),
     transition: theme.hoverTransition,
     width: "99%",
+
+
   },
   tokenButtonWrapper: {
     "&:not(:first-of-type)": {
       marginTop: theme.spacing(1),
     },
+
     position: "relative",
+
   },
   tokenIcon: {
     marginRight: theme.spacing(1),
@@ -274,6 +281,14 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     marginRight: 48,
+       [theme.breakpoints.upM]: {
+         alignItems: "flex-start",
+      flexDirection: "column",
+      
+      gap: theme.spacing(1),
+      margin: 0,
+      padding: 0,
+    }
   },
   tokenList: {
     display: "flex",

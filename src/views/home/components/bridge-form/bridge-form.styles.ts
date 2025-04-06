@@ -178,7 +178,6 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     [theme.breakpoints.upM]: {
       gap: theme.spacing(1.25),
       maxWidth: "100%",
-
     },
   },
   icons: {
@@ -196,7 +195,6 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "space-between",
     [theme.breakpoints.upM]: {
       maxWidth: "57%",
-     
     },
   },
   middleRow: {
@@ -241,16 +239,14 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     gap: theme.spacing(0.75),
     marginBottom: -theme.spacing(0.75),
-    
     marginTop: theme.spacing(0.5),
-
     padding: [theme.spacing(0.75), theme.spacing(1.25)],
     [theme.breakpoints.upSm]: {
       gap: theme.spacing(1.25),
     },
     [theme.breakpoints.upM]: {
       maxWidth: "100%",
-      padding: "6px 0px",
+      padding: `${theme.spacing(0.75)}px ${theme.spacing(1.25)}px`,
     },
   },
 

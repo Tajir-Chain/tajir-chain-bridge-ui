@@ -57,7 +57,6 @@ export const useTokenSelectorHeaderStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-
 export const useTokenSelectorHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
   backButton: {
     alignItems: "center",
@@ -96,6 +95,11 @@ export const useTokenSelectorHeaderRedesignStyles = createUseStyles((theme: Them
   closeButtonIcon: {
     height: 16,
     width: 16,
+  },
+  title: {
+    [theme.breakpoints.upM]: {
+      fontSize: 22,
+    },
   },
   tokenSelectorHeader: {
     alignItems: "center",

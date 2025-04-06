@@ -40,7 +40,7 @@ export const ChainListRedesign: FC<ChainListProps> = ({ chains, onClick, onClose
               </button>
             ))}
           </div>
-     </CardRedesign>
+        </CardRedesign>
       </div>
     </Portal>
   );

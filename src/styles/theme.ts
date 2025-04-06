@@ -1,4 +1,4 @@
-export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string => {
+export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string  => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const value = import.meta.env[key];
   return typeof value === "string" ? value : defaultValue;

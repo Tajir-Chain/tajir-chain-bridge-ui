@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
+import { ChainListRedesign } from "../chain-list/chain-list.view.redesign";
 import { ReactComponent as CaretDown } from "src/assets/icons/caret-down.svg";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
@@ -7,7 +8,6 @@ import { useProvidersContext } from "src/contexts/providers.context";
 import { Chain } from "src/domain";
 import { useCallIfMounted } from "src/hooks/use-call-if-mounted";
 import { isMetaMaskUserRejectedRequestError } from "src/utils/types";
-import { ChainList } from "src/views/shared/chain-list/chain-list.view";
 import { useNetworkSelectorRedesignStyles } from "src/views/shared/network-selector/network-selector.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 
@@ -51,7 +51,7 @@ export const NetworkSelectorRedesign: FC = () => {
         <CaretDown />
       </button>
       {isOpen && (
-        <ChainList
+        <ChainListRedesign
           chains={env.chains}
           onClick={(chain) => {
             changeNetwork(chain).catch((error) => {

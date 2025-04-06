@@ -70,14 +70,15 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
       borderRadius: 12,
       boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
       flexDirection: "column",
-      fontSize: 26,
-      gap: theme.spacing(4),
+      fontSize: 22,
+      gap: theme.spacing(2),
 
       padding: theme.spacing(3),
       position: "absolute",
       right: 15,
       top: 70,
       width: 230,
+      zIndex: 99,
     },
   },
   logo: {
@@ -88,10 +89,11 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
-    marginInline: theme.spacing(3),
+    marginInline: theme.spacing(5),
     marginTop: theme.spacing(3),
     [theme.breakpoints.upM]: {
-      margin: 0,
+      marginInline: theme.spacing(3),
+      marginTop: theme.spacing(1),
     },
   },
 }));

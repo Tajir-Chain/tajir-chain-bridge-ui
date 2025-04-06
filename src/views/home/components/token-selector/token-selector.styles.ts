@@ -25,6 +25,7 @@ export const useTokenSelectorStyles = createUseStyles((theme: Theme) => ({
 export const useTokenSelectorRedesignStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
+    alignSelf: "center",
     background: theme.palette.transparency,
     display: "flex",
     height: "100vh",
