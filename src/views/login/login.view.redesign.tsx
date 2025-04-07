@@ -6,7 +6,6 @@ import { WalletListRedesign } from "./components/wallet-list/wallet-list.view.re
 import { routerStateParser } from "src/adapters/browser";
 import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
 import { ReactComponent as ArrowDoubleIcon } from "src/assets/icons/arrow-double.svg";
-import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
@@ -93,9 +92,7 @@ export const LoginRedesign: FC = () => {
           <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />
         )}
       </div>
-      <div className={classes.poweredLogoBox}>
-        Powered by <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
-      </div>
+  
       {showPolicyModal && (
         <ConfirmationModal
           message={

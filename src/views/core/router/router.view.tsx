@@ -9,6 +9,7 @@ import { ActivityRedesign } from "src/views/activity/activity.view.redesign";
 import { BridgeConfirmation } from "src/views/bridge-confirmation/bridge-confirmation.view";
 import { BridgeConfirmationRedesign } from "src/views/bridge-confirmation/bridge-confirmation.view.redesign";
 import { BridgeDetails } from "src/views/bridge-details/bridge-details.view";
+import { BridgeDetailsRedesign } from "src/views/bridge-details/bridge-details.view.redisign";
 import { Home } from "src/views/home/home.view";
 import { HomeRedesign } from "src/views/home/home.view.redesign";
 import { Login } from "src/views/login/login.view";
@@ -20,7 +21,7 @@ import { PrivateRoute } from "src/views/shared/private-route/private-route.view"
 const baseComponents: Record<RouteId, ComponentType> = {
   activity: ActivityRedesign,
   bridgeConfirmation: BridgeConfirmationRedesign,
-  bridgeDetails: BridgeDetails,
+  bridgeDetails: BridgeDetailsRedesign,
   home: HomeRedesign,
   login: LoginRedesign,
   networkError: NetworkError,

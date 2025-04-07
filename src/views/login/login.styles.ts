@@ -129,11 +129,5 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     marginBottom: theme.spacing(5),
   },
-  poweredLogoBox: {
-    alignItems: "center",
-    display: "flex",
-    gap: theme.spacing(1.5),
-    justifyContent: "center",
-    marginTop: theme.spacing(3),
-  },
+
 }));

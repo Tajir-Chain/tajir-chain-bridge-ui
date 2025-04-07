@@ -9,6 +9,7 @@ import { ExternalLink } from "src/views/shared/external-link/external-link.view"
 import { HeaderLinks } from "src/views/shared/header-links/header-links.view.redesign";
 import { Snackbar } from "src/views/shared/snackbar/snackbar.view";
 import { Typography } from "src/views/shared/typography/typography.view";
+import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const classes = useLayoutStyles();
@@ -30,6 +31,9 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
       <div className={classes.layout}>
         <HeaderLinks />
         <div className={classes.container}>{children}</div>
+        <div className={classes.poweredLogoBox}>
+          Powered by <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
+        </div>
       </div>
       {env && snackbar.status === "open" && (
         <Snackbar
