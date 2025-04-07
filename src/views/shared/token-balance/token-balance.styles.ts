@@ -17,7 +17,7 @@ export const useTokenBalanceRedesignStyles = createUseStyles((theme: Theme) => (
     gap: theme.spacing(0.25),
   },
   tokenBalance: {
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       maxWidth: "100%",
       overflow: "hidden",
       textOverflow: "ellipsis",

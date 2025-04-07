@@ -222,7 +222,7 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   tokenBalanceWrapper: {
     marginLeft: "auto",
-     [theme.breakpoints["upM"]]: {
+     [theme.breakpoints["downM"]]: {
        marginLeft: 0,
     }
   },
@@ -281,7 +281,7 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     marginRight: 48,
-       [theme.breakpoints.upM]: {
+       [theme.breakpoints.downM]: {
          alignItems: "flex-start",
       flexDirection: "column",
       

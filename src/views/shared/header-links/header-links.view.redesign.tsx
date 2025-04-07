@@ -6,7 +6,6 @@ import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-ga
 
 type LinkItem = { title: string; url: string };
 
-
 export const HeaderLinks = () => {
   const [openBurgerMenu, setOpenBurgerMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -24,7 +23,6 @@ export const HeaderLinks = () => {
     ...(isMobile ? [{ title: "Deploy rollup", url: "https://presto.gateway.fm/onboarding" }] : []),
   ];
 
-
   const onOpenBurgerMenu = () => {
     setOpenBurgerMenu((prev) => !prev);
   };
@@ -32,15 +30,23 @@ export const HeaderLinks = () => {
   const redirectToPrestoOnboarding = () => {
     window.open("https://presto.gateway.fm/onboarding", "_blank");
   };
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target;
-      if (
-        target instanceof Node &&
-        menuRef.current &&
+      if (!(target instanceof Node)) {
+        return;
+      }
+
+      // If the click is inside the menu container:
+      if (menuRef.current && menuRef.current.contains(target)) {
+        // If the clicked element is not inside an anchor element, close the menu
+        // eslint-disable-next-line no-type-assertion/no-type-assertion
+        if (!(target as HTMLElement).closest("a")) {
+          setOpenBurgerMenu(false);
+        }
+      } else if (
+        // Otherwise, if the click is outside the burger icon as well, close the menu.
         burgerIconRef.current &&
-        !menuRef.current.contains(target) &&
         !burgerIconRef.current.contains(target)
       ) {
         setOpenBurgerMenu(false);
@@ -48,12 +54,10 @@ export const HeaderLinks = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   return (
     <div className={classes.wrapper}>
       <div className={classes.linksAndLogoContainer}>
@@ -62,7 +66,12 @@ export const HeaderLinks = () => {
           onClick={() => window.open("https://gateway.fm/", "_blank")}
         />
         <div ref={burgerIconRef}>
-          <BurgerMenuIcon className={classes.burgerMenu} onClick={onOpenBurgerMenu} />
+          <BurgerMenuIcon
+            className={`${classes.burgerMenu} ${
+              openBurgerMenu ? classes.openedBurgerMenuIcon : ""
+            }`}
+            onClick={onOpenBurgerMenu}
+          />
         </div>
         <div
           className={classes.linksContainer}

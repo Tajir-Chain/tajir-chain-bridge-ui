@@ -92,7 +92,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     padding: [theme.spacing(2), theme.spacing(1.5)],
     transition: "all 0.2s ease-in-out",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       borderRadius: 50,
       padding: `${theme.spacing(1)}px ${theme.spacing(0.9)}px ${theme.spacing(1.5)}px`,
     },
@@ -124,7 +124,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   list: {
     width: "100%",
     wordBreak: "break-word",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       display: "flex",
       flexDirection: "column",
       gap: theme.spacing(1),
@@ -144,7 +144,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     padding: [theme.spacing(0.5), 0],
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       flexDirection: "column",
       gap: theme.spacing(1),
     },
@@ -170,7 +170,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     padding: "4px 8px",
     transition: "all 0.3s ease-in-out",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       padding: [theme.spacing(1), theme.spacing(2)],
       width: "100%",
     },
@@ -184,13 +184,13 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   reportIcon: {
     marginRight: theme.spacing(0.5),
     width: 15,
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       marginRight: 0,
     },
   },
   reportTitle: {
     marginTop: theme.spacing(0.4),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       display: "none",
     },
   },

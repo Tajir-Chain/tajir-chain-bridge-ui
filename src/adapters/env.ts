@@ -4,7 +4,7 @@ import { getChains, getUsdcToken } from "src/constants";
 import * as domain from "src/domain";
 import { StrictSchema } from "src/utils/type-safety";
 
-interface Env {
+type Env = {
   VITE_BRIDGE_API_URL: string;
   VITE_CHAIN_ICON_URL?: string;
   VITE_ENABLE_DEPOSIT_WARNING: string;

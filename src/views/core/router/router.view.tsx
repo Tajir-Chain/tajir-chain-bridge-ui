@@ -5,6 +5,7 @@ import { useEnvContext } from "src/contexts/env.context";
 import { RouteId, routes } from "src/routes";
 import { areSettingsVisible } from "src/utils/feature-toggles";
 import { Activity } from "src/views/activity/activity.view";
+import { ActivityRedesign } from "src/views/activity/activity.view.redesign";
 import { BridgeConfirmation } from "src/views/bridge-confirmation/bridge-confirmation.view";
 import { BridgeConfirmationRedesign } from "src/views/bridge-confirmation/bridge-confirmation.view.redesign";
 import { BridgeDetails } from "src/views/bridge-details/bridge-details.view";
@@ -17,7 +18,7 @@ import { Settings } from "src/views/settings/settings.view";
 import { PrivateRoute } from "src/views/shared/private-route/private-route.view";
 
 const baseComponents: Record<RouteId, ComponentType> = {
-  activity: Activity,
+  activity: ActivityRedesign,
   bridgeConfirmation: BridgeConfirmationRedesign,
   bridgeDetails: BridgeDetails,
   home: HomeRedesign,

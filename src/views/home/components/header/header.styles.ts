@@ -57,7 +57,7 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
     flex: 1,
     gap: theme.spacing(0.75),
     marginInline: theme.spacing(3),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       marginInline: 0,
     },
   },
@@ -65,7 +65,7 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
     fontSize: 72,
     justifyContent: "center",
 
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       fontSize: 22,
     },
   },

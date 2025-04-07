@@ -27,55 +27,55 @@ import { Erc20__factory } from "src/types/contracts/erc-20";
 import { isTokenEther } from "src/utils/tokens";
 import { isAsyncTaskDataAvailable } from "src/utils/types";
 
-interface ComputeWrappedTokenAddressParams {
+type ComputeWrappedTokenAddressParams = {
   nativeChain: Chain;
   otherChain: Chain;
   token: Token;
-}
+};
 
-interface GetNativeTokenInfoParams {
+type GetNativeTokenInfoParams = {
   address: string;
   chain: Chain;
-}
+};
 
-interface AddWrappedTokenParams {
+type AddWrappedTokenParams = {
   token: Token;
-}
+};
 
-interface GetTokenFromAddressParams {
+type GetTokenFromAddressParams = {
   address: string;
   chain: Chain;
-}
+};
 
-interface GetTokenParams {
+type GetTokenParams = {
   env: Env;
   originNetwork: number;
   tokenOriginAddress: string;
-}
+};
 
-interface GetErc20TokenBalanceParams {
+type GetErc20TokenBalanceParams = {
   accountAddress: string;
   chain: Chain;
   tokenAddress: string;
-}
+};
 
-interface ApproveParams {
+type ApproveParams = {
   amount: BigNumber;
   from: Chain;
   owner: string;
   provider: Web3Provider;
   spender: string;
   token: Token;
-}
+};
 
-interface TokensContext {
+type TokensContext = {
   addWrappedToken: (params: AddWrappedTokenParams) => Promise<Token>;
   approve: (params: ApproveParams) => Promise<void>;
   getErc20TokenBalance: (params: GetErc20TokenBalanceParams) => Promise<BigNumber>;
   getToken: (params: GetTokenParams) => Promise<Token>;
   getTokenFromAddress: (params: GetTokenFromAddressParams) => Promise<Token>;
   tokens?: Token[];
-}
+};
 
 const tokensContextNotReadyMsg = "The tokens context is not yet ready";
 
@@ -323,11 +323,11 @@ const TokensProvider: FC<PropsWithChildren> = (props) => {
           )
             .then((chainTokens) => {
               const tokens = [];
-              const gasToken = getGasToken(polygonZkEVMChain)
+              const gasToken = getGasToken(polygonZkEVMChain);
               if (!isTokenEther(gasToken, ethereumChain)) {
-                tokens.push(gasToken)
+                tokens.push(gasToken);
               }
-              tokens.push(getEtherToken(ethereumChain), ...chainTokens)
+              tokens.push(getEtherToken(ethereumChain), ...chainTokens);
               cleanupCustomTokens(tokens);
               setTokens(tokens);
             })
