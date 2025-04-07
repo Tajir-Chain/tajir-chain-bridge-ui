@@ -2,6 +2,148 @@ import { createUseStyles } from "react-jss";
 
 import { Theme } from "src/styles/theme";
 
+export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => ({
+  alignRow: {
+    alignItems: "center",
+    display: "flex",
+    gap: theme.spacing(1),
+    [theme.breakpoints.downM]: {
+      color: theme.palette.grey.dark,
+      fontSize: 18,
+    },
+  },
+  alignRowValue: {
+    [theme.breakpoints.downM]: {
+      backgroundColor: theme.palette.primary.light,
+      borderRadius: "8px",
+
+      fontSize: 16,
+      justifyContent: "center",
+      padding: theme.spacing(1),
+      width: "100%",
+    },
+  },
+  amount: {
+    [theme.breakpoints.downM]: {
+      fontSize: 20,
+    },
+  },
+  balance: {
+    alignItems: "center",
+    borderBottom: `1px solid ${theme.palette.grey.light}`,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    marginBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.downM]: {
+      borderBottom: "none",
+      paddingBottom: theme.spacing(1),
+    },
+  },
+  card: {
+    margin: [theme.spacing(5), "auto", 0],
+    maxWidth: theme.maxWidth,
+    padding: theme.spacing(3),
+    width: "100%",
+    [theme.breakpoints.downM]: {
+      margin: [theme.spacing(2.5), "auto", 0],
+      padding: theme.spacing(2),
+    },
+  },
+  contentWrapper: {
+    padding: [0, theme.spacing(5)],
+    [theme.breakpoints.downM]: {
+      marginTop: theme.spacing(1.5),
+      padding: [0, theme.spacing(3)],
+    },
+  },
+  dotCompleted: {
+    backgroundColor: theme.palette.success.main,
+    borderRadius: "50%",
+    height: 6,
+    width: 6,
+  },
+  dotOnHold: {
+    backgroundColor: theme.palette.error.main,
+    borderRadius: "50%",
+    height: 6,
+    width: 6,
+  },
+  dotProcessing: {
+    backgroundColor: theme.palette.warning.main,
+    borderRadius: "50%",
+    height: 6,
+    width: 6,
+  },
+  explorerButton: {
+    alignItems: "center",
+    backgroundColor: theme.palette.primary.light,
+    border: "none",
+    borderRadius: 8,
+    color: theme.palette.grey.dark,
+    cursor: "pointer",
+    display: "flex",
+    gap: theme.spacing(1),
+    padding: [theme.spacing(1), theme.spacing(2)],
+  
+  },
+  explorerTitle: {
+  [theme.breakpoints.downM]: {
+      color: `${theme.palette.grey.dark} !important`,
+    }
+
+
+  },
+  fiat: {
+    color: theme.palette.grey.dark,
+    fontSize: 14,
+  },
+  finaliseRow: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(1),
+    justifyContent: "center",
+    margin: [theme.spacing(3), 0],
+    [theme.breakpoints.upSm]: {
+      margin: [theme.spacing(3), 0],
+    },
+  },
+  finaliseSpinner: {
+    "& path": {
+      fill: theme.palette.white,
+    },
+  },
+  infoContainer: {},
+  lastRow: {
+    paddingBottom: 0,
+  },
+  row: {
+    alignItems: "flex-start",
+
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(1),
+    justifyContent: "space-between",
+
+    [theme.breakpoints.downM]: {
+      alignItems: "center",
+    },
+    padding: [theme.spacing(2), 0],
+    [theme.breakpoints.upSm]: {
+      alignItems: "center",
+      flexDirection: "row",
+      padding: [theme.spacing(1.5), 0],
+    },
+  },
+  tokenIcon: {
+    height: 48,
+    margin: [theme.spacing(1), 0, theme.spacing(2)],
+    width: 48,
+  },
+}));
+
 export const useBridgeDetailsStyles = createUseStyles((theme: Theme) => ({
   alignRow: {
     alignItems: "center",

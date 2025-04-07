@@ -166,6 +166,12 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
   filterNumberBoxSelected: {
     backgroundColor: theme.palette.white,
   },
+  loaderBox: {
+    padding: [theme.spacing(22), theme.spacing(1)],
+  },
+  loaderWrapper: {
+    flex: 0,
+  },
 
   scrollArea: {
     [theme.breakpoints.upSm]: {
@@ -196,6 +202,7 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     margin: "auto",
+    marginBottom: theme.spacing(3),
     width: "60%",
     [theme.breakpoints.downM]: {
       width: "100%",

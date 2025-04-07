@@ -367,10 +367,19 @@ export const ActivityRedesign: FC = () => {
   );
 
   const loader = (
-    <div className={classes.contentWrapper}>
+    <div className={`${classes.contentWrapper} ${classes.loaderWrapper}`}>
       <HeaderRedesign backTo={{ routeKey: "home" }} title="Activity" />
-      {/* <Tabs all={0} pending={0} /> */}
-      <PageLoader />
+      <div className={classes.wrapper}>
+        {" "}
+        <Tabs all={0} pending={0} />
+        <div
+          className={`${classes.contentWrapperBody} ${
+            displayAll ? classes.displayAllSelectedSelected : ""
+            } ${classes.loaderBox}`}
+        >
+          <PageLoader />
+        </div>
+      </div>
     </div>
   );
 
@@ -387,6 +396,7 @@ export const ActivityRedesign: FC = () => {
       return (
         <div className={classes.contentWrapper}>
           <HeaderRedesign backTo={{ routeKey: "home" }} title="Activity" />
+
           <Tabs all={0} pending={0} />
           <EmptyMessage />
         </div>
