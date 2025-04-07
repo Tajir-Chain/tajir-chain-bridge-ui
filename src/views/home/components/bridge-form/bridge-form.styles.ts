@@ -151,12 +151,11 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   card: {
     display: "flex",
-
     flexDirection: "column",
     gap: theme.spacing(2.5),
     maxWidth: theme.maxWidth,
     padding: [theme.spacing(3), theme.spacing(4)],
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       padding: [theme.spacing(3), theme.spacing(3)],
     },
   },
@@ -175,7 +174,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     marginBottom: -theme.spacing(0.75),
     marginTop: theme.spacing(0.5),
     padding: [theme.spacing(0.75), theme.spacing(1.25)],
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       gap: theme.spacing(1.25),
       maxWidth: "100%",
     },
@@ -193,7 +192,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       maxWidth: "57%",
     },
   },
@@ -215,7 +214,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "space-between",
     maxWidth: "100%",
     paddingBottom: theme.spacing(0.5),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       gap: 6,
     },
   },
@@ -244,16 +243,13 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     [theme.breakpoints.upSm]: {
       gap: theme.spacing(1.25),
     },
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       maxWidth: "100%",
       padding: `${theme.spacing(0.75)}px ${theme.spacing(1.25)}px`,
     },
   },
 
   tokenSelector: {
-    "&:hover": {
-      // backgroundColor: theme.palette.grey.main,
-    },
     alignItems: "center",
     border: "1px solid rgba(0, 0, 0, 0.07)",
     borderRadius: 8,

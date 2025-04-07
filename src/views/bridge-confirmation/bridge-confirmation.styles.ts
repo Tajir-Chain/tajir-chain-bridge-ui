@@ -103,7 +103,7 @@ export const useBridgeConfirmationStyles = createUseStyles((theme: Theme) => ({
 
 export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme) => ({
   amountBox: {
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       alignItems: "center",
       display: "flex",
       flexDirection: "column",
@@ -120,7 +120,7 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
       margin: [0, theme.spacing(1)],
       transform: "none",
     },
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       height: 24,
     },
   },
@@ -147,7 +147,7 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
       margin: [theme.spacing(6), "auto", 0],
       padding: theme.spacing(3),
     },
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       margin: [theme.spacing(6), "auto", 0],
       padding: [theme.spacing(3), theme.spacing(2)],
     },
@@ -162,7 +162,7 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
     justifyContent: "center",
     maxWidth: 240,
     padding: [theme.spacing(1), theme.spacing(2)],
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       minWidth: "95%",
     },
   },
@@ -186,13 +186,13 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
       paddingBottom: theme.spacing(4),
       paddingTop: theme.spacing(3),
     },
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       gap: theme.spacing(1),
     },
   },
   contentWrapper: {
     padding: [0, theme.spacing(5)],
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       padding: [0, theme.spacing(3)],
     },
   },
@@ -203,7 +203,7 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
     alignItems: "center",
     display: "flex",
     gap: theme.spacing(1),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       justifyContent: "center",
     },
   },

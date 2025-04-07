@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, createContext, useContext, useMemo, useState } f
 
 import { FormData } from "src/domain";
 
-interface FormContext {
+type  FormContext = {
   formData?: FormData;
   setFormData: (formData?: FormData) => void;
 }

@@ -7,7 +7,7 @@ export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string  
 export type Theme = {
   breakpoints: {
     upLg: string;
-    upM: string;
+    downM: string;
     upSm: string;
   };
   hoverTransition: string;
@@ -47,7 +47,7 @@ export type Theme = {
 export const theme: Theme = {
   breakpoints: {
     upLg: "@media (max-width: 1024px)",
-    upM: "@media (max-width: 768px)",
+    downM: "@media (max-width: 768px)",
     upSm: "@media (min-width: 480px)",
   },
   hoverTransition: "all 150ms",

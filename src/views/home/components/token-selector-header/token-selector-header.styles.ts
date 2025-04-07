@@ -97,7 +97,7 @@ export const useTokenSelectorHeaderRedesignStyles = createUseStyles((theme: Them
     width: 16,
   },
   title: {
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       fontSize: 22,
     },
   },

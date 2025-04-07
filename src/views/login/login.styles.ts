@@ -63,7 +63,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     margin: theme.spacing(5),
     padding: "4px 8px",
     transition: "all 0.3s ease-in-out",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       margin: theme.spacing(3),
     },
   },
@@ -105,7 +105,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
   logo: {
     height: 120,
     marginBottom: theme.spacing(4),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       height: 80,
       marginBottom: theme.spacing(3),
     },
@@ -118,7 +118,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
 
   networkName: {
     fontSize: 72,
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       fontSize: 22,
     },
   },

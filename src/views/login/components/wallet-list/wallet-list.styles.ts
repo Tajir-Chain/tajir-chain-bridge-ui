@@ -45,7 +45,7 @@ export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "space-between",
     padding: [theme.spacing(1), theme.spacing(1)],
     width: "100%",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       fontSize: 14,
     },
   },
@@ -53,7 +53,7 @@ export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
   buttonWalletTitle: {
     alignItems: "center",
     display: "flex",
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       gap: theme.spacing(0.1),
     },
   },
@@ -83,7 +83,7 @@ export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   walletIcon: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       marginRight: theme.spacing(1),
     },
   },
@@ -99,7 +99,7 @@ export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
   walletName: {
     color: theme.palette.white,
     marginLeft: theme.spacing(1),
-    [theme.breakpoints.upM]: {
+    [theme.breakpoints.downM]: {
       fontSize: 12,
       marginLeft: theme.spacing(0.5),
     },
