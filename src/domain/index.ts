@@ -79,6 +79,7 @@ export type ReportFormEnvEnabled = {
 };
 
 export type Env = {
+  brandComponents: boolean;
   bridgeApiUrl: string;
   chains: [EthereumChain, ZkEVMChain, GptChain, LumiaChain];
   faviconPath?: string;

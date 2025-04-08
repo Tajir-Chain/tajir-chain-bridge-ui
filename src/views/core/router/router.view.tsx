@@ -18,7 +18,7 @@ import { NetworkError } from "src/views/network-error/network-error.view";
 import { Settings } from "src/views/settings/settings.view";
 import { PrivateRoute } from "src/views/shared/private-route/private-route.view";
 
-const baseComponents: Record<RouteId, ComponentType> = {
+const redesignComponents : Record<RouteId, ComponentType> = {
   activity: ActivityRedesign,
   bridgeConfirmation: BridgeConfirmationRedesign,
   bridgeDetails: BridgeDetailsRedesign,
@@ -27,7 +27,7 @@ const baseComponents: Record<RouteId, ComponentType> = {
   networkError: NetworkError,
   settings: Settings,
 };
-const redesignComponents: Record<RouteId, ComponentType> = {
+const baseComponents: Record<RouteId, ComponentType> = {
   activity: Activity,
   bridgeConfirmation: BridgeConfirmation,
   bridgeDetails: BridgeDetails,
@@ -39,9 +39,10 @@ const redesignComponents: Record<RouteId, ComponentType> = {
 
 export const Router: FC = () => {
   const env = useEnvContext();
+  const frontendType = env?.frontendType ;
   const components = useMemo<Record<RouteId, ComponentType>>(
-    () => ({ ...baseComponents, ...(env?.frontendType === 'redesign' ? redesignComponents : {}) }),
-    [env?.frontendType]
+    () => (frontendType === "old-design" ? baseComponents : redesignComponents),
+    [frontendType]
   );
 
   const filteredRoutes =

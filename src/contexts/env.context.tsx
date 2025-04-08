@@ -26,7 +26,7 @@ const EnvProvider: FC<PropsWithChildren> = (props) => {
   useEffect(() => {
     if (!env) {
       loadEnv()
-        .then(setEnv)
+        .then((res) =>setEnv(res))
         .catch((e) => {
           const error = providerError.safeParse(e);
 

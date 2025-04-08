@@ -53,7 +53,9 @@ export const useNetworkBoxStyles = createUseStyles((theme: Theme) => ({
 export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   button: {
     "&:disabled": {
+backgroundColor: theme.palette.grey.dark,
       cursor: "inherit",
+      opacity: 0.4,
     },
     alignItems: "center",
     appearance: "none",

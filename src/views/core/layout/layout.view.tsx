@@ -16,6 +16,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const { closeSnackbar, snackbar } = useUIContext();
   const [showNetworkOutdatedModal, setShowNetworkOutdatedModal] = useState(false);
   const env = useEnvContext();
+  const showBrandComponents = env?.brandComponents && env?.frontendType !== "old-design";
 
   const onCloseSnackbar = closeSnackbar;
   const onReportFromSnackbar = reportError;
@@ -29,11 +30,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div className={classes.layout}>
-        <HeaderLinks />
+        {showBrandComponents && <HeaderLinks />}
         <div className={classes.container}>{children}</div>
-        <div className={classes.poweredLogoBox}>
+        {showBrandComponents &&  <div className={classes.poweredLogoBox}>
           Powered by <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
-        </div>
+        </div>}
       </div>
       {env && snackbar.status === "open" && (
         <Snackbar
