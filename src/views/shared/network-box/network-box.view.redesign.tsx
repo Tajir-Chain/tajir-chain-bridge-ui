@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
@@ -39,6 +39,8 @@ export const NetworkBoxRedesign = () => {
 
   // const name = env?.networkName;
   const symbol = env?.networkSymbol;
+
+
 
   const onCopyText = (text: string) => () => {
     const success = copy(text);

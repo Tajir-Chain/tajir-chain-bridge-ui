@@ -56,6 +56,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   const [chains, setChains] = useState<Chain[]>();
   const [tokens, setTokens] = useState<Token[]>();
   const [isTokenListOpen, setIsTokenListOpen] = useState(false);
+  
 
   const onAmountInputChange = ({ amount, error }: { amount?: BigNumber; error?: string }) => {
     setAmount(amount);
@@ -256,6 +257,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
 
   useEffect(() => {
     // Load default form values
+  
     if (formData) {
       setSelectedChains({ from: formData.from, to: formData.to });
       setToken(formData.token);
@@ -272,7 +274,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     );
   }
 
-  const symbol = isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
+  const symbol =  isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <CardRedesign className={classes.card}>
