@@ -62,15 +62,18 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
     },
   },
   centerBlock: {
-    fontSize: 72,
+    fontSize: 62,
+    fontWeight: 500,
     justifyContent: "center",
-
+    overflowWrap: "break-word",
+    textAlign: "center",
+    wordBreak: "break-word",
     [theme.breakpoints.downM]: {
-      fontSize: 22,
+      fontSize: 28,
     },
   },
   header: {
-    alignItems: "center",
+    alignItems: "flex-start",
     display: "flex",
     margin: [theme.spacing(3), "auto", 0],
     width: "100%",
@@ -86,7 +89,6 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
      `,
       transform: "translateY(-2px)",
       zIndex: 2,
-      // border: 'none',
     },
     alignItems: "center",
     border: "1px solid rgba(0, 0, 0, 0.05)",

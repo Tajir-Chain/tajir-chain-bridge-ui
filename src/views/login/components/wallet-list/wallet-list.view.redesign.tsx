@@ -13,7 +13,7 @@ type WalletListProps = {
 
 export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
   const classes = useWalletListRedesignStyles();
-  const isMobile = window.innerWidth < 768;
+  const isMobile = window.innerWidth < 788;
 
   return (
     <CardRedesign>

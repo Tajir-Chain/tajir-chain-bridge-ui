@@ -11,36 +11,41 @@ import { NetworkSelectorRedesign } from "src/views/shared/network-selector/netwo
 import { Typography } from "src/views/shared/typography/typography.view";
 
 export const HeaderRedesign: FC = () => {
- const classes = useHeaderRedesignStyles();
- const env = useEnvContext();
+  const classes = useHeaderRedesignStyles();
+  const env = useEnvContext();
 
- if (!env) {
-  return null;
- }
+  if (!env) {
+    return null;
+  }
 
- const networkName = env.networkName;
+  const networkName = env.networkName;
 
- return (
-  <header className={classes.header}>
-   <div className={`${classes.block} ${classes.leftBlock}`}>
-    {areSettingsVisible(env) && (
-     <Link className={classes.link} title="Settings" to={routes.settings.path}>
-      <SettingIcon />
-     </Link>
-    )}
-    <Link className={classes.link} to={routes.activity.path}>
-     <ClockIcon />
-     <Typography className={classes.activityLabel} type="body1">
-      Activity
-     </Typography>
-    </Link>
-   </div>
-   <div className={`${classes.block} ${classes.centerBlock}`}>
-    {networkName}
-   </div>
-   <div className={`${classes.block} ${classes.rightBlock}`}>
-    <NetworkSelectorRedesign />
-   </div>
-  </header>
- );
+  return (
+    <header className={classes.header}>
+      <div className={`${classes.block} ${classes.leftBlock}`}>
+        {areSettingsVisible(env) && (
+          <Link className={classes.link} title="Settings" to={routes.settings.path}>
+            <SettingIcon />
+          </Link>
+        )}
+        <Link className={classes.link} to={routes.activity.path}>
+          <ClockIcon />
+          <Typography className={classes.activityLabel} type="body1">
+            Activity
+          </Typography>
+        </Link>
+      </div>
+      <div
+        className={`${classes.block} ${classes.centerBlock}`}
+        style={{
+          fontSize: networkName && networkName.length > 15 ? 38 : 62,
+        }}
+      >
+        {networkName}
+      </div>
+      <div className={`${classes.block} ${classes.rightBlock}`}>
+        <NetworkSelectorRedesign />
+      </div>
+    </header>
+  );
 };

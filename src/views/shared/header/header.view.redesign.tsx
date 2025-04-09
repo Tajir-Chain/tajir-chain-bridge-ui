@@ -12,7 +12,6 @@ type HeaderProps = {
   Subtitle?: ReactElement;
   backTo: { routeKey: keyof typeof routes; state?: RouterState };
   title: string;
-  
 };
 
 export const HeaderRedesign: FC<HeaderProps> = ({ backTo, Subtitle, title }) => {
@@ -22,12 +21,13 @@ export const HeaderRedesign: FC<HeaderProps> = ({ backTo, Subtitle, title }) => 
   return (
     <header className={classes.header}>
       <div className={classes.topRow}>
-     <div className={`${classes.block}`} >
-     <button className={`${classes.sideButton} ${classes.leftBlock} `}>
-          <Link state={backTo.state} to={route}>
-            <ArrowLeftIcon className={classes.icon} />
-          </Link>
-        </button></div>
+        <div className={`${classes.block}`}>
+          <button className={`${classes.sideButton} ${classes.leftBlock} `}>
+            <Link state={backTo.state} to={route}>
+              <ArrowLeftIcon className={classes.icon} />
+            </Link>
+          </button>
+        </div>
         <div className={`${classes.block} ${classes.centerBlock}`}>
           <Typography type="h1">{title}</Typography>
         </div>

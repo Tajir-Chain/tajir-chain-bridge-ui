@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";

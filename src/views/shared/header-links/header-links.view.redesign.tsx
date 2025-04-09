@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useHeaderLinksRedesignStyles } from "./header-links.styles";
 import { ReactComponent as ArrowRight } from "src/assets/icons/arrow-right-white.svg";
 import { ReactComponent as BurgerMenuIcon } from "src/assets/icons/burger-menu.svg";
-import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
+import { ReactComponent as LogoGatewayfm } from "src/assets/icons/logo-gatewayfm.svg";
 
 type LinkItem = { title: string; url: string };
 
@@ -11,7 +11,7 @@ export const HeaderLinks = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const burgerIconRef = useRef<HTMLDivElement>(null);
   const classes = useHeaderLinksRedesignStyles();
-  const isMobile = window.innerWidth < 768;
+  const isMobile = window.innerWidth < 788;
 
   const linksList: LinkItem[] = [
     { title: "Rollup", url: "https://gateway.fm/presto" },
@@ -67,9 +67,8 @@ export const HeaderLinks = () => {
         />
         <div ref={burgerIconRef}>
           <BurgerMenuIcon
-            className={`${classes.burgerMenu} ${
-              openBurgerMenu ? classes.openedBurgerMenuIcon : ""
-            }`}
+            className={`${classes.burgerMenu} ${openBurgerMenu ? classes.openedBurgerMenuIcon : ""
+              }`}
             onClick={onOpenBurgerMenu}
           />
         </div>

@@ -114,14 +114,16 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
     },
   },
   arrowIcon: {
-    minWidth: 34,
+    height: 34,
     transform: "rotate(90deg)",
+    width: 34,
     [theme.breakpoints.upSm]: {
       margin: [0, theme.spacing(1)],
       transform: "none",
     },
     [theme.breakpoints.downM]: {
       height: 24,
+      width: 24,
     },
   },
   button: {

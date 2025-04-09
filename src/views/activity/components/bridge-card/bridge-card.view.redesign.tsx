@@ -43,7 +43,7 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
     status: "pending",
   });
 
-  const isMobile = window.innerWidth < 768;
+  const isMobile = window.innerWidth < 788;
 
   const [blockNumber, fromKey] =
     status !== "pending" ? [bridge.blockNumber, bridge.from.key] : [undefined, undefined];
@@ -85,12 +85,12 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
   const remainingBatchesMsg =
     isAsyncTaskDataAvailable(lastVerifiedBatch) && isAsyncTaskDataAvailable(batchNumberOfL2Block)
       ? `Waiting for validity proof. Tx will be confirmed in ${Math.max(
-          batchNumberOfL2Block.data.sub(lastVerifiedBatch.data).toNumber(),
-          0
-        )} batches`
+        batchNumberOfL2Block.data.sub(lastVerifiedBatch.data).toNumber(),
+        0
+      )} batches`
       : lastVerifiedBatch.status === "failed" || batchNumberOfL2Block.status === "failed"
-      ? "Waiting for validity proof. This may take between 15 min and 1 hour"
-      : "Waiting for validity proof";
+        ? "Waiting for validity proof. This may take between 15 min and 1 hour"
+        : "Waiting for validity proof";
 
   const BridgeAmount = (
     <div className={classes.token}>
@@ -116,9 +116,8 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
   );
   const BridgeStatus = (
     <span
-      className={`${classes.statusBox} ${
-        status === "completed" ? classes.greenStatus : classes.pendingStatus
-      }`}
+      className={`${classes.statusBox} ${status === "completed" ? classes.greenStatus : classes.pendingStatus
+        }`}
     >
       {getBridgeStatus(status, from)}
     </span>
@@ -138,7 +137,7 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
 
       )}
       <div className={classes.infoContainer}>
-     {!isMobile &&    <div className={classes.circle}>{BridgeIcon}</div>}
+        {!isMobile && <div className={classes.circle}>{BridgeIcon}</div>}
         <div className={classes.info}>
           <div className={classes.row}>
             {BridgeLabel}
@@ -201,12 +200,12 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
   };
 
   return (
-   <CardRedesign
-    className={`${classes.card} ${status !== "pending" ? classes.activeStatusCard : ""}`}
-    onClick={status !== "pending" ? () => onCardClick(bridge) : undefined}
-   >
-    {renderTopContent(getStep())}
-    {renderBottomContent()}
-   </CardRedesign>
+    <CardRedesign
+      className={`${classes.card} ${status !== "pending" ? classes.activeStatusCard : ""}`}
+      onClick={status !== "pending" ? () => onCardClick(bridge) : undefined}
+    >
+      {renderTopContent(getStep())}
+      {renderBottomContent()}
+    </CardRedesign>
   );
 };
