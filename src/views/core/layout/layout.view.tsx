@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
 import { reportError } from "src/adapters/error";
+import { ReactComponent as LogoGatewayfm } from "src/assets/icons/logo-gatewayfm.svg";
 import { useEnvContext } from "src/contexts/env.context";
 import { useUIContext } from "src/contexts/ui.context";
 import { useLayoutStyles } from "src/views/core/layout/layout.styles";
@@ -9,7 +10,6 @@ import { ExternalLink } from "src/views/shared/external-link/external-link.view"
 import { HeaderLinks } from "src/views/shared/header-links/header-links.view.redesign";
 import { Snackbar } from "src/views/shared/snackbar/snackbar.view";
 import { Typography } from "src/views/shared/typography/typography.view";
-import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const classes = useLayoutStyles();
