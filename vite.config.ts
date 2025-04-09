@@ -14,7 +14,7 @@ export default defineConfig({
   },
   plugins: [
     react({
-      fastRefresh: false,
+      fastRefresh: true,
     }),
     svgr(),
     checker({
@@ -28,5 +28,8 @@ export default defineConfig({
   },
   server: {
     open: true,
+       watch: {
+      ignored: ["!**/*.tsx", "!**/*.ts", "**/*.json", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.css"],
+    },
   },
 });

@@ -41,3 +41,53 @@ export const useAmountInputStyles = createUseStyles((theme: Theme) => ({
     },
   },
 }));
+
+export const useAmountInputRedesignStyles = createUseStyles((theme: Theme) => ({
+  amountInput: {
+    "&:disabled": {
+      backgroundColor: "transparent",
+    },
+    border: "none",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+    borderRadius: 8,
+    fontSize: "20px",
+    height: "100%",
+    lineHeight: "24px",
+    outline: "none",
+    textAlign: "right",
+    width: "60%",
+    [theme.breakpoints.upSm]: {
+      fontSize: (value: number) => (value < 16 ? "35px" : "25px"),
+      lineHeight: "40px",
+    },
+  },
+  maxButton: {
+    "&:disabled": {
+      backgroundColor: theme.palette.grey.main,
+    },
+    "&:not(:disabled)": {
+      cursor: "pointer",
+    },
+    background: theme.palette.primary.mainRedesign,
+
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    borderRadius: 8,
+    color: theme.palette.black,
+    height: "100%",
+    padding: theme.spacing(1),
+  },
+  maxText: {
+    color: theme.palette.white,
+  },
+  wrapper: {
+    alignItems: "center",
+    display: "flex",
+    flex: 1,
+    gap: theme.spacing(1.5),
+    justifyContent: "flex-end",
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.upSm]: {
+      marginLeft: theme.spacing(2.5),
+    },
+  },
+}));

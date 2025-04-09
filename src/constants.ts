@@ -173,13 +173,21 @@ export const getChains = ({
 const decodeGasTokenMetadata = (
   metadata: string
 ): { decimals: number; name: string; symbol: string } => {
-  const encoded =
-    metadata === "0x"
-      ? ["Ether", "ETH", 18]
-      : defaultAbiCoder.decode(["string", "string", "uint8"], metadata);
+  const defaultValues = ["Ether", "ETH", 18];
+  
+  let encoded;
+  if (metadata === "0x") {
+    encoded = defaultValues;
+  } else {
+    try {
+      encoded = defaultAbiCoder.decode(["string", "string", "uint8"], metadata);
+    } catch (error) {
+      encoded = defaultValues;
+    }
+  }
+  
   return { decimals: Number(encoded[2]), name: String(encoded[0]), symbol: String(encoded[1]) };
 };
-
 export const getEtherToken = (chain: Chain): Token => {
   return {
     address: ethers.constants.AddressZero,

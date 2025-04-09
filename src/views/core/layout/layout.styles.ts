@@ -21,4 +21,11 @@ export const useLayoutStyles = createUseStyles((theme: Theme) => ({
   linkContainer: {
     marginTop: theme.spacing(2),
   },
+   poweredLogoBox: {
+    alignItems: "center",
+    display: "flex",
+    gap: theme.spacing(1.5),
+    justifyContent: "center",
+    marginBottom: theme.spacing(6),
+  },
 }));

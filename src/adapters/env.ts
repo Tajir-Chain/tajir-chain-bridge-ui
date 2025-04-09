@@ -4,7 +4,8 @@ import { getChains, getUsdcToken } from "src/constants";
 import * as domain from "src/domain";
 import { StrictSchema } from "src/utils/type-safety";
 
-interface Env {
+type Env = {
+  VITE_BRAND_COMPONENTS?: string;
   VITE_BRIDGE_API_URL: string;
   VITE_CHAIN_ICON_URL?: string;
   VITE_ENABLE_DEPOSIT_WARNING: string;
@@ -21,6 +22,7 @@ interface Env {
   VITE_FIAT_EXCHANGE_RATES_API_KEY?: string;
   VITE_FIAT_EXCHANGE_RATES_API_URL?: string;
   VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS?: string;
+  VITE_FRONTEND_TYPE?: string;
   VITE_ICON_PATH?: string;
   VITE_LOGO_PATH?: string;
   VITE_NETWORK_NAME?: string;
@@ -37,7 +39,7 @@ interface Env {
   VITE_REPORT_FORM_PLATFORM_ENTRY?: string;
   VITE_REPORT_FORM_URL?: string;
   VITE_REPORT_FORM_URL_ENTRY?: string;
-}
+};
 
 type GetFiatExchangeRatesEnvParams = Pick<
   Env,
@@ -160,6 +162,7 @@ const getReportFormEnv = ({
 };
 
 const envToDomain = ({
+  VITE_BRAND_COMPONENTS,
   VITE_BRIDGE_API_URL,
   VITE_CHAIN_ICON_URL,
   VITE_ENABLE_DEPOSIT_WARNING,
@@ -176,6 +179,7 @@ const envToDomain = ({
   VITE_FIAT_EXCHANGE_RATES_API_KEY,
   VITE_FIAT_EXCHANGE_RATES_API_URL,
   VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS,
+  VITE_FRONTEND_TYPE,
   VITE_ICON_PATH,
   VITE_LOGO_PATH,
   VITE_NETWORK_NAME,
@@ -207,6 +211,8 @@ const envToDomain = ({
   const networkName = VITE_NETWORK_NAME;
   const networkSymbol = VITE_NETWORK_SYMBOL;
   const chainIconPath = VITE_CHAIN_ICON_URL;
+  const frontendType = VITE_FRONTEND_TYPE ?? "new-design";
+  const brandComponents = VITE_BRAND_COMPONENTS;
 
   const outdatedNetworkModal: domain.Env["outdatedNetworkModal"] = isOutdatedNetworkModalEnabled
     ? {
@@ -244,6 +250,7 @@ const envToDomain = ({
     }
 
     return {
+      brandComponents,
       bridgeApiUrl,
       chainIconPath,
       chains,
@@ -256,6 +263,7 @@ const envToDomain = ({
         VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS,
       }),
       forceUpdateGlobalExitRootForL1,
+      frontendType,
       iconPath,
       isDepositWarningEnabled,
       logoPath,
@@ -276,6 +284,7 @@ const envToDomain = ({
 const envParser = StrictSchema<Env, domain.Env>()(
   z
     .object({
+      VITE_BRAND_COMPONENTS: z.string().optional(),
       VITE_BRIDGE_API_URL: z.string().url(),
       VITE_CHAIN_ICON_URL: z.string().optional(),
       VITE_ENABLE_DEPOSIT_WARNING: z.string(),
@@ -292,6 +301,7 @@ const envParser = StrictSchema<Env, domain.Env>()(
       VITE_FIAT_EXCHANGE_RATES_API_KEY: z.string().optional(),
       VITE_FIAT_EXCHANGE_RATES_API_URL: z.string().url().optional(),
       VITE_FIAT_EXCHANGE_RATES_ETHEREUM_USDC_ADDRESS: z.string().length(42).optional(),
+      VITE_FRONTEND_TYPE: z.string().optional(),
       VITE_ICON_PATH: z.string().optional(),
       VITE_LOGO_PATH: z.string().optional(),
       VITE_NETWORK_NAME: z.string().optional(),
@@ -314,7 +324,6 @@ const envParser = StrictSchema<Env, domain.Env>()(
 
 const loadEnv = (): Promise<domain.Env> => {
   const parsedEnv = envParser.parseAsync(import.meta.env);
-
   return parsedEnv;
 };
 

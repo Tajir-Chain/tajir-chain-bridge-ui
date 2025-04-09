@@ -4,7 +4,7 @@ import { ComponentType } from "react";
 
 export type ChainKey = "ethereum" | "polygon-zkevm" | "gpt" | "lumia";
 
-export interface CommonChain {
+export type CommonChain = {
   Icon: ComponentType<{ className?: string }>;
   bridgeContractAddress: string;
   chainId: number;
@@ -22,7 +22,7 @@ export interface CommonChain {
   };
   networkId: number;
   provider: JsonRpcProvider;
-}
+};
 
 export type GptChain = CommonChain & {
   key: "gpt";
@@ -44,13 +44,13 @@ export type ZkEVMChain = CommonChain & {
 
 export type Chain = EthereumChain | ZkEVMChain | GptChain | LumiaChain;
 
-export interface ConnectedProvider {
+export type ConnectedProvider = {
   account: string;
   chainId: number;
   provider: Web3Provider;
-}
+};
 
-export interface Token {
+export type Token = {
   address: string;
   balance?: AsyncTask<BigNumber, string>;
   chainId: number;
@@ -62,13 +62,13 @@ export interface Token {
     address: string;
     chainId: number;
   };
-}
+};
 
-export interface ReportFormEnvDisabled {
+export type ReportFormEnvDisabled = {
   isEnabled: false;
-}
+};
 
-export interface ReportFormEnvEnabled {
+export type ReportFormEnvEnabled = {
   entries: {
     error: string;
     platform: string;
@@ -76,9 +76,10 @@ export interface ReportFormEnvEnabled {
   };
   isEnabled: true;
   url: string;
-}
+};
 
-export interface Env {
+export type Env = {
+  brandComponents: boolean;
   bridgeApiUrl: string;
   chains: [EthereumChain, ZkEVMChain, GptChain, LumiaChain];
   faviconPath?: string;
@@ -93,6 +94,7 @@ export interface Env {
         usdcToken: Token;
       };
   forceUpdateGlobalExitRootForL1: boolean;
+  frontendType: string;
   isDepositWarningEnabled: boolean;
   logoPath?: string;
   networkName?: string;
@@ -109,11 +111,11 @@ export interface Env {
         url?: string;
       };
   reportForm: ReportFormEnvEnabled | ReportFormEnvDisabled;
-}
+};
 
-export interface RouterState {
+export type RouterState = {
   redirectUrl: string;
-}
+};
 
 export enum EthereumChainId {
   MAINNET = 1,
@@ -147,7 +149,6 @@ export enum Currency {
 
 export type FiatExchangeRates = Partial<Record<keyof typeof Currency, number>>;
 
-// User notifications
 export type Message =
   | {
       text: string;
@@ -159,7 +160,7 @@ export type Message =
       type: "error";
     };
 
-interface BridgeCommonFields {
+type BridgeCommonFields = {
   amount: BigNumber;
   blockNumber: number;
   depositCount: number;
@@ -172,7 +173,7 @@ interface BridgeCommonFields {
   to: Chain;
   token: Token;
   tokenOriginNetwork: number;
-}
+};
 
 export type PendingBridge = Pick<
   BridgeCommonFields,
@@ -197,7 +198,7 @@ export type CompletedBridge = BridgeCommonFields & {
 
 export type Bridge = PendingBridge | InitiatedBridge | OnHoldBridge | CompletedBridge;
 
-export interface Deposit {
+export type Deposit = {
   amount: BigNumber;
   blockNumber: number;
   claim:
@@ -220,21 +221,21 @@ export interface Deposit {
   to: Chain;
   token: Token;
   tokenOriginNetwork: number;
-}
+};
 
-export interface MerkleProof {
+export type MerkleProof = {
   mainExitRoot: string;
   merkleProof: string[];
   rollupExitRoot: string;
   rollupMerkleProof: string[];
-}
+};
 
-export interface FormData {
+export type FormData = {
   amount: BigNumber;
   from: Chain;
   to: Chain;
   token: Token;
-}
+};
 
 export enum PolicyCheck {
   Checked = "checked",
@@ -279,91 +280,72 @@ export enum Permit {
   UNISWAP = "UNISWAP",
 }
 
-// Error
-
 export enum ProviderError {
   Ethereum = "ethereum",
   PolygonZkEVM = "polygon-zkevm",
 }
 
-export interface MetaMaskUserRejectedRequestError {
+export type MetaMaskUserRejectedRequestError = {
   code: 4001 | "ACTION_REJECTED";
   message: string;
-}
+};
 
-export interface MetaMaskResourceUnavailableError {
+export type MetaMaskResourceUnavailableError = {
   code: -32002;
   message: string;
-}
+};
 
-export interface EthersInsufficientFundsError {
+export type EthersInsufficientFundsError = {
   code: "INSUFFICIENT_FUNDS";
   reason: string;
-}
+};
 
-export interface MetaMaskUnknownChainError {
+export type MetaMaskUnknownChainError = {
   code: 4902;
   message: string;
-}
+};
 
-// AsyncTask
-
-export interface PendingAsyncTask {
+export type PendingAsyncTask = {
   status: "pending";
-}
+};
 
-export interface LoadingAsyncTask {
+export type LoadingAsyncTask = {
   status: "loading";
-}
+};
 
-export interface FailedAsyncTask<E> {
+export type FailedAsyncTask<E> = {
   error: E;
   status: "failed";
-}
+};
 
-export interface SuccessfulAsyncTask<D> {
+export type SuccessfulAsyncTask<D> = {
   data: D;
   status: "successful";
-}
+};
 
-export interface ReloadingAsyncTask<D> {
+export type ReloadingAsyncTask<D> = {
   data: D;
   status: "reloading";
-}
+};
 
-export interface LoadingMoreItemsAsyncTask<D> {
+export type LoadingMoreItemsAsyncTask<D> = {
   data: D;
   status: "loading-more-items";
-}
+};
 
 export type AsyncTask<D, E, P = false> = P extends true
-  ?
-      | PendingAsyncTask
-      | LoadingAsyncTask
-      | SuccessfulAsyncTask<D>
-      | ReloadingAsyncTask<D>
-      | LoadingMoreItemsAsyncTask<D>
-      | FailedAsyncTask<E>
-  :
-      | PendingAsyncTask
-      | LoadingAsyncTask
-      | SuccessfulAsyncTask<D>
-      | ReloadingAsyncTask<D>
-      | FailedAsyncTask<E>;
+  ? PendingAsyncTask | LoadingAsyncTask | SuccessfulAsyncTask<D> | ReloadingAsyncTask<D> | LoadingMoreItemsAsyncTask<D> | FailedAsyncTask<E>
+  : PendingAsyncTask | LoadingAsyncTask | SuccessfulAsyncTask<D> | ReloadingAsyncTask<D> | FailedAsyncTask<E>;
 
-// Modal state
-
-interface OpenModal<D> {
+type OpenModal<D> = {
   data: D;
   status: "open";
-}
+};
 
-interface ClosedModal {
+type ClosedModal = {
   status: "closed";
-}
+};
 
 export type ModalState<D> = OpenModal<D> | ClosedModal;
-
-// Utility
 
 export type Exact<T, U> = [T, U] extends [U, T] ? true : false;

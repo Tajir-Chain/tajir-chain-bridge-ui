@@ -8,7 +8,7 @@ import { useHeaderStyles } from "src/views/shared/header/header.styles";
 import { NetworkSelector } from "src/views/shared/network-selector/network-selector.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface HeaderProps {
+type HeaderProps ={
   Subtitle?: ReactElement;
   backTo: { routeKey: keyof typeof routes; state?: RouterState };
   title: string;

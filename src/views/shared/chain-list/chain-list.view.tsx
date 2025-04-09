@@ -7,11 +7,11 @@ import { useListStyles } from "src/views/shared/chain-list/chain-list.styles";
 import { Portal } from "src/views/shared/portal/portal.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface ChainListProps {
+type ChainListProps = {
   chains: Chain[];
   onClick: (chain: Chain) => void;
   onClose: () => void;
-}
+};
 
 export const ChainList: FC<ChainListProps> = ({ chains, onClick, onClose }) => {
   const classes = useListStyles();

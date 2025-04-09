@@ -53,6 +53,7 @@ export const useAppStyles = createUseStyles((theme: Theme) => ({
       flexDirection: "column",
       position: "relative",
       zIndex: 0,
+    
     },
     "#portal-root": {
       zIndex: 1,
@@ -65,13 +66,30 @@ export const useAppStyles = createUseStyles((theme: Theme) => ({
       textDecoration: "none",
     },
     body: {
+      backgroundColor: theme.palette.grey.light,
       color: theme.palette.black,
       display: "flex",
       flexDirection: "column",
       fontFamily: "Modern Era",
       fontSize: 16,
-      minHeight: "100vh",
+      margin: 0,
+      maxHeight: "100%",
+      overflowX: "hidden",
+      padding: 0,
+
+
     },
+    button: {
+      "&:hover:not(:disabled)": {
+        boxShadow: `
+       2px 2px 6px rgba(0, 0, 0, 0.2),
+       -2px -2px 6px rgba(255, 255, 255, 0.8)
+     `,
+        transform: "translateY(-2px)",
+      },
+      transition: "all 0.2s ease-in-out",
+    },
+
     "input[type='search']::-webkit-search-cancel-button": {
       "-webkit-appearance": "none",
     },

@@ -6,14 +6,17 @@ import { useUIContext } from "src/contexts/ui.context";
 import { useLayoutStyles } from "src/views/core/layout/layout.styles";
 import { ConfirmationModal } from "src/views/shared/confirmation-modal/confirmation-modal.view";
 import { ExternalLink } from "src/views/shared/external-link/external-link.view";
+import { HeaderLinks } from "src/views/shared/header-links/header-links.view.redesign";
 import { Snackbar } from "src/views/shared/snackbar/snackbar.view";
 import { Typography } from "src/views/shared/typography/typography.view";
+import { ReactComponent as LogoGatewayfm } from "src/assets/icons/chains/logo-gatewayfm.svg";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const classes = useLayoutStyles();
   const { closeSnackbar, snackbar } = useUIContext();
   const [showNetworkOutdatedModal, setShowNetworkOutdatedModal] = useState(false);
   const env = useEnvContext();
+  const showBrandComponents = env?.brandComponents && env?.frontendType !== "old-design";
 
   const onCloseSnackbar = closeSnackbar;
   const onReportFromSnackbar = reportError;
@@ -27,7 +30,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div className={classes.layout}>
+        {showBrandComponents && <HeaderLinks />}
         <div className={classes.container}>{children}</div>
+        {showBrandComponents &&  <div className={classes.poweredLogoBox}>
+          Powered by <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
+        </div>}
       </div>
       {env && snackbar.status === "open" && (
         <Snackbar
@@ -37,7 +44,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           reportForm={env.reportForm}
         />
       )}
-      {env && showNetworkOutdatedModal && env.outdatedNetworkModal.isEnabled && (
+      {/* {env && showNetworkOutdatedModal && env.outdatedNetworkModal.isEnabled && (
         <ConfirmationModal
           message={
             <div>
@@ -65,7 +72,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           showCancelButton={false}
           title={env.outdatedNetworkModal.title}
         />
-      )}
+      )} */}
     </>
   );
 };
