@@ -38,7 +38,12 @@ export const HeaderRedesign: FC = () => {
       <div
         className={`${classes.block} ${classes.centerBlock}`}
         style={{
-          fontSize: networkName && networkName.length > 15 ? 38 : 62,
+          fontSize:
+            typeof window !== "undefined" && window.innerWidth <= 788
+              ? 28
+              : networkName && networkName.replace(/\s/g, "").length > 10
+                ? 48
+                : 62,
         }}
       >
         {networkName}
