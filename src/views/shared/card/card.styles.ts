@@ -17,8 +17,6 @@ export const useCardRedesignStyles = createUseStyles((theme: Theme) => ({
     borderRadius: "24px",
     boxShadow: "0px 4px 8px 4px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
-    padding: theme.spacing(1.5),
-
-    // marginBottom: theme.spacing(2),
+    padding: theme.spacing(3.5),
   },
 }));

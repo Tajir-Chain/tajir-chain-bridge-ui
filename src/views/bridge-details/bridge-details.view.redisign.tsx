@@ -383,7 +383,7 @@ export const BridgeDetailsRedesign: FC = () => {
          alt={token.name}
          className={classes.tokenIcon}
          src={token.logoURI}
-         style={{ borderRadius: "50%", height: 48, width: 48 }}
+         style={{ borderRadius: "50%",}}
         />
        )}
        <Typography className={classes.amount} type="h1">{tokenAmountString}</Typography>

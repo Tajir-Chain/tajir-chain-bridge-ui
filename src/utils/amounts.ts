@@ -21,7 +21,7 @@ export const formatFiatAmount = (value: BigNumber): string => {
   return trimmed === "" || trimmed === "0" ? whole : `${whole}.${trimmed}`;
 };
 
-interface Amount {
+type Amount = {
   precision: number;
   value: BigNumber;
 }

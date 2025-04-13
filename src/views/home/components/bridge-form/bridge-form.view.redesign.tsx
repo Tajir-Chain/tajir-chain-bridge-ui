@@ -280,7 +280,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
       <CardRedesign className={classes.card}>
         <div className={classes.row}>
           <div className={classes.leftBox}>
-            <Typography className={classes.smallTitle} type="body2">
+            <Typography type="body2">
               From
             </Typography>
             <button
@@ -326,7 +326,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
 
         <div className={classes.row}>
           <div className={classes.leftBox}>
-            <Typography className={classes.smallTitle} type="body2">
+            <Typography type="body2">
               To
             </Typography>
             <div className={classes.toChain}>

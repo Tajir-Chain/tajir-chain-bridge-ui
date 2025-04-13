@@ -145,14 +145,6 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
     maxWidth: theme.maxWidth,
     padding: theme.spacing(2),
     width: "100%",
-    [theme.breakpoints.upSm]: {
-      margin: [theme.spacing(6), "auto", 0],
-      padding: theme.spacing(3),
-    },
-    [theme.breakpoints.downM]: {
-      margin: [theme.spacing(6), "auto", 0],
-      padding: [theme.spacing(3), theme.spacing(2)],
-    },
   },
   chainBox: {
     alignItems: "center",
