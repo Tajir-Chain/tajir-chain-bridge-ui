@@ -261,10 +261,10 @@ export const BridgeDetailsRedesign: FC = () => {
   case "loading":
   case "reloading": {
    return (
-    <>
-     <Header backTo={{ routeKey: "activity" }} title="Bridge Details" />
+    <div className={classes.contentWrapper}>
+     <HeaderRedesign backTo={{ routeKey: "activity" }} title="Bridge Details" />
      <PageLoader />
-    </>
+    </div>
    );
   }
   case "failed": {
@@ -383,7 +383,7 @@ export const BridgeDetailsRedesign: FC = () => {
          alt={token.name}
          className={classes.tokenIcon}
          src={token.logoURI}
-         style={{ borderRadius: "50%", height: 48, width: 48 }}
+         style={{ borderRadius: "50%",}}
         />
        )}
        <Typography className={classes.amount} type="h1">{tokenAmountString}</Typography>

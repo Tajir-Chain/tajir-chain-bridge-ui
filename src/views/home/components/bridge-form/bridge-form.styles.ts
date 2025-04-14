@@ -126,22 +126,6 @@ export const useBridgeFormStyles = createUseStyles((theme: Theme) => ({
 }));
 
 export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
-  arrowDownIcon: {
-    display: "flex",
-    [theme.breakpoints.upSm]: {
-      height: 40,
-      padding: theme.spacing(0.5),
-      width: 40,
-    },
-  },
-  arrowRow: {
-    display: "flex",
-    justifyContent: "center",
-    margin: [theme.spacing(1), 0],
-    [theme.breakpoints.upSm]: {
-      margin: [theme.spacing(2), 0],
-    },
-  },
   button: {
     alignItems: "center",
     display: "flex",
@@ -154,10 +138,6 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     flexDirection: "column",
     gap: theme.spacing(2.5),
     maxWidth: theme.maxWidth,
-    padding: [theme.spacing(3), theme.spacing(4)],
-    [theme.breakpoints.downM]: {
-      padding: [theme.spacing(3), theme.spacing(3)],
-    },
   },
   form: {
     margin: "auto",
@@ -222,9 +202,6 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
-  },
-  smallTitle: {
-    fontSize: 16,
   },
   spinner: {
     margin: "auto",

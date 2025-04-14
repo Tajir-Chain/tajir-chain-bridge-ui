@@ -81,7 +81,6 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
     marginInline: theme.spacing(2),
     [theme.breakpoints.downM]: {
       marginInline: 0,
-
       padding: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(0.5)}px`,
     },
   },

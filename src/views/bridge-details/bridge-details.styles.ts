@@ -6,6 +6,7 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
   alignRow: {
     alignItems: "center",
     display: "flex",
+    fontWeight: 500,
     gap: theme.spacing(1),
     [theme.breakpoints.downM]: {
       color: theme.palette.grey.dark,
@@ -13,10 +14,10 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     },
   },
   alignRowValue: {
+      padding: "4px 8px",
     [theme.breakpoints.downM]: {
       backgroundColor: theme.palette.primary.light,
       borderRadius: "8px",
-
       fontSize: 16,
       justifyContent: "center",
       padding: theme.spacing(1),
@@ -32,7 +33,7 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     alignItems: "center",
     borderBottom: `1px solid ${theme.palette.grey.light}`,
     display: "flex",
-    flexDirection: "column",
+    gap: theme.spacing(1.5),
     justifyContent: "center",
     marginBottom: theme.spacing(1),
     paddingBottom: theme.spacing(2),
@@ -44,11 +45,9 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
   card: {
     margin: [theme.spacing(5), "auto", 0],
     maxWidth: theme.maxWidth,
-    padding: theme.spacing(3),
     width: "100%",
     [theme.breakpoints.downM]: {
       margin: [theme.spacing(2.5), "auto", 0],
-      padding: theme.spacing(2),
     },
   },
   contentWrapper: {
@@ -134,13 +133,13 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     [theme.breakpoints.upSm]: {
       alignItems: "center",
       flexDirection: "row",
-      padding: [theme.spacing(1.5), 0],
+      padding: '4px 0',
     },
   },
   tokenIcon: {
-    height: 48,
-    margin: [theme.spacing(1), 0, theme.spacing(2)],
-    width: 48,
+    // height: 48,
+    // margin: [theme.spacing(1), 0, theme.spacing(2)],
+    // width: 48,
   },
 }));
 

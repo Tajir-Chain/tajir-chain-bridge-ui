@@ -65,9 +65,7 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
     fontSize: 62,
     fontWeight: 500,
     justifyContent: "center",
-    overflowWrap: "break-word",
     textAlign: "center",
-    wordBreak: "break-word",
     [theme.breakpoints.downM]: {
       fontSize: 28,
     },

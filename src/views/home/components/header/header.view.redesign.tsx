@@ -42,8 +42,8 @@ export const HeaderRedesign: FC = () => {
             typeof window !== "undefined" && window.innerWidth <= 788
               ? 28
               : networkName && networkName.replace(/\s/g, "").length > 10
-                ? 48
-                : 62,
+              ? 48
+              : 62,
         }}
       >
         {networkName}

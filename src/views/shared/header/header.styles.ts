@@ -78,11 +78,11 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
     textAlign: "center",
   },
   header: {
-    alignItems: "center",
+    // alignItems: "center",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    margin: [theme.spacing(1.5), "auto", 0],
+    // margin: [theme.spacing(1.5), "auto", 0],
     position: "relative",
     width: "100%",
     [theme.breakpoints.upSm]: {
