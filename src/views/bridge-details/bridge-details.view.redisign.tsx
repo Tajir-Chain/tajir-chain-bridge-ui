@@ -261,10 +261,10 @@ export const BridgeDetailsRedesign: FC = () => {
   case "loading":
   case "reloading": {
    return (
-    <>
-     <Header backTo={{ routeKey: "activity" }} title="Bridge Details" />
+    <div className={classes.contentWrapper}>
+     <HeaderRedesign backTo={{ routeKey: "activity" }} title="Bridge Details" />
      <PageLoader />
-    </>
+    </div>
    );
   }
   case "failed": {

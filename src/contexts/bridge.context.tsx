@@ -38,7 +38,7 @@ import { serializeBridgeId } from "src/utils/serializers";
 import { isTokenEther, selectTokenAddress } from "src/utils/tokens";
 import { isAsyncTaskDataAvailable } from "src/utils/types";
 
-interface EstimateBridgeGasParams {
+type EstimateBridgeGasParams = {
   destinationAddress: string;
   from: Chain;
   to: Chain;
@@ -53,7 +53,7 @@ type FetchBridgeParams = {
   networkId: number;
 };
 
-interface GetBridgesParams {
+type GetBridgesParams = {
   abortSignal?: AbortSignal;
   env: Env;
   ethereumAddress: string;
@@ -61,7 +61,7 @@ interface GetBridgesParams {
   offset: number;
 }
 
-interface RefreshBridgesParams {
+type RefreshBridgesParams = {
   abortSignal?: AbortSignal;
   env: Env;
   ethereumAddress: string;
@@ -84,7 +84,7 @@ type FetchBridgesParams = {
     }
 );
 
-interface BridgeParams {
+type BridgeParams = {
   amount: BigNumber;
   destinationAddress: string;
   from: Chain;
@@ -94,11 +94,11 @@ interface BridgeParams {
   tokenSpendPermission: TokenSpendPermission;
 }
 
-interface ClaimParams {
+type ClaimParams = {
   bridge: OnHoldBridge;
 }
 
-interface BridgeContext {
+type BridgeContext = {
   bridge: (params: BridgeParams) => Promise<ContractTransaction>;
   claim: (params: ClaimParams) => Promise<ContractTransaction>;
   estimateBridgeGas: (params: EstimateBridgeGasParams) => Promise<Gas>;

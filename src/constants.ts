@@ -41,9 +41,9 @@ export const DISMISSED_DEPOSIT_WARNING_KEY = "dismissedDepositWarning";
 
 export const PREFERRED_CURRENCY = Currency.USD;
 
-export const FIAT_DISPLAY_PRECISION = 2;
+export const FIAT_DISPLAY_PRECISION = 3;
 
-export const TOKEN_DISPLAY_PRECISION = 6;
+export const TOKEN_DISPLAY_PRECISION = 8;
 
 export const SNACKBAR_AUTO_HIDE_DURATION = 5 * 1000; //5s in ms
 

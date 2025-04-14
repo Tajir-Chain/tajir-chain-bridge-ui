@@ -103,15 +103,13 @@ export const useBridgeConfirmationStyles = createUseStyles((theme: Theme) => ({
 
 export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme) => ({
   amountBox: {
-    [theme.breakpoints.downM]: {
-      alignItems: "center",
-      display: "flex",
-      flexDirection: "column",
-      gap: theme.spacing(2),
-      justifyContent: "center",
-      marginTop: theme.spacing(1.5),
-      width: "95%",
-    },
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+    gap: theme.spacing(1),
+    justifyContent: "center",
+    marginTop: theme.spacing(1.5),
+    width: "95%",
   },
   arrowIcon: {
     height: 34,
@@ -216,11 +214,7 @@ export const useBridgeConfirmationRedesignStyles = createUseStyles((theme: Theme
     gap: theme.spacing(1),
   },
   tokenIcon: {
-    marginBottom: theme.spacing(1),
-    marginTop: theme.spacing(0),
-    [theme.breakpoints.upSm]: {
-      marginBottom: theme.spacing(3),
-      marginTop: theme.spacing(1),
-    },
+    borderRadius: "50%",
+    margin: [theme.spacing(0.5)],
   },
 }));

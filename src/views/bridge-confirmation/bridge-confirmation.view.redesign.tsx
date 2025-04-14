@@ -432,6 +432,7 @@ export const BridgeConfirmationRedesign: FC = () => {
     <div className={classes.contentWrapper}>
       <HeaderRedesign backTo={{ routeKey: "home" }} title="Confirm Bridge" />
       <CardRedesign className={classes.card}>
+        <div className={classes.amountBox}>
         {token.logoURI ? (
           <Icon className={classes.tokenIcon} isRounded size={20} url={token.logoURI} />
         ) : (
@@ -442,7 +443,6 @@ export const BridgeConfirmationRedesign: FC = () => {
             style={{ borderRadius: "50%", height: 46, width: 46 }}
           />
         )}
-        <div className={classes.amountBox}>
           <Typography type="h1">{tokenAmountString}</Typography>
           {fiatAmountString && (
             <Typography className={classes.fiat} type="body2">
