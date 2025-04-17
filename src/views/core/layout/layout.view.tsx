@@ -1,9 +1,11 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
+import bg from "../../../../public/gradient-background.png";
 
 import { reportError } from "src/adapters/error";
-// import LogoGatewayfm from "src/assets/icons/logo-gatewayfm.svg?react";
+import LogoGatewayfm from "src/assets/icons/logo-gatewayfm.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useUIContext } from "src/contexts/ui.context";
+import { theme } from "src/styles/theme";
 import { useLayoutStyles } from "src/views/core/layout/layout.styles";
 import { ConfirmationModal } from "src/views/shared/confirmation-modal/confirmation-modal.view";
 import { ExternalLink } from "src/views/shared/external-link/external-link.view";
@@ -17,6 +19,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   const [showNetworkOutdatedModal, setShowNetworkOutdatedModal] = useState(false);
   const env = useEnvContext();
   const showBrandComponents = env?.brandComponents && env?.frontendType !== "old-design";
+  const showNewDesign = env?.frontendType !== "old-design";
 
   const onCloseSnackbar = closeSnackbar;
   const onReportFromSnackbar = reportError;
@@ -28,14 +31,21 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
   }, [env]);
 
   return (
-    <>
-      <div className={classes.layout}>
+    <div className={showNewDesign ? classes.wrapper : ""}>
+      <div
+        className={classes.layout}
+        style={
+          showNewDesign
+            ? { backgroundImage: `url(${bg})` }
+            : { backgroundColor: theme.palette.grey.light }
+        }
+      >
         {showBrandComponents && <HeaderLinks />}
         <div className={classes.container}>{children}</div>
         {showBrandComponents && (
           <div className={classes.poweredLogoBox}>
             Powered by{" "}
-            {/* <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} /> */}
+            <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
           </div>
         )}
       </div>
@@ -47,7 +57,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           reportForm={env.reportForm}
         />
       )}
-      {/* {env && showNetworkOutdatedModal && env.outdatedNetworkModal.isEnabled && (
+      {env && showNetworkOutdatedModal && !showNewDesign && env.outdatedNetworkModal.isEnabled && (
         <ConfirmationModal
           message={
             <div>
@@ -75,7 +85,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           showCancelButton={false}
           title={env.outdatedNetworkModal.title}
         />
-      )} */}
-    </>
+      )}
+    </div>
   );
 };
