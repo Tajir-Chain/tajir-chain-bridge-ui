@@ -1,14 +1,14 @@
 import { FC, useState } from "react";
 
 import { getCurrency, setCurrency } from "src/adapters/storage";
-import { ReactComponent as CheckedIcon } from "src/assets/icons/checkbox-checked.svg";
-import { ReactComponent as UncheckedIcon } from "src/assets/icons/checkbox-unchecked.svg";
-import { ReactComponent as CnyIcon } from "src/assets/icons/currencies/cny.svg";
-import { ReactComponent as EurIcon } from "src/assets/icons/currencies/eur.svg";
-import { ReactComponent as GbpIcon } from "src/assets/icons/currencies/gbp.svg";
-import { ReactComponent as JpyIcon } from "src/assets/icons/currencies/jpy.svg";
-import { ReactComponent as UsdIcon } from "src/assets/icons/currencies/usd.svg";
-import { ReactComponent as ConversionIcon } from "src/assets/icons/currency-conversion.svg";
+import CheckedIcon from "src/assets/icons/checkbox-checked.svg?react";
+import UncheckedIcon from "src/assets/icons/checkbox-unchecked.svg?react";
+import CnyIcon from "src/assets/icons/currencies/cny.svg?react";
+import EurIcon from "src/assets/icons/currencies/eur.svg?react";
+import GbpIcon from "src/assets/icons/currencies/gbp.svg?react";
+import JpyIcon from "src/assets/icons/currencies/jpy.svg?react";
+import UsdIcon from "src/assets/icons/currencies/usd.svg?react";
+import ConversionIcon from "src/assets/icons/currency-conversion.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { Currency } from "src/domain";
 import { useSettingsStyles } from "src/views/settings/settings.styles";
@@ -55,9 +55,8 @@ export const Settings: FC = () => {
             <div className={classes.currencies}>
               {currencies.map((currency) => (
                 <label
-                  className={`${classes.currencyBox} ${
-                    currency.id === preferredCurrency ? classes.currencySelected : ""
-                  }`}
+                  className={`${classes.currencyBox} ${currency.id === preferredCurrency ? classes.currencySelected : ""
+                    }`}
                   key={currency.id}
                 >
                   {currency.id === preferredCurrency ? <CheckedIcon /> : <UncheckedIcon />}

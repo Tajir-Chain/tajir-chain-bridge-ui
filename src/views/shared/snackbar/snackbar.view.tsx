@@ -1,13 +1,13 @@
 import { FC, useEffect } from "react";
 
-import { ReactComponent as ErrorIcon } from "src/assets/icons/error.svg";
-import { ReactComponent as SuccessIcon } from "src/assets/icons/success.svg";
-import { ReactComponent as CloseIcon } from "src/assets/icons/xmark.svg";
+import  ErrorIcon from "src/assets/icons/error.svg?react";
+import  SuccessIcon from "src/assets/icons/success.svg?react";
+import  CloseIcon from "src/assets/icons/xmark.svg?react";
 import { SNACKBAR_AUTO_HIDE_DURATION } from "src/constants";
 import { Env, Message, ReportFormEnvEnabled } from "src/domain";
 import { useSnackbarStyles } from "src/views/shared/snackbar/snackbar.styles";
 
-interface SnackbarProps {
+type SnackbarProps = {
   message: Message;
   onClose: () => void;
   onReport: (error: string, reportForm: ReportFormEnvEnabled) => void;

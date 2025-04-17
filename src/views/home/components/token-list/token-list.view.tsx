@@ -2,9 +2,9 @@ import { BigNumber, utils as ethersUtils } from "ethers";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 
 import { isChainNativeCustomToken } from "src/adapters/storage";
-import { ReactComponent as InfoIcon } from "src/assets/icons/info.svg";
-import { ReactComponent as MagnifyingGlassIcon } from "src/assets/icons/magnifying-glass.svg";
-import { ReactComponent as XMarkIcon } from "src/assets/icons/xmark.svg";
+import InfoIcon from "src/assets/icons/info.svg?react";
+import MagnifyingGlassIcon from "src/assets/icons/magnifying-glass.svg?react";
+import XMarkIcon from "src/assets/icons/xmark.svg?react";
 import { TOKEN_BLACKLIST } from "src/constants";
 import { useTokensContext } from "src/contexts/tokens.context";
 import { AsyncTask, Chain, Token } from "src/domain";
@@ -17,12 +17,12 @@ import { Spinner } from "src/views/shared/spinner/spinner.view";
 import { TokenBalance } from "src/views/shared/token-balance/token-balance.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface SelectedChains {
+type SelectedChains = {
   from: Chain;
   to: Chain;
-}
+};
 
-interface TokenListProps {
+type TokenListProps = {
   account: string;
   chains: SelectedChains;
   onClose: () => void;
@@ -30,7 +30,7 @@ interface TokenListProps {
   onNavigateToTokenInfo: (token: Token) => void;
   onSelectToken: (token: Token) => void;
   tokens: Token[];
-}
+};
 
 export const TokenList: FC<TokenListProps> = ({
   account,

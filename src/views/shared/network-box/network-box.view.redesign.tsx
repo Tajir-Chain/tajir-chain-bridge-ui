@@ -3,11 +3,11 @@ import { useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
-import { ReactComponent as ArrowRightIcon } from "src/assets/icons/arrow-right-purple.svg";
-import { ReactComponent as CopyIcon } from "src/assets/icons/copy-outlined.svg";
-import { ReactComponent as CornerWhiteIcon } from "src/assets/icons/corner-right-white.svg";
-import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
-import { ReactComponent as WarningIcon } from "src/assets/icons/warning.svg";
+import ArrowRightIcon  from "src/assets/icons/arrow-right-purple.svg?react";
+import CopyIcon  from "src/assets/icons/copy-outlined.svg?react";
+import CornerWhiteIcon  from "src/assets/icons/corner-right-white.svg?react";
+import MetaMaskIcon  from "src/assets/icons/metamask.svg?react";
+import WarningIcon  from "src/assets/icons/warning.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
 import { useProvidersContext } from "src/contexts/providers.context";

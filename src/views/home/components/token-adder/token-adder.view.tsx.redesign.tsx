@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TokenSelectorHeaderRedesign } from "../token-selector-header/token-selector-header.view.redesign";
-import { ReactComponent as WarningIcon } from "src/assets/icons/warning.svg";
+import WarningIcon from "src/assets/icons/warning.svg?react";
 import { Token } from "src/domain";
 import { useTokenAdderStyles } from "src/views/home/components/token-adder/token-adder.styles";
 import { TokenInfoTable } from "src/views/home/components/token-info-table/token-info-table.view";

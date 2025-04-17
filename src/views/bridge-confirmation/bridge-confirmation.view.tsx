@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { parseError } from "src/adapters/error";
 import { getPermit, isContractAllowedToSpendToken } from "src/adapters/ethereum";
 import { getCurrency } from "src/adapters/storage";
-import { ReactComponent as ArrowRightIcon } from "src/assets/icons/arrow-right.svg";
+import ArrowRightIcon from "src/assets/icons/arrow-right.svg?react";
 import { ETH_TOKEN_LOGO_URI, FIAT_DISPLAY_PRECISION, getEtherToken } from "src/constants";
 import { useBridgeContext } from "src/contexts/bridge.context";
 import { useEnvContext } from "src/contexts/env.context";
@@ -64,7 +64,6 @@ export const BridgeConfirmation: FC = () => {
   });
   const currencySymbol = getCurrencySymbol(getCurrency());
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const logoPath: string = import.meta.env.VITE_LOGO_PATH;
 
   useEffect(() => {
     if (
@@ -403,9 +402,8 @@ export const BridgeConfirmation: FC = () => {
       FIAT_DISPLAY_PRECISION
     );
 
-  const tokenAmountString = `${
-    maxAmountConsideringFee.gt(0) ? formatTokenAmount(maxAmountConsideringFee, token) : "0"
-  } ${token.symbol}`;
+  const tokenAmountString = `${maxAmountConsideringFee.gt(0) ? formatTokenAmount(maxAmountConsideringFee, token) : "0"
+    } ${token.symbol}`;
 
   const fiatAmountString = env.fiatExchangeRates.areEnabled
     ? `${currencySymbol}${fiatAmount ? formatFiatAmount(fiatAmount) : "--"}`
@@ -420,8 +418,8 @@ export const BridgeConfirmation: FC = () => {
   const feeErrorString = maxAmountConsideringFee.isNegative()
     ? `${feeBaseErrorString}\nYou need at least ${absMaxPossibleAmountConsideringFee} extra ETH`
     : maxAmountConsideringFee.eq(0)
-    ? `${feeBaseErrorString}\nThe maximum transferable amount is 0 after considering the fee`
-    : undefined;
+      ? `${feeBaseErrorString}\nThe maximum transferable amount is 0 after considering the fee`
+      : undefined;
 
   const etherFeeString = `${formatTokenAmount(fee, etherToken)} ${etherToken.symbol}`;
   const fiatFeeString = fiatFee ? `${currencySymbol}${formatFiatAmount(fiatFee)}` : undefined;

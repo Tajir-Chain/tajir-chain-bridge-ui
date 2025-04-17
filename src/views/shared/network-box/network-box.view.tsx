@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 
 import { parseError } from "src/adapters/error";
-import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
-import { ReactComponent as NewWindowIcon } from "src/assets/icons/new-window.svg";
+import MetaMaskIcon from "src/assets/icons/metamask.svg?react";
+import NewWindowIcon from "src/assets/icons/new-window.svg?react";
 import { POLYGON_SUPPORT_URL } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";

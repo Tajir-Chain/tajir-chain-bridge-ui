@@ -12,20 +12,25 @@ export const useLayoutStyles = createUseStyles((theme: Theme) => ({
     width: "100%",
   },
   layout: {
-    background: theme.palette.grey.light,
+    backgroundColor: theme.palette.grey.light, 
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
     width: "100%",
   },
+
   linkContainer: {
     marginTop: theme.spacing(2),
   },
-   poweredLogoBox: {
+  poweredLogoBox: {
     alignItems: "center",
     display: "flex",
     gap: theme.spacing(1.5),
     justifyContent: "center",
     marginBottom: theme.spacing(6),
   },
+  wrapper: {},
 }));

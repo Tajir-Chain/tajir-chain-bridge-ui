@@ -4,7 +4,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { AmountInputRedesign } from "../amount-input/amount-input.view.redesign";
 import { TokenSelectorRedesign } from "../token-selector/token-selector.view.redesign";
 import { addCustomToken, getChainCustomTokens, removeCustomToken } from "src/adapters/storage";
-import { ReactComponent as CaretDown } from "src/assets/icons/caret-down.svg";
+import CaretDown from "src/assets/icons/caret-down.svg?react";
 import { getGasToken } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
@@ -56,7 +56,6 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   const [chains, setChains] = useState<Chain[]>();
   const [tokens, setTokens] = useState<Token[]>();
   const [isTokenListOpen, setIsTokenListOpen] = useState(false);
-  
 
   const onAmountInputChange = ({ amount, error }: { amount?: BigNumber; error?: string }) => {
     setAmount(amount);
@@ -166,10 +165,10 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
       const getUpdatedTokens = (tokens: Token[] | undefined, updatedToken: Token) =>
         tokens
           ? tokens.map((tkn) =>
-              tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
-                ? updatedToken
-                : tkn
-            )
+            tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
+              ? updatedToken
+              : tkn
+          )
           : undefined;
 
       setTokens(() =>
@@ -257,7 +256,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
 
   useEffect(() => {
     // Load default form values
-  
+
     if (formData) {
       setSelectedChains({ from: formData.from, to: formData.to });
       setToken(formData.token);
@@ -274,15 +273,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     );
   }
 
-  const symbol =  isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
+  const symbol = isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <CardRedesign className={classes.card}>
         <div className={classes.row}>
           <div className={classes.leftBox}>
-            <Typography type="body2">
-              From
-            </Typography>
+            <Typography type="body2">From</Typography>
             <button
               className={classes.fromChain}
               onClick={() => setChains(env.chains)}
@@ -326,9 +323,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
 
         <div className={classes.row}>
           <div className={classes.leftBox}>
-            <Typography type="body2">
-              To
-            </Typography>
+            <Typography type="body2">To</Typography>
             <div className={classes.toChain}>
               <selectedChains.to.Icon />
               <Typography className={classes.selectedChainName} type="body1">

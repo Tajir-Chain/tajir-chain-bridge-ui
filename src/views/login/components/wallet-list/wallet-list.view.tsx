@@ -1,14 +1,14 @@
 import { FC } from "react";
 
-import { ReactComponent as CaretRightIcon } from "src/assets/icons/caret-right.svg";
+import CaretRightIcon from "src/assets/icons/caret-right.svg?react";
 import { WalletName } from "src/domain";
 import { WalletIcon } from "src/views/login/components/wallet-icon/wallet-icon.view";
 import { useWalletListStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface WalletListProps {
+type WalletListProps = {
   onSelectWallet: (walletName: WalletName) => void;
-}
+};
 
 export const WalletList: FC<WalletListProps> = ({ onSelectWallet }) => {
   const classes = useWalletListStyles();

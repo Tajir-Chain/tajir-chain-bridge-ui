@@ -7,7 +7,7 @@ import { HeaderRedesign } from "../shared/header/header.view.redesign";
 import { parseError } from "src/adapters/error";
 import { getPermit, isContractAllowedToSpendToken } from "src/adapters/ethereum";
 import { getCurrency } from "src/adapters/storage";
-import { ReactComponent as ArrowRightIcon } from "src/assets/icons/arrow-right.svg";
+import ArrowRightIcon from "src/assets/icons/arrow-right.svg?react";
 import { ETH_TOKEN_LOGO_URI, FIAT_DISPLAY_PRECISION, getEtherToken } from "src/constants";
 import { useBridgeContext } from "src/contexts/bridge.context";
 import { useEnvContext } from "src/contexts/env.context";
@@ -433,16 +433,16 @@ export const BridgeConfirmationRedesign: FC = () => {
       <HeaderRedesign backTo={{ routeKey: "home" }} title="Confirm Bridge" />
       <CardRedesign className={classes.card}>
         <div className={classes.amountBox}>
-        {token.logoURI ? (
-          <Icon className={classes.tokenIcon} isRounded size={20} url={token.logoURI} />
-        ) : (
-          <img
-            alt={token.name}
-            className={classes.tokenIcon}
-            src={token.logoURI}
-            style={{ borderRadius: "50%", height: 46, width: 46 }}
-          />
-        )}
+          {token.logoURI ? (
+            <Icon className={classes.tokenIcon} isRounded size={20} url={token.logoURI} />
+          ) : (
+            <img
+              alt={token.name}
+              className={classes.tokenIcon}
+              src={token.logoURI}
+              style={{ borderRadius: "50%", height: 46, width: 46 }}
+            />
+          )}
           <Typography type="h1">{tokenAmountString}</Typography>
           {fiatAmountString && (
             <Typography className={classes.fiat} type="body2">

@@ -3,8 +3,8 @@ import { ethers } from "ethers";
 
 import { defaultAbiCoder } from "ethers/lib/utils";
 import { L2Icon } from "./assets/network-icon";
-import { ReactComponent as EthChainIcon } from "src/assets/icons/chains/ethereum.svg";
-import { ReactComponent as PolygonZkEVMChainIcon } from "src/assets/icons/chains/polygon-zkevm.svg";
+import EthChainIcon from "src/assets/icons/chains/ethereum.svg?react";
+import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
 import { Chain, Currency, EthereumChain, ProviderError, Token, ZkEVMChain } from "src/domain";
 import { Bridge__factory } from "src/types/contracts/bridge";
 import { ProofOfEfficiency__factory } from "src/types/contracts/proof-of-efficiency";
@@ -132,41 +132,41 @@ export const getChains = ({
       wethToken,
       metadata,
     ]) => [
-        {
-          bridgeContractAddress: ethereum.bridgeContractAddress,
-          chainId: ethereumNetwork.chainId,
-          explorerUrl: ethereum.explorerUrl,
-          Icon: EthChainIcon,
-          key: "ethereum",
-          name: getEthereumNetworkName(ethereumNetwork.chainId),
-          nativeCurrency: {
-            decimals: 18,
-            name: "Ether",
-            symbol: "ETH",
-            wrapped: { address: wethToken, chainId: polygonZkEVMNetwork.chainId },
-          },
-          networkId: 0,
-          poeContractAddress: ethereum.poeContractAddress,
-          provider: ethereumProvider,
-          rollupManagerAddress: ethereum.rollupManagerAddress,
+      {
+        bridgeContractAddress: ethereum.bridgeContractAddress,
+        chainId: ethereumNetwork.chainId,
+        explorerUrl: ethereum.explorerUrl,
+        Icon: EthChainIcon,
+        key: "ethereum",
+        name: getEthereumNetworkName(ethereumNetwork.chainId),
+        nativeCurrency: {
+          decimals: 18,
+          name: "Ether",
+          symbol: "ETH",
+          wrapped: { address: wethToken, chainId: polygonZkEVMNetwork.chainId },
         },
-        {
-          bridgeContractAddress: polygonZkEVM.bridgeContractAddress,
-          chainId: polygonZkEVMNetwork.chainId,
-          explorerUrl: polygonZkEVM.explorerUrl,
-          Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : PolygonZkEVMChainIcon,
-          key: "polygon-zkevm",
-          name: polygonZkEVMNetworkName,
-          nativeCurrency: {
-            decimals: metadata.decimals,
-            name: metadata.name,
-            symbol: metadata.symbol,
-            wrapped: { address: gasToken, chainId: ethereumNetwork.chainId },
-          },
-          networkId: polygonZkEVM.networkId,
-          provider: polygonZkEVMProvider,
+        networkId: 0,
+        poeContractAddress: ethereum.poeContractAddress,
+        provider: ethereumProvider,
+        rollupManagerAddress: ethereum.rollupManagerAddress,
+      },
+      {
+        bridgeContractAddress: polygonZkEVM.bridgeContractAddress,
+        chainId: polygonZkEVMNetwork.chainId,
+        explorerUrl: polygonZkEVM.explorerUrl,
+        Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : PolygonZkEVMChainIcon,
+        key: "polygon-zkevm",
+        name: polygonZkEVMNetworkName,
+        nativeCurrency: {
+          decimals: metadata.decimals,
+          name: metadata.name,
+          symbol: metadata.symbol,
+          wrapped: { address: gasToken, chainId: ethereumNetwork.chainId },
         },
-      ]
+        networkId: polygonZkEVM.networkId,
+        provider: polygonZkEVMProvider,
+      },
+    ]
   );
 };
 
@@ -174,7 +174,7 @@ const decodeGasTokenMetadata = (
   metadata: string
 ): { decimals: number; name: string; symbol: string } => {
   const defaultValues = ["Ether", "ETH", 18];
-  
+
   let encoded;
   if (metadata === "0x") {
     encoded = defaultValues;
@@ -185,7 +185,7 @@ const decodeGasTokenMetadata = (
       encoded = defaultValues;
     }
   }
-  
+
   return { decimals: Number(encoded[2]), name: String(encoded[0]), symbol: String(encoded[1]) };
 };
 export const getEtherToken = (chain: Chain): Token => {

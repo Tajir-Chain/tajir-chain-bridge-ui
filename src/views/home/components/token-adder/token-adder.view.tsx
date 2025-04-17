@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ReactComponent as WarningIcon } from "src/assets/icons/warning.svg";
+import WarningIcon from "src/assets/icons/warning.svg?react";
 import { Token } from "src/domain";
 import { useTokenAdderStyles } from "src/views/home/components/token-adder/token-adder.styles";
 
@@ -7,12 +7,12 @@ import { TokenInfoTable } from "src/views/home/components/token-info-table/token
 import { TokenSelectorHeader } from "src/views/home/components/token-selector-header/token-selector-header.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface TokenAdderProps {
+type TokenAdderProps = {
   onAddToken: (token: Token) => void;
   onClose: () => void;
   onNavigateToTokenList: () => void;
   token: Token;
-}
+};
 
 export const TokenAdder: FC<TokenAdderProps> = ({
   onAddToken,

@@ -1,8 +1,8 @@
 import { constants as ethersConstants } from "ethers";
 import { FC } from "react";
 
-import { ReactComponent as CopyIcon } from "src/assets/icons/copy.svg";
-import { ReactComponent as NewWindowIcon } from "src/assets/icons/new-window.svg";
+import CopyIcon from "src/assets/icons/copy.svg?react";
+import NewWindowIcon from "src/assets/icons/new-window.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { Token } from "src/domain";
 import { getShortenedEthereumAddress } from "src/utils/addresses";
@@ -11,10 +11,10 @@ import { isTokenEther } from "src/utils/tokens";
 import { useTokenInfoTableStyles } from "src/views/home/components/token-info-table/token-info-table.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface TokenInfoTableProps {
+type TokenInfoTableProps = {
   className?: string;
   token: Token;
-}
+};
 
 export const TokenInfoTable: FC<TokenInfoTableProps> = ({ className, token }) => {
   const classes = useTokenInfoTableStyles();
@@ -59,7 +59,7 @@ export const TokenInfoTable: FC<TokenInfoTableProps> = ({ className, token }) =>
 
   const ethereum = env.chains[0];
   const polygonZkEVM = env.chains[1];
-  
+
   if (isTokenEther(token, ethereum)) {
     const ethereumRow = (
       <div className={classes.row}>

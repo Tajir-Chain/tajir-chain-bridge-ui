@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { ReactComponent as CaretDown } from "src/assets/icons/caret-down.svg";
+import CaretDown from "src/assets/icons/caret-down.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
 import { useProvidersContext } from "src/contexts/providers.context";

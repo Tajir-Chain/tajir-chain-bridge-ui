@@ -15,8 +15,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@walletconnect/ethereum-provider": "^1.7.8",
-    "axios": "^0.27.2",
+    "@walletconnect/ethereum-provider": "^2.20.0",
+    "axios": "^1.8.4",
     "copy-to-clipboard": "^3.3.3",
     "ethers": "^5.7.2",
     "events": "^3.3.0",
@@ -39,15 +39,15 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.11",
-    "@vitejs/plugin-react": "^2.0.0",
+    "@vitejs/plugin-react": "^4.4.0",
     "eslint": "^8.20.0",
     "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "typechain": "^8.3.2",
     "typescript": "^4.6.4",
-    "vite": "^3.0.0",
-    "vite-plugin-checker": "^0.4.9",
-    "vite-plugin-svgr": "^2.2.1"
+    "vite": "^6.3.1",
+    "vite-plugin-checker": "^0.9.1",
+    "vite-plugin-svgr": "^4.3.0"
   },
   "eslintConfig": {
     "extends": "@iden3/eslint-config-react-ts",
@@ -79,5 +79,9 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8"
+  },
+  "resolutions": {
+    "ws": "^7.5.11",
+    "lodash.pick": "^4.4.1"
   }
 }

@@ -187,7 +187,6 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
   },
 
   stickyContent: {
-    background: theme.palette.grey.light,
     position: "sticky",
     top: 0,
     zIndex: 1,

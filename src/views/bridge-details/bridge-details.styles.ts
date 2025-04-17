@@ -5,6 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => ({
   alignRow: {
     alignItems: "center",
+    color: theme.palette.grey.dark,
     display: "flex",
     fontWeight: 500,
     gap: theme.spacing(1),
@@ -14,7 +15,9 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     },
   },
   alignRowValue: {
-      padding: "4px 8px",
+    color: theme.palette.grey.dark,
+    padding: "4px 8px",
+
     [theme.breakpoints.downM]: {
       backgroundColor: theme.palette.primary.light,
       borderRadius: "8px",
@@ -85,14 +88,11 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     display: "flex",
     gap: theme.spacing(1),
     padding: [theme.spacing(1), theme.spacing(2)],
-  
   },
   explorerTitle: {
-  [theme.breakpoints.downM]: {
+    [theme.breakpoints.downM]: {
       color: `${theme.palette.grey.dark} !important`,
-    }
-
-
+    },
   },
   fiat: {
     color: theme.palette.grey.dark,
@@ -120,7 +120,6 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
   },
   row: {
     alignItems: "flex-start",
-
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(1),
@@ -133,14 +132,10 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     [theme.breakpoints.upSm]: {
       alignItems: "center",
       flexDirection: "row",
-      padding: '4px 0',
+      padding: "4px 0",
     },
   },
-  tokenIcon: {
-    // height: 48,
-    // margin: [theme.spacing(1), 0, theme.spacing(2)],
-    // width: 48,
-  },
+  tokenIcon: {},
 }));
 
 export const useBridgeDetailsStyles = createUseStyles((theme: Theme) => ({

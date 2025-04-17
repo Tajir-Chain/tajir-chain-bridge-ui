@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getIsDepositWarningDismissed, setIsDepositWarningDismissed } from "src/adapters/storage";
 
-import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
+import MetaMaskIcon from "src/assets/icons/metamask.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useFormContext } from "src/contexts/form.context";
 import { useProvidersContext } from "src/contexts/providers.context";
