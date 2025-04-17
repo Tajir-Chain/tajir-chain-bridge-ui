@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { getBatchNumberOfL2Block } from "src/adapters/ethereum";
 import { getCurrency } from "src/adapters/storage";
-import { ReactComponent as BridgeL1Icon } from "src/assets/icons/l1-bridge.svg";
-import { ReactComponent as BridgeL2Icon } from "src/assets/icons/l2-bridge.svg";
+import BridgeL1Icon from "src/assets/icons/l1-bridge.svg?react";
+import BridgeL2Icon from "src/assets/icons/l2-bridge.svg?react";
 import { AsyncTask, Bridge, Env, PendingBridge } from "src/domain";
 import { routes } from "src/routes";
 import { formatFiatAmount, formatTokenAmount } from "src/utils/amounts";
@@ -17,7 +17,7 @@ import { ErrorMessage } from "src/views/shared/error-message/error-message.view"
 import { Icon } from "src/views/shared/icon/icon.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-export interface BridgeCardProps {
+export type BridgeCardProps = {
   bridge: Bridge;
   env: Env;
   isFinaliseDisabled: boolean;
@@ -130,9 +130,8 @@ export const BridgeCard: FC<BridgeCardProps> = ({
 
   const BridgeStatus = (
     <span
-      className={`${classes.statusBox} ${
-        status === "completed" ? classes.greenStatus : classes.pendingStatus
-      }`}
+      className={`${classes.statusBox} ${status === "completed" ? classes.greenStatus : classes.pendingStatus
+        }`}
     >
       {getBridgeStatus(status, from)}
     </span>

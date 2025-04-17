@@ -2,8 +2,8 @@ import { BigNumber } from "ethers";
 import { FC, useCallback, useEffect, useState } from "react";
 
 import { addCustomToken, getChainCustomTokens, removeCustomToken } from "src/adapters/storage";
-import { ReactComponent as ArrowDown } from "src/assets/icons/arrow-down.svg";
-import { ReactComponent as CaretDown } from "src/assets/icons/caret-down.svg";
+import ArrowDown from "src/assets/icons/arrow-down.svg?react";
+import CaretDown from "src/assets/icons/caret-down.svg?react";
 import { getGasToken } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
@@ -24,17 +24,17 @@ import { Spinner } from "src/views/shared/spinner/spinner.view";
 import { TokenBalance } from "src/views/shared/token-balance/token-balance.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface BridgeFormProps {
+type BridgeFormProps = {
   account: string;
   formData?: FormData;
   onResetForm: () => void;
   onSubmit: (formData: FormData) => void;
-}
+};
 
-interface SelectedChains {
+type SelectedChains = {
   from: Chain;
   to: Chain;
-}
+};
 
 export const BridgeForm: FC<BridgeFormProps> = ({ account, formData, onResetForm, onSubmit }) => {
   const classes = useBridgeFormStyles();

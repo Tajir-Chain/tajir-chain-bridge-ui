@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ReactComponent as InfoIcon } from "src/assets/icons/info.svg";
+import InfoIcon from "src/assets/icons/info.svg?react";
 import { useApprovalInfoStyles } from "src/views/bridge-confirmation/components/approval-info/approval-info.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 

@@ -1,13 +1,11 @@
 import { FC } from "react";
-import { ReactComponent as EthChainIcon } from "src/assets/icons/chains/ethereum.svg";
-import GptIcon from "src/assets/icons/chains/gpt.jpg";
-import { ReactComponent as Lumia } from "src/assets/icons/chains/lumia.svg";
-import { ReactComponent as PolygonZkEVMChainIcon } from "src/assets/icons/chains/polygon-zkevm.svg";
+import EthChainIcon from "src/assets/icons/chains/ethereum.svg?react";
+import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
 import * as domain from "src/domain";
 import { useChainStyles } from "src/views/bridge-details/components/chain/chain.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface ChainProps {
+type ChainProps = {
   chain: domain.Chain;
   className?: string;
 }

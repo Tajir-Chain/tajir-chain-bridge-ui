@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as ClockIcon } from "src/assets/icons/clock.svg";
-import { ReactComponent as SettingIcon } from "src/assets/icons/setting.svg";
+import ClockIcon from "src/assets/icons/clock.svg?react";
+import SettingIcon from "src/assets/icons/setting.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { routes } from "src/routes";
 import { areSettingsVisible } from "src/utils/feature-toggles";
@@ -42,8 +42,8 @@ export const HeaderRedesign: FC = () => {
             typeof window !== "undefined" && window.innerWidth <= 788
               ? 28
               : networkName && networkName.replace(/\s/g, "").length > 10
-              ? 48
-              : 62,
+                ? 48
+                : 62,
         }}
       >
         {networkName}

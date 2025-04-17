@@ -5,7 +5,7 @@ import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redes
 import { WalletListRedesign } from "./components/wallet-list/wallet-list.view.redesign";
 import { routerStateParser } from "src/adapters/browser";
 import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
-import { ReactComponent as ArrowDoubleIcon } from "src/assets/icons/arrow-double.svg";
+import ArrowDoubleIcon from "src/assets/icons/arrow-double.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
@@ -92,7 +92,7 @@ export const LoginRedesign: FC = () => {
           <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />
         )}
       </div>
-  
+
       {showPolicyModal && (
         <ConfirmationModal
           message={

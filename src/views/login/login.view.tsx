@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { routerStateParser } from "src/adapters/browser";
 import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
-import { ReactComponent as Logo } from "src/assets/polygon-zkevm-logo.svg";
+import Logo from "src/assets/polygon-zkevm-logo.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
@@ -59,7 +59,7 @@ export const Login: FC = () => {
     return null;
   }
 
-	const logo = env.logoPath;
+  const logo = env.logoPath;
   const ethereumChain = env.chains[0];
   const deploymentName = getDeploymentName(ethereumChain);
   const appName = deploymentName !== undefined ? `${deploymentName} Bridge` : "Bridge";

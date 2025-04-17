@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useBridgeCardRedesignStyles } from "./bridge-card.styles";
 import { getBatchNumberOfL2Block } from "src/adapters/ethereum";
 import { getCurrency } from "src/adapters/storage";
-import { ReactComponent as BridgeL1Icon } from "src/assets/icons/l1-bridge.svg";
-import { ReactComponent as BridgeL2Icon } from "src/assets/icons/l2-bridge.svg";
+import BridgeL1Icon from "src/assets/icons/l1-bridge.svg?react";
+import BridgeL2Icon from "src/assets/icons/l2-bridge.svg?react";
 import { AsyncTask, Bridge, Env, PendingBridge } from "src/domain";
 import { routes } from "src/routes";
 import { formatFiatAmount, formatTokenAmount } from "src/utils/amounts";
@@ -134,7 +134,6 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
         <div className={classes.row}>
           <p className={classes.steps}>{showStep}</p>
         </div>
-
       )}
       <div className={classes.infoContainer}>
         {!isMobile && <div className={classes.circle}>{BridgeIcon}</div>}
@@ -158,7 +157,9 @@ export const BridgeCardRedesign: FC<BridgeCardProps> = ({
       case "initiated": {
         return from.key !== "ethereum" ? (
           <div className={classes.bottom}>
-            <Typography className={classes.bottomTitle} type="body2">{remainingBatchesMsg}</Typography>
+            <Typography className={classes.bottomTitle} type="body2">
+              {remainingBatchesMsg}
+            </Typography>
             <button className={classes.finaliseButton} disabled>
               Finalise
             </button>

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { ReactComponent as XMarkIcon } from "src/assets/icons/xmark.svg";
+import XMarkIcon from "src/assets/icons/xmark.svg?react";
 import { Chain } from "src/domain";
 import { Card } from "src/views/shared/card/card.view";
 import { useListStyles } from "src/views/shared/chain-list/chain-list.styles";

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
-import { ReactComponent as WalletConnectIcon } from "src/assets/icons/walletconnect.svg";
+import MetaMaskIcon from "src/assets/icons/metamask.svg?react";
+import WalletConnectIcon from "src/assets/icons/walletconnect.svg?react";
 import { WalletName } from "src/domain";
 import { useWalletIconRedesignStyles } from "src/views/login/components/wallet-icon/wallet-icon.styles";
 
@@ -9,10 +9,10 @@ type WalletIconProps = {
   className?: string;
   size: "sm" | "lg";
   walletName: WalletName;
-}
+};
 
 export const WalletIconRedesign: FC<WalletIconProps> = ({ className, size, walletName }) => {
- const classes = useWalletIconRedesignStyles({ size });
+  const classes = useWalletIconRedesignStyles({ size });
 
   switch (walletName) {
     case WalletName.METAMASK: {

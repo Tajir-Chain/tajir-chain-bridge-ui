@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
 import { reportError } from "src/adapters/error";
-import { ReactComponent as LogoGatewayfm } from "src/assets/icons/logo-gatewayfm.svg";
+// import LogoGatewayfm from "src/assets/icons/logo-gatewayfm.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useUIContext } from "src/contexts/ui.context";
 import { useLayoutStyles } from "src/views/core/layout/layout.styles";
@@ -32,9 +32,12 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
       <div className={classes.layout}>
         {showBrandComponents && <HeaderLinks />}
         <div className={classes.container}>{children}</div>
-        {showBrandComponents &&  <div className={classes.poweredLogoBox}>
-          Powered by <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
-        </div>}
+        {showBrandComponents && (
+          <div className={classes.poweredLogoBox}>
+            Powered by{" "}
+            {/* <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} /> */}
+          </div>
+        )}
       </div>
       {env && snackbar.status === "open" && (
         <Snackbar

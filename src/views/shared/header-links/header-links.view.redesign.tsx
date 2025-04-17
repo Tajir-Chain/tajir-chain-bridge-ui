@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useHeaderLinksRedesignStyles } from "./header-links.styles";
-import { ReactComponent as ArrowRight } from "src/assets/icons/arrow-right-white.svg";
-import { ReactComponent as BurgerMenuIcon } from "src/assets/icons/burger-menu.svg";
-import { ReactComponent as LogoGatewayfm } from "src/assets/icons/logo-gatewayfm.svg";
+import ArrowRight  from "src/assets/icons/arrow-right-white.svg?react";
+import BurgerMenuIcon  from "src/assets/icons/burger-menu.svg?react";
+import LogoGatewayfm  from "src/assets/icons/logo-gatewayfm.svg?react";
 
 type LinkItem = { title: string; url: string };
 

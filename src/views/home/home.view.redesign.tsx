@@ -5,7 +5,7 @@ import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redes
 import { BridgeFormRedesign } from "./components/bridge-form/bridge-form.view.redesign";
 import { HeaderRedesign } from "./components/header/header.view.redesign";
 import { getIsDepositWarningDismissed, setIsDepositWarningDismissed } from "src/adapters/storage";
-import { ReactComponent as MetaMaskIcon } from "src/assets/icons/metamask.svg";
+import MetaMaskIcon from "src/assets/icons/metamask.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useFormContext } from "src/contexts/form.context";
 import { useProvidersContext } from "src/contexts/providers.context";
@@ -58,7 +58,7 @@ export const HomeRedesign = (): JSX.Element => {
 
  return (
   <div className={classes.contentWrapper}>
-   <HeaderRedesign/>
+   <HeaderRedesign />
    {connectedProvider.status === "successful" && (
     <>
      <div className={classes.ethereumAddress}>
@@ -69,13 +69,14 @@ export const HomeRedesign = (): JSX.Element => {
      </div>
      <div className={classes.networkBoxWrapper}>
       <NetworkBoxRedesign />
-     
-     <BridgeFormRedesign
-      account={connectedProvider.data.account}
-      formData={formData}
-      onResetForm={onResetForm}
-      onSubmit={onCheckShowDepositWarningAndSubmitForm}
-     /></div>
+
+      <BridgeFormRedesign
+       account={connectedProvider.data.account}
+       formData={formData}
+       onResetForm={onResetForm}
+       onSubmit={onCheckShowDepositWarningAndSubmitForm}
+      />
+     </div>
      {depositWarningModal.status === "open" && (
       <DepositWarningModal
        formData={depositWarningModal.data}

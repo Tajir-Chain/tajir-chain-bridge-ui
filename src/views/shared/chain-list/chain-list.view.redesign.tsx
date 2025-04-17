@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { CardRedesign } from "../card/card.view.redesign";
-import { ReactComponent as XMarkIcon } from "src/assets/icons/xmark.svg";
+import XMarkIcon from "src/assets/icons/xmark.svg?react";
 import { Chain } from "src/domain";
 import { useListRedesignStyles } from "src/views/shared/chain-list/chain-list.styles";
 import { Portal } from "src/views/shared/portal/portal.view";

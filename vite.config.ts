@@ -29,7 +29,7 @@ export default defineConfig({
   server: {
     open: true,
        watch: {
-      ignored: ["!**/*.tsx", "!**/*.ts", "**/*.json", "**/*.svg", "**/*.png", "**/*.jpg", "**/*.css"],
+      ignored: ["!**/*.tsx", "!**/*.ts", "**/*.json", "**/*.svg?react", "**/*.png", "**/*.jpg", "**/*.css"],
     },
   },
 });

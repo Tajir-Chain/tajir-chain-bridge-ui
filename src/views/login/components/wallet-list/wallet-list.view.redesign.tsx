@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { WalletIconRedesign } from "../wallet-icon/wallet-icon.view.redesign";
-import { ReactComponent as CornerWhiteIcon } from "src/assets/icons/corner-right-white.svg";
+import CornerWhiteIcon from "src/assets/icons/corner-right-white.svg?react";
 import { WalletName } from "src/domain";
 import { useWalletListRedesignStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { CardRedesign } from "src/views/shared/card/card.view.redesign";

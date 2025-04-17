@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import { isChainCustomToken } from "src/adapters/storage";
-import { ReactComponent as DeleteIcon } from "src/assets/icons/delete.svg";
+import DeleteIcon from "src/assets/icons/delete.svg?react";
 import { Chain, Token } from "src/domain";
 import { useTokenInfoStyles } from "src/views/home/components/token-info/token-info.styles";
 import { TokenInfoTable } from "src/views/home/components/token-info-table/token-info-table.view";
 import { TokenSelectorHeader } from "src/views/home/components/token-selector-header/token-selector-header.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface TokenInfoProps {
+type TokenInfoProps = {
   chain: Chain;
   onClose: () => void;
   onNavigateToTokenList: () => void;

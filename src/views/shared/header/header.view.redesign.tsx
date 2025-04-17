@@ -2,7 +2,7 @@ import { FC, ReactElement } from "react";
 import { Link } from "react-router-dom";
 
 import { NetworkSelectorRedesign } from "../network-selector/network-selector.view.redesign";
-import { ReactComponent as ArrowLeftIcon } from "src/assets/icons/arrow-left.svg";
+import ArrowLeftIcon from "src/assets/icons/arrow-left.svg?react";
 import { RouterState } from "src/domain";
 import { routes } from "src/routes";
 import { useHeaderRedesignStyles } from "src/views/shared/header/header.styles";
