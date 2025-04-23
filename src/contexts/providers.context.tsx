@@ -115,66 +115,81 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
 
   const connectProvider = useCallback(
     async (walletName: WalletName): Promise<void> => {
-      if (!env) {
-        setConnectedProvider({ error: "The env has not been initialized correctly", status: "failed" });
-        return;
+      if (env === undefined) {
+        return setConnectedProvider({
+          error: "The env has not been initialized correctly",
+          status: "failed",
+        });
       }
       switch (walletName) {
         case WalletName.METAMASK: {
           try {
             const web3Provider = getMetamaskProvider();
-            if (!web3Provider) {
-              setConnectedProvider({
+            if (web3Provider) {
+              const accounts = await getConnectedAccounts(web3Provider);
+              const account: string | undefined = accounts[0];
+              if (account) {
+                return connectMetamaskProvider({ account, env, web3Provider });
+              } else {
+                return setConnectedProvider({
+                  error: `We can't obtain any valid Ethereum account`,
+                  status: "failed",
+                });
+              }
+            } else {
+              return setConnectedProvider({
                 error: `We can't detect your wallet.\nPlease make sure that the ${WalletName.METAMASK} extension is installed and active in your browser`,
                 status: "failed",
               });
-              return;
             }
-            const accounts = await getConnectedAccounts(web3Provider);
-            const account = accounts[0];
-            if (!account) {
-              setConnectedProvider({ error: `We can't obtain any valid Ethereum account`, status: "failed" });
-              return;
-            }
-            await connectMetamaskProvider({ account, env, web3Provider });
           } catch (error) {
             if (isMetaMaskResourceUnavailableError(error)) {
-              setConnectedProvider({ error: `Please unlock or connect to ${WalletName.METAMASK} to continue`, status: "failed" });
+              return setConnectedProvider({
+                error: `Please unlock or connect to ${WalletName.METAMASK} to continue`,
+                status: "failed",
+              });
             } else if (!isMetaMaskUserRejectedRequestError(error)) {
               notifyError(error);
-            } else {
-              setConnectedProvider({ status: "pending" });
             }
+            return setConnectedProvider({
+              status: "pending",
+            });
           }
-          break;
         }
         case WalletName.WALLET_CONNECT: {
-          try {
-            const ethereumChain = env.chains[0];
-            const { chainId } = await ethereumChain.provider.getNetwork();
-            const walletConnectProvider = new WalletConnectProvider({ rpc: { [chainId]: ethereumChain.provider.connection.url } });
-            const web3Provider = new Web3Provider(walletConnectProvider);
-            const accounts = await walletConnectProvider.enable();
-            setConnectedProvider({
-              data: { account: getChecksumAddress(accounts[0]), chainId, provider: web3Provider },
-              status: "successful",
+          const ethereumChain = env.chains[0];
+          const { chainId } = await ethereumChain.provider.getNetwork();
+          const walletConnectProvider = new WalletConnectProvider({
+            rpc: {
+              [chainId]: ethereumChain.provider.connection.url,
+            },
+          });
+          const web3Provider = new Web3Provider(walletConnectProvider);
+
+          return walletConnectProvider
+            .enable()
+            .then((accounts) => {
+              setConnectedProvider({
+                data: {
+                  account: getChecksumAddress(accounts[0]),
+                  chainId,
+                  provider: web3Provider,
+                },
+                status: "successful",
+              });
+            })
+            .catch((error) => {
+              if (error instanceof Error && error.message === "User closed modal") {
+                setConnectedProvider({ status: "pending" });
+              } else {
+                notifyError(error);
+              }
             });
-          } catch (error) {
-            if (error instanceof Error && error.message === "User closed modal") {
-              setConnectedProvider({ status: "pending" });
-            } else {
-              notifyError(error);
-            }
-          }
-          break;
         }
-        default:
-          return;
       }
     },
     [env, connectMetamaskProvider, notifyError]
   );
-
 
   const switchNetwork = (chain: Chain, connectedProvider: Web3Provider): Promise<void> => {
     setIsSwitchingNetwork(true);

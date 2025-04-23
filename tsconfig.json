@@ -18,7 +18,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
   },
-  "include": ["src", "vite.config.ts"],
+  "include": ["src", "vite.config.ts", "src/types", "typeRoots"],
   "paths": {
     "src/*": ["src/*"]
   },

@@ -263,42 +263,31 @@ export const Activity: FC = () => {
   ]);
 
   useEffect(() => {
-    // Polling lastVerifiedBatch
     if (env) {
-      const ethereum = env.chains[0];
-      const rollupManagerContract = RollupManager__factory.connect(
-        ethereum.rollupManagerAddress,
-        ethereum.provider
-      );
-      const refreshLastVerifiedBatch = () => {
-        setLastVerifiedBatch((currentLastVerifiedBatch) =>
-          isAsyncTaskDataAvailable(currentLastVerifiedBatch)
-            ? { data: currentLastVerifiedBatch.data, status: "reloading" }
+      const { rollupManagerAddress, provider, poeContractAddress } = env.chains[0];
+      const contract = RollupManager__factory.connect(rollupManagerAddress, provider);
+      const refreshLastVerifiedBatch = async () => {
+        setLastVerifiedBatch((current) =>
+          isAsyncTaskDataAvailable(current)
+            ? { data: current.data, status: "reloading" }
             : { status: "loading" }
         );
-        rollupManagerContract
-          .getLastVerifiedBatch(
-            rollupManagerContract.rollupAddressToID(env.chains[0].poeContractAddress)
-          )
-          .then((newLastVerifiedBatch) => {
-            setLastVerifiedBatch({
-              data: newLastVerifiedBatch,
-              status: "successful",
-            });
-          })
-          .catch(() => {
-            setLastVerifiedBatch({
-              error: "An error occurred getting the last verified batch",
-              status: "failed",
-            });
+        try {
+          const id = await contract.rollupAddressToID(poeContractAddress);
+          const newBatch = await contract.getLastVerifiedBatch(id);
+          setLastVerifiedBatch({ data: newBatch, status: "successful" });
+        } catch {
+          setLastVerifiedBatch({
+            error: "An error occurred getting the last verified batch",
+            status: "failed",
           });
+        }
       };
-      refreshLastVerifiedBatch();
-      const intervalId = setInterval(refreshLastVerifiedBatch, AUTO_REFRESH_RATE);
-
-      return () => {
-        clearInterval(intervalId);
-      };
+      void refreshLastVerifiedBatch();
+      const intervalId = setInterval(() => {
+        void refreshLastVerifiedBatch();
+      }, AUTO_REFRESH_RATE);
+      return () => clearInterval(intervalId);
     }
   }, [env]);
 
@@ -344,8 +333,9 @@ export const Activity: FC = () => {
           All
         </Typography>
         <Typography
-          className={`${classes.filterNumberBox} ${displayAll ? classes.filterNumberBoxSelected : ""
-            }`}
+          className={`${classes.filterNumberBox} ${
+            displayAll ? classes.filterNumberBoxSelected : ""
+          }`}
           type="body2"
         >
           {all}
@@ -359,8 +349,9 @@ export const Activity: FC = () => {
           Pending
         </Typography>
         <Typography
-          className={`${classes.filterNumberBox} ${!displayAll ? classes.filterNumberBoxSelected : ""
-            }`}
+          className={`${classes.filterNumberBox} ${
+            !displayAll ? classes.filterNumberBoxSelected : ""
+          }`}
           type="body2"
         >
           {pending}
