@@ -1,6 +1,5 @@
 import path from "path";
-import * as react from "@vitejs/plugin-react";
-
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import checkerPlugin from "vite-plugin-checker";
 import svgr from "vite-plugin-svgr";
