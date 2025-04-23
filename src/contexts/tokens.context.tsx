@@ -16,7 +16,7 @@ import {
 import * as ethereum from "src/adapters/ethereum";
 import { cleanupCustomTokens, getCustomTokens } from "src/adapters/storage";
 import { getEthereumErc20Tokens } from "src/adapters/tokens";
-import tokenIconDefaultUrl from "src/assets/icons/tokens/erc20-icon.svg?react";
+import tokenIconDefaultUrl from "src/assets/icons/tokens/erc20-icon.svg";
 import { getEtherToken, getGasToken } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";

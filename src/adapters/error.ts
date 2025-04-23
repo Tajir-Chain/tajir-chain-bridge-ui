@@ -12,9 +12,9 @@ import {
 } from "src/domain";
 import { StrictSchema } from "src/utils/type-safety";
 
-interface MessageKeyError {
+type MessageKeyError = {
   message: string;
-}
+};
 
 const messageKeyErrorParser = StrictSchema<MessageKeyError>()(
   z.object({
@@ -22,14 +22,14 @@ const messageKeyErrorParser = StrictSchema<MessageKeyError>()(
   })
 );
 
-export interface JsonRpcError {
+export type JsonRpcError = {
   code: number;
   data: {
     code: number;
     message: string;
   };
   message: string;
-}
+};
 
 export const jsonRpcError = StrictSchema<JsonRpcError>()(
   z.object({

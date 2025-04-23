@@ -23,12 +23,14 @@ export const Login: FC = () => {
   const [selectedWallet, setSelectedWallet] = useState<WalletName>();
   const [showPolicyModal, setShowPolicyModal] = useState(false);
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { state } = useLocation();
   const { connectedProvider, connectProvider } = useProvidersContext();
   const env = useEnvContext();
 
   const onConnectProvider = () => {
     setPolicyCheck();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     selectedWallet && connectProvider(selectedWallet);
     setShowPolicyModal(false);
   };

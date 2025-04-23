@@ -11,6 +11,7 @@ import { Typography } from "src/views/shared/typography/typography.view";
 export const NetworkError: FC = () => {
   const classes = useNetworkErrorStyles();
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { state } = useLocation();
   const env = useEnvContext();
 

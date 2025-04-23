@@ -4,7 +4,7 @@ import { useTextMatchFormStyles } from "src/views/home/components/text-match-for
 import { Button } from "src/views/shared/button/button.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface TextMatchFormProps {
+type TextMatchFormProps = {
   onSubmit: (hideDepositWarning: boolean) => void;
   text: string;
 }

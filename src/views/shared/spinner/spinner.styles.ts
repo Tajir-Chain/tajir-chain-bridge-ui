@@ -2,7 +2,7 @@ import { createUseStyles } from "react-jss";
 
 import { Theme } from "src/styles/theme";
 
-interface StyleProps {
+type StyleProps = {
   color?: string;
   size: number;
 }

@@ -2,7 +2,7 @@ import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import { BigNumber } from "ethers";
 import { ComponentType } from "react";
 
-export type ChainKey = "ethereum" | "polygon-zkevm" | "gpt" | "lumia";
+export type ChainKey = "ethereum" | "polygon-zkevm";
 
 export type CommonChain = {
   Icon: ComponentType<{ className?: string }>;
@@ -42,7 +42,7 @@ export type ZkEVMChain = CommonChain & {
   key: "polygon-zkevm";
 };
 
-export type Chain = EthereumChain | ZkEVMChain | GptChain | LumiaChain;
+export type Chain = EthereumChain | ZkEVMChain;
 
 export type ConnectedProvider = {
   account: string;
@@ -81,7 +81,7 @@ export type ReportFormEnvEnabled = {
 export type Env = {
   brandComponents: boolean;
   bridgeApiUrl: string;
-  chains: [EthereumChain, ZkEVMChain, GptChain, LumiaChain];
+  chains: [EthereumChain, ZkEVMChain];
   faviconPath?: string;
   fiatExchangeRates:
     | {
@@ -334,8 +334,19 @@ export type LoadingMoreItemsAsyncTask<D> = {
 };
 
 export type AsyncTask<D, E, P = false> = P extends true
-  ? PendingAsyncTask | LoadingAsyncTask | SuccessfulAsyncTask<D> | ReloadingAsyncTask<D> | LoadingMoreItemsAsyncTask<D> | FailedAsyncTask<E>
-  : PendingAsyncTask | LoadingAsyncTask | SuccessfulAsyncTask<D> | ReloadingAsyncTask<D> | FailedAsyncTask<E>;
+  ?
+      | PendingAsyncTask
+      | LoadingAsyncTask
+      | SuccessfulAsyncTask<D>
+      | ReloadingAsyncTask<D>
+      | LoadingMoreItemsAsyncTask<D>
+      | FailedAsyncTask<E>
+  :
+      | PendingAsyncTask
+      | LoadingAsyncTask
+      | SuccessfulAsyncTask<D>
+      | ReloadingAsyncTask<D>
+      | FailedAsyncTask<E>;
 
 type OpenModal<D> = {
   data: D;

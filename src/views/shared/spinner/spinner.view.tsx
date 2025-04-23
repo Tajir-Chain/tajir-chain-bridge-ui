@@ -3,7 +3,7 @@ import { useSpinnerStyles } from "src/views/shared/spinner/spinner.styles";
 const SIZE = 44;
 const THICKNESS = 3;
 
-interface SpinnerProps {
+type SpinnerProps = {
   color?: string;
   size?: number;
 }

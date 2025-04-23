@@ -1,4 +1,4 @@
-interface TimeFromNowParams {
+type TimeFromNowParams = {
   timestamp: number;
 }
 
@@ -25,7 +25,7 @@ export const getTimeFromNow = ({ timestamp }: TimeFromNowParams): string => {
   }
 };
 
-interface FormatDateParams {
+type FormatDateParams = {
   timestamp: number;
 }
 

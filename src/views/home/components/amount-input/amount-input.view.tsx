@@ -7,7 +7,7 @@ import { formatTokenAmount } from "src/utils/amounts";
 import { useAmountInputStyles } from "src/views/home/components/amount-input/amount-input.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface AmountInputProps {
+type AmountInputProps = {
   balance: BigNumber;
   onChange: (params: { amount?: BigNumber; error?: string }) => void;
   token: Token;

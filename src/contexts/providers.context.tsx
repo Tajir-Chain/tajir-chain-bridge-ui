@@ -29,7 +29,7 @@ import {
   isMetaMaskUserRejectedRequestError,
 } from "src/utils/types";
 
-interface ProvidersContext {
+type ProvidersContext ={
   addNetwork: (chain: Chain) => Promise<void>;
   changeNetwork: (chain: Chain) => Promise<void>;
   connectProvider: (walletName: WalletName) => Promise<void>;
@@ -63,7 +63,7 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
     }
   };
 
-  interface ConnectMetamaskProviderParams {
+  type ConnectMetamaskProviderParams = {
     account: string;
     env: Env;
     web3Provider: Web3Provider;

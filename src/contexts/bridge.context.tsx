@@ -712,7 +712,7 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
                 tokenAddress,
                 forceUpdateGlobalExitRoot,
                 "0x",
-                overrides
+                { ...overrides, from: await Promise.resolve(overrides.from) }
               )
               .then((gasLimit) => {
                 const gasLimitIncrease = gasLimit
@@ -802,7 +802,7 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
             selectTokenAddress(token, from),
             forceUpdateGlobalExitRoot,
             permitData,
-            overrides
+            { ...overrides, from: await Promise.resolve(overrides.from) }
           )
           .then((txData) => {
             storage.addAccountPendingTx(account, env, {

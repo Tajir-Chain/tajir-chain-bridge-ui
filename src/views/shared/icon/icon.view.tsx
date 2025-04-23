@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { useIconStyles } from "src/views/shared/icon/icon.styles";
 
-interface IconProps {
+type IconProps ={
   className?: string;
   isRounded?: boolean;
   size?: number;

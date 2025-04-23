@@ -5,7 +5,7 @@ import { PAGE_SIZE } from "src/constants";
 import * as domain from "src/domain";
 import { StrictSchema } from "src/utils/type-safety";
 
-interface DepositInput {
+type DepositInput = {
   amount: string;
   block_num: number;
   claim_tx_hash: string;
@@ -18,9 +18,9 @@ interface DepositInput {
   orig_net: number;
   ready_for_claim: boolean;
   tx_hash: string;
-}
+};
 
-interface DepositOutput {
+type DepositOutput = {
   amount: string;
   block_num: number;
   claim_tx_hash: string | null;
@@ -33,14 +33,14 @@ interface DepositOutput {
   orig_net: number;
   ready_for_claim: boolean;
   tx_hash: string;
-}
+};
 
-interface MerkleProof {
+type MerkleProof = {
   main_exit_root: string;
   merkle_proof: string[];
   rollup_exit_root: string;
   rollup_merkle_proof: string[];
-}
+};
 
 const depositParser = StrictSchema<DepositInput, DepositOutput>()(
   z.object({
@@ -129,13 +129,13 @@ const getMerkleProofResponseParser = StrictSchema<
   })
 );
 
-interface GetDepositsParams {
+type GetDepositsParams = {
   abortSignal?: AbortSignal;
   apiUrl: string;
   ethereumAddress: string;
   limit?: number;
   offset?: number;
-}
+};
 
 export const getDeposits = ({
   apiUrl,
@@ -172,12 +172,12 @@ export const getDeposits = ({
     });
 };
 
-interface GetDepositParams {
+type GetDepositParams = {
   abortSignal?: AbortSignal;
   apiUrl: string;
   depositCount: number;
   networkId: number;
-}
+};
 
 export const getDeposit = ({
   abortSignal,
@@ -207,11 +207,11 @@ export const getDeposit = ({
     });
 };
 
-interface GetMerkleProofParams {
+type GetMerkleProofParams = {
   apiUrl: string;
   depositCount: number;
   networkId: number;
-}
+};
 
 export const getMerkleProof = ({
   apiUrl,
