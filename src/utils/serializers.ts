@@ -7,19 +7,19 @@ import { StrictSchema } from "src/utils/type-safety";
 
 type SerializedBridgeId = string;
 
-interface BridgeId {
+type BridgeId = {
   depositCount: number;
   networkId: number;
-}
+};
 
-interface CommonPendingTx {
+type CommonPendingTx = {
   amount: BigNumber;
   destinationAddress: string;
   from: Chain;
   timestamp: number;
   to: Chain;
   token: Token;
-}
+};
 
 type PendingDepositTxData = {
   depositTxHash: string;
@@ -38,14 +38,14 @@ type PendingClaimTx = CommonPendingTx & PendingClaimTxData;
 
 export type PendingTx = PendingDepositTx | PendingClaimTx;
 
-interface CommonSerializedPendingTx {
+type CommonSerializedPendingTx = {
   amount: string;
   destinationAddress: string;
   from: ChainKey;
   timestamp: number;
   to: ChainKey;
   token: Token;
-}
+};
 
 type SerializedPendingDepositTx = CommonSerializedPendingTx & PendingDepositTxData;
 

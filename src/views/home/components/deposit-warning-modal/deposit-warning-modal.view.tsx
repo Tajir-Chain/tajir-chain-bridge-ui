@@ -15,7 +15,7 @@ import { ExternalLink } from "src/views/shared/external-link/external-link.view"
 import { Portal } from "src/views/shared/portal/portal.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface DepositWarningModalProps {
+type DepositWarningModalProps = {
   formData: FormData;
   onAccept: (formData: FormData, hideDepositWarning: boolean) => void;
   onCancel: () => void;

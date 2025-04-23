@@ -21,12 +21,12 @@ type Screen =
       type: "token-info";
     };
 
-interface SelectedChains {
+type SelectedChains ={
   from: Chain;
   to: Chain;
 }
 
-interface TokenSelectorProps {
+type TokenSelectorProps ={
   account: string;
   chains: SelectedChains;
   onAddToken: (token: Token) => void;

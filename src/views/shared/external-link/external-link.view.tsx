@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 
 import { useExternalLinkStyles } from "src/views/shared/external-link/external-link.styles";
 
-interface ExternalLinkProps {
+type ExternalLinkProps = {
   href: string;
 }
 

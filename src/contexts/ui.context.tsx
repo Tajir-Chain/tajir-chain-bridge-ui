@@ -19,7 +19,7 @@ type SnackbarState =
       status: "open";
     };
 
-interface UIContext {
+type UIContext = {
   closeSnackbar: () => void;
   openSnackbar: (message: Message) => void;
   snackbar: SnackbarState;

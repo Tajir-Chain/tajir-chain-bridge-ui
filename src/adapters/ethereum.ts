@@ -50,10 +50,10 @@ const getConnectedAccounts = (provider: Web3Provider): Promise<string[]> => {
     .then((accounts) => ethereumAccountsParser.parse(accounts));
 };
 
-interface GetPermitParams {
+type GetPermitParams = {
   chain: Chain;
   token: Token;
-}
+};
 
 const getPermit = ({ chain, token }: GetPermitParams): Promise<Permit> => {
   if (isTokenEther(token, chain)) {
@@ -89,14 +89,14 @@ const getPermit = ({ chain, token }: GetPermitParams): Promise<Permit> => {
   });
 };
 
-interface ApproveParams {
+type ApproveParams = {
   amount: BigNumber;
   from: Chain;
   owner: string;
   provider: Web3Provider;
   spender: string;
   token: Token;
-}
+};
 
 const approve = async ({
   amount,
@@ -130,14 +130,14 @@ const approve = async ({
   }
 };
 
-interface IsContractAllowedToSpendTokenParams {
+type IsContractAllowedToSpendTokenParams = {
   amount: BigNumber;
   from: Chain;
   owner: string;
   provider: JsonRpcProvider;
   spender: string;
   token: Token;
-}
+};
 
 const isContractAllowedToSpendToken = async ({
   amount,
@@ -157,7 +157,7 @@ const isContractAllowedToSpendToken = async ({
   return allowance.gte(amount);
 };
 
-interface PermitParams {
+type PermitParams = {
   account: string;
   from: Chain;
   permit: Permit;
@@ -165,7 +165,7 @@ interface PermitParams {
   spender: string;
   token: Token;
   value: BigNumber;
-}
+};
 
 const permit = async ({
   account,
@@ -284,10 +284,10 @@ const permit = async ({
   }
 };
 
-interface GetErc20TokenMetadataParams {
+type GetErc20TokenMetadataParams = {
   chain: Chain;
   token: Token;
-}
+};
 
 const getErc20TokenMetadata = async ({
   chain,
@@ -318,10 +318,10 @@ const getErc20TokenMetadata = async ({
   };
 };
 
-interface GetErc20TokenEncodedMetadataParams {
+type GetErc20TokenEncodedMetadataParams = {
   chain: Chain;
   token: Token;
-}
+};
 
 const getErc20TokenEncodedMetadata = async ({
   chain,
@@ -334,10 +334,10 @@ const getErc20TokenEncodedMetadata = async ({
   return defaultAbiCoder.encode(["string", "string", "uint8"], [name, symbol, decimals]);
 };
 
-interface GetTxFeePaidParams {
+type GetTxFeePaidParams = {
   chain: Chain;
   txHash: string;
-}
+};
 
 function getTxFeePaid({ chain, txHash }: GetTxFeePaidParams): Promise<BigNumber | undefined> {
   return chain.provider.getTransactionReceipt(txHash).then((txReceipt) => {

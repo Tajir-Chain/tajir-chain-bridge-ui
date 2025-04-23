@@ -3,7 +3,7 @@ import { FC } from "react";
 import { AsyncTask, Token } from "src/domain";
 import { Button } from "src/views/shared/button/button.view";
 
-interface BridgeButtonProps {
+type BridgeButtonProps = {
   approvalTask: AsyncTask<null, string>;
   isDisabled?: boolean;
   isTxApprovalRequired: boolean;

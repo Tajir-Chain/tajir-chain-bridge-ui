@@ -46,12 +46,12 @@ const computePairAddress = ({ tokenA, tokenB }: { tokenA: Token; tokenB: Token }
   );
 };
 
-interface GetTokenPriceParams {
+type GetTokenPriceParams ={
   chain: Chain;
   token: Token;
 }
 
-interface PriceOracleContext {
+type PriceOracleContext ={
   getTokenPrice: (params: GetTokenPriceParams) => Promise<BigNumber>;
 }
 

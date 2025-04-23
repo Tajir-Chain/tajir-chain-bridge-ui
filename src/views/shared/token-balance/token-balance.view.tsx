@@ -9,7 +9,7 @@ import { Spinner } from "src/views/shared/spinner/spinner.view";
 import { useTokenBalanceStyles } from "src/views/shared/token-balance/token-balance.styles";
 import { Typography, TypographyProps } from "src/views/shared/typography/typography.view";
 
-interface TokenBalanceProps {
+type TokenBalanceProps = {
   chainId: string;
   spinnerSize: number;
   token: Token;

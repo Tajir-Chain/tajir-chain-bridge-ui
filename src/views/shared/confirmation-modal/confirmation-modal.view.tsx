@@ -6,7 +6,7 @@ import { useConfirmationModalStyles } from "src/views/shared/confirmation-modal/
 import { Portal } from "src/views/shared/portal/portal.view";
 import { Typography } from "src/views/shared/typography/typography.view";
 
-interface ConfirmationModalProps {
+type ConfirmationModalProps = {
   message: ReactNode;
   onClose: () => void;
   onConfirm: () => void;

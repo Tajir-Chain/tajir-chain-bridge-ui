@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, createContext, useCallback, useContext, useMemo 
 import { parseError } from "src/adapters/error";
 import { useUIContext } from "src/contexts/ui.context";
 
-interface ErrorContext {
+type ErrorContext = {
   notifyError: (error: unknown) => void;
 }
 

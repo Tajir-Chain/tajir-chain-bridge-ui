@@ -4,24 +4,24 @@ import { z } from "zod";
 import { Currency, FiatExchangeRates } from "src/domain";
 import { StrictSchema } from "src/utils/type-safety";
 
-interface GetFiatExchangeRatesSuccessResponse {
+type GetFiatExchangeRatesSuccessResponse = {
   rates: FiatExchangeRates;
-}
+};
 
-interface GetFiatExchangeRatesUnsuccessResponse {
+type GetFiatExchangeRatesUnsuccessResponse = {
   error: {
     code: number;
     info: string;
     type: string;
   };
-}
+};
 
-interface GetFiatExchangeRatesError {
+type GetFiatExchangeRatesError = {
   error: {
     code: string;
     message: string;
   };
-}
+};
 
 const fiatExchangeRatesKeyParser = StrictSchema<keyof FiatExchangeRates>()(
   z.union([
@@ -58,7 +58,7 @@ const getFiatExchangeRatesErrorParser = StrictSchema<GetFiatExchangeRatesError>(
   })
 );
 
-interface GetFiatExchangeRatesParams {
+type GetFiatExchangeRatesParams = {
   apiKey: string;
   apiUrl: string;
 }
