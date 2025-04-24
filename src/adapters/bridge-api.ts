@@ -138,11 +138,11 @@ type GetDepositsParams = {
 };
 
 export const getDeposits = ({
+  abortSignal,
   apiUrl,
   ethereumAddress,
   limit = PAGE_SIZE,
   offset = 0,
-  abortSignal,
 }: GetDepositsParams): Promise<{
   deposits: DepositOutput[];
   total: number;

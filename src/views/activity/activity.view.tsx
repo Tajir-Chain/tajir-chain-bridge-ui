@@ -157,11 +157,11 @@ export const Activity: FC = () => {
       fetchBridgesAbortController.current = new AbortController();
 
       fetchBridges({
+        abortSignal: fetchBridgesAbortController.current.signal,
         env,
         ethereumAddress: connectedProvider.data.account,
         quantity: lastLoadedItem + PAGE_SIZE,
         type: "reload",
-        abortSignal: fetchBridgesAbortController.current.signal,
       })
         .then(({ bridges, total }) => {
           callIfMounted(() => {
@@ -264,6 +264,7 @@ export const Activity: FC = () => {
 
   useEffect(() => {
     if (env) {
+      // eslint-disable-next-line sort-destructure-keys/sort-destructure-keys
       const { rollupManagerAddress, provider, poeContractAddress } = env.chains[0];
       const contract = RollupManager__factory.connect(rollupManagerAddress, provider);
       const refreshLastVerifiedBatch = async () => {
