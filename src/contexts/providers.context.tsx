@@ -1,5 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
-import WalletConnectProvider from "@walletconnect/ethereum-provider";
+import  { EthereumProvider } from "@walletconnect/ethereum-provider";
 import { hexValue } from "ethers/lib/utils";
 import {
   FC,
@@ -159,33 +159,33 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
         case WalletName.WALLET_CONNECT: {
           const ethereumChain = env.chains[0];
           const { chainId } = await ethereumChain.provider.getNetwork();
-          const walletConnectProvider = new WalletConnectProvider({
-            rpc: {
+          const walletConnectProvider = await EthereumProvider.init({
+            chains: [chainId],
+            projectId: "YOUR_PROJECT_ID",
+            rpcMap: {
               [chainId]: ethereumChain.provider.connection.url,
             },
+            showQrModal: true,
           });
           const web3Provider = new Web3Provider(walletConnectProvider);
-
-          return walletConnectProvider
-            .enable()
-            .then((accounts) => {
-              setConnectedProvider({
-                data: {
-                  account: getChecksumAddress(accounts[0]),
-                  chainId,
-                  provider: web3Provider,
-                },
-                status: "successful",
-              });
-            })
-            .catch((error) => {
-              if (error instanceof Error && error.message === "User closed modal") {
-                setConnectedProvider({ status: "pending" });
-              } else {
-                notifyError(error);
-              }
+          return walletConnectProvider.enable().then((accounts) => {
+            setConnectedProvider({
+              data: {
+                account: getChecksumAddress(accounts[0]),
+                chainId,
+                provider: web3Provider,
+              },
+              status: "successful",
             });
+          }).catch((error) => {
+            if (error instanceof Error && error.message === "User closed modal") {
+              setConnectedProvider({ status: "pending" });
+            } else {
+              notifyError(error);
+            }
+          });
         }
+
       }
     },
     [env, connectMetamaskProvider, notifyError]

@@ -110,6 +110,7 @@ export const getChains = ({
     polygonZkEVMProvider
   );
   if (import.meta.env.VITE_CHAIN_ICON_PATH) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     polygonZkEVM.iconUrl = import.meta.env.VITE_CHAIN_ICON_PATH;
   }
 
