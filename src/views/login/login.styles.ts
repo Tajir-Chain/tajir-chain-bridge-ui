@@ -117,7 +117,7 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
   },
 
   networkName: {
-    fontSize: 72,
+    fontSize: 48,
     [theme.breakpoints.downM]: {
       fontSize: 22,
     },
