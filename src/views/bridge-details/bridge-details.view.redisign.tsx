@@ -343,18 +343,6 @@ export const BridgeDetailsRedesign: FC = () => {
         },
       ];
 
-      if (bridge.data.status === "completed") {
-        bridgeDetailsInfoList.push({
-          label: `Step 2 Fee (${bridge.data.to.name})`,
-          value: (
-            <>
-              {step2FeeString}
-              {step2FiatFeeString ? ` ~ ${step2FiatFeeString}` : ""}
-            </>
-          ),
-        });
-      }
-
       bridgeDetailsInfoList.push({
         label: "Track step 1 transaction",
         value: (
