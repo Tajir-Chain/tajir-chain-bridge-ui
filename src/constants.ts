@@ -118,11 +118,11 @@ export const getChains = ({
     ethereumProvider.getNetwork().catch(() => Promise.reject(ProviderError.Ethereum)),
     polygonZkEVMProvider.getNetwork().catch(() => Promise.reject(ProviderError.PolygonZkEVM)),
     poeContract.networkName().catch(() => Promise.reject(ProviderError.Ethereum)),
-    bridgeZkEVMContract.gasTokenAddress().catch(() => Promise.reject(ProviderError.PolygonZkEVM)),
-    bridgeZkEVMContract.WETHToken().catch(() => Promise.reject(ProviderError.PolygonZkEVM)),
+    bridgeZkEVMContract.gasTokenAddress().catch(() => ethers.constants.AddressZero),
+    bridgeZkEVMContract.WETHToken().catch(() => ethers.constants.AddressZero),
     bridgeZkEVMContract
       .gasTokenMetadata()
-      .catch(() => Promise.reject(ProviderError.PolygonZkEVM))
+      .catch(() => "0x")
       .then((md) => decodeGasTokenMetadata(md)),
   ]).then(
     ([
