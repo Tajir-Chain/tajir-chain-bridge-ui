@@ -13,7 +13,7 @@ export const useButtonStyles = createUseStyles((theme: Theme) => ({
       backgroundColor: theme.palette.primary.dark,
     },
     alignItems: "center",
-    backgroundColor: theme.palette.primary.mainRedesign,
+    backgroundColor: "#F3CD52",
     border: "none",
     borderRadius: 80,
     color: theme.palette.white,

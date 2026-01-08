@@ -59,15 +59,16 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
     },
     alignItems: "center",
     appearance: "none",
-    backgroundColor: theme.palette.primary.mainRedesign,
-    border: "1px solid #EEE8FF",
+    backgroundColor: "#F3CD52",
+    border: "1px solid #F3CD52",
     borderRadius: 8,
-    color: theme.palette.white,
+    color: theme.palette.black,
+    fontWeight: 500,
     cursor: "pointer",
     display: "flex",
     justifyContent: "space-between",
-    padding: [theme.spacing(1), theme.spacing(1)],
     width: "100%",
+    padding: [theme.spacing(2), theme.spacing(3)],
   },
   buttonArrow: {
     display: "flex",
@@ -79,6 +80,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   buttonIconAndTitle: {
     alignItems: "center",
     display: "flex",
+    color: "#1F1F37",
     lineHeight: 0,
   },
   buttonRounded: {
@@ -134,7 +136,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   },
 
   listIcon: {
-    color: "#78798d",
+    color: "#2CBB9B",
     display: "flex",
     justifyContent: "center",
     marginLeft: theme.spacing(1),
@@ -164,7 +166,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
       transform: "translateY(-1px)",
     },
     alignItems: "center",
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: "#F7F7F7",
     borderRadius: "8px",
     cursor: "pointer",
     display: "flex",
@@ -184,6 +186,7 @@ export const useNetworkBoxRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   reportIcon: {
     marginRight: theme.spacing(0.5),
+    marginLeft: theme.spacing(0.5),
     width: 15,
     [theme.breakpoints.downM]: {
       marginRight: 0,

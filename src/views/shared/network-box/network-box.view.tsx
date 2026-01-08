@@ -114,7 +114,7 @@ export const NetworkBox: FC = () => {
             onClick={onAddNetwork}
           >
             <MetaMaskIcon className={classes.buttonIcon} />
-            Add to MetaMask
+            Add To MetaMask
           </button>
           <a
             className={classes.button}

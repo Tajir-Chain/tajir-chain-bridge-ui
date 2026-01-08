@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useHeaderLinksRedesignStyles } from "./header-links.styles";
-import ArrowRight  from "src/assets/icons/arrow-right-white.svg?react";
+import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
 import BurgerMenuIcon  from "src/assets/icons/burger-menu.svg?react";
 import LogoGatewayfm  from "src/assets/icons/logo-gatewayfm.svg?react";
 
@@ -14,22 +14,22 @@ export const HeaderLinks = () => {
   const isMobile = window.innerWidth < 788;
 
   const linksList: LinkItem[] = [
-    { title: "Rollup", url: "https://gateway.fm/presto" },
-    { title: "Stakeway", url: "https://stakeway.com/" },
-    { title: "RPC", url: "https://gateway.fm/rpc" },
-    { title: "Blog", url: "https://gateway.fm/blog" },
-    { title: "About", url: "https://gateway.fm/about" },
-    { title: "Careers", url: "https://boards.eu.greenhouse.io/gatewayfm" },
-    ...(isMobile ? [{ title: "Deploy rollup", url: "https://presto.gateway.fm/onboarding" }] : []),
+    { title: "Rollup", url: "#" },
+    { title: "Stakeway", url: "#" },
+    { title: "RPC", url: "#" },
+    { title: "Blog", url: "#" },
+    { title: "About", url: "#" },
+    { title: "Careers", url: "#" },
+    ...(isMobile ? [{ title: "Deploy rollup", url: "#" }] : []),
   ];
 
   const onOpenBurgerMenu = () => {
     setOpenBurgerMenu((prev) => !prev);
   };
 
-  const redirectToPrestoOnboarding = () => {
-    window.open("https://presto.gateway.fm/onboarding", "_blank");
-  };
+  // const redirectToPrestoOnboarding = () => {
+  //   window.open("https://presto.gateway.fm/onboarding", "_blank");
+  // };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target;
@@ -63,7 +63,7 @@ export const HeaderLinks = () => {
       <div className={classes.linksAndLogoContainer}>
         <LogoGatewayfm
           className={classes.logo}
-          onClick={() => window.open("https://gateway.fm/", "_blank")}
+          onClick={() => window.open("#", "_blank")}
         />
         <div ref={burgerIconRef}>
           <BurgerMenuIcon
@@ -90,7 +90,9 @@ export const HeaderLinks = () => {
           ))}
         </div>
       </div>
-      <button className={classes.button} onClick={redirectToPrestoOnboarding}>
+      
+      {/* <button className={classes.button} onClick={redirectToPrestoOnboarding}> */}
+      <button className={classes.button}>
         Deploy rollup <ArrowRight className={classes.icon} />
       </button>
     </div>

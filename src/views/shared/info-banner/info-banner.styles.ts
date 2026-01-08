@@ -11,6 +11,8 @@ export const useInfoBannerStyles = createUseStyles((theme: Theme) => ({
     maxWidth: theme.maxWidth,
     padding: theme.spacing(2),
     width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   message: {
     color: theme.palette.black,

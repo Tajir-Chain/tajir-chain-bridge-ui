@@ -68,7 +68,6 @@ export const HomeRedesign = (): JSX.Element => {
       </Typography>
      </div>
      <div className={classes.networkBoxWrapper}>
-      <NetworkBoxRedesign />
 
       <BridgeFormRedesign
        account={connectedProvider.data.account}
@@ -76,6 +75,7 @@ export const HomeRedesign = (): JSX.Element => {
        onResetForm={onResetForm}
        onSubmit={onCheckShowDepositWarningAndSubmitForm}
       />
+      <NetworkBoxRedesign />
      </div>
      {depositWarningModal.status === "open" && (
       <DepositWarningModal

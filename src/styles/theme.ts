@@ -60,7 +60,7 @@ export const theme: Theme = {
     },
     grey: {
       dark: getEnv("VITE_THEME_COLOR_GREY_DARK", "#78798d"),
-      light: getEnv("VITE_THEME_COLOR_GREY_LIGHT", "#f0f1f6"),
+      light: getEnv("VITE_THEME_COLOR_GREY_LIGHT", "#FBFBFB"),
       main: getEnv("VITE_THEME_COLOR_GREY_MAIN", "#e2e5ee"),
       veryDark: getEnv("VITE_THEME_COLOR_GREY_VERY_DARK", "#363740"),
     },

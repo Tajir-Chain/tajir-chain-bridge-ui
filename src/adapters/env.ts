@@ -212,7 +212,7 @@ const envToDomain = ({
   const networkSymbol = VITE_NETWORK_SYMBOL;
   const chainIconPath = VITE_CHAIN_ICON_URL;
   const frontendType = VITE_FRONTEND_TYPE ?? "new-design";
-  const brandComponents = stringBooleanParser.parse(VITE_BRAND_COMPONENTS ?? "false")
+  const brandComponents = stringBooleanParser.parse(VITE_BRAND_COMPONENTS ?? "false");
 
   const outdatedNetworkModal: domain.Env["outdatedNetworkModal"] = isOutdatedNetworkModalEnabled
     ? {

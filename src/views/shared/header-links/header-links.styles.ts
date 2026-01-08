@@ -19,21 +19,23 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
   button: {
     alignItems: "center",
     alignSelf: "flex-end",
-    backgroundColor: theme.palette.primary.mainRedesign,
+    backgroundColor: "#F3CD52",
     border: "none",
-    borderRadius: 16,
-    color: theme.palette.white,
+    borderRadius: 12,
+    color: theme.palette.black,
     cursor: "pointer",
     display: "flex",
+    fontWeight: 500,
     gap: theme.spacing(1),
     height: 30,
-    padding: [theme.spacing(2), theme.spacing(2)],
+    padding: [theme.spacing(2.5), theme.spacing(2.5)],
     [theme.breakpoints.downM]: {
       display: "none",
     },
   },
 
   icon: {
+    color: theme.palette.black,
     width: 14,
   },
   linkItem: {
@@ -93,12 +95,21 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
-    marginInline: theme.spacing(5),
-    marginTop: theme.spacing(3),
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    paddingInline: theme.spacing(5),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+    backgroundColor: "#fff", // Add white background
+    borderBottom: "1px solid #e0e0e0", // Add bottom border (light gray)
+    boxShadow: "0 2px 4px rgba(0,0,0,0.05)", // optional subtle shadow
 
     [theme.breakpoints.downM]: {
-      marginInline: theme.spacing(3),
-      marginTop: theme.spacing(1),
+      paddingInline: theme.spacing(3),
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
     },
   },
 }));

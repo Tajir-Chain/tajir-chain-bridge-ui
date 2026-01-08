@@ -36,18 +36,19 @@ export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
     },
     alignItems: "center",
     appearance: "none",
-    backgroundColor: theme.palette.primary.mainRedesign,
-    border: "1px solid #EEE8FF",
+    backgroundColor: "#F3CD52",
+    border: "1px solid #F3CD52",
     borderRadius: 8,
     color: theme.palette.white,
     cursor: "pointer",
     display: "flex",
     justifyContent: "space-between",
-    padding: [theme.spacing(1), theme.spacing(1)],
+    padding: [theme.spacing(1.5), theme.spacing(2.5)],
     width: "100%",
     [theme.breakpoints.downM]: {
       fontSize: 14,
     },
+    
   },
   
   buttonWalletTitle: {

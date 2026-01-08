@@ -38,7 +38,7 @@ export const useHomeRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   ethereumAddress: {
     alignItems: "center",
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: "theme.palette.primary.light",
     borderRadius: 8,
     display: "flex",
     margin: [theme.spacing(3), "auto", theme.spacing(3)],

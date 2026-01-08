@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { WalletIconRedesign } from "../wallet-icon/wallet-icon.view.redesign";
-import CornerWhiteIcon from "src/assets/icons/corner-right-white.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { WalletName } from "src/domain";
 import { useWalletListRedesignStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { CardRedesign } from "src/views/shared/card/card.view.redesign";
 import { Typography } from "src/views/shared/typography/typography.view";
+import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
 
 type WalletListProps = {
   onSelectWallet: (walletName: WalletName) => void;
@@ -42,7 +42,7 @@ export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
                     {WalletName.METAMASK}
                   </Typography>
                 </div>
-                <CornerWhiteIcon />
+                <ArrowRight />
               </button>
             </div>
           </li>

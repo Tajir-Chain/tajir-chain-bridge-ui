@@ -165,10 +165,10 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
       const getUpdatedTokens = (tokens: Token[] | undefined, updatedToken: Token) =>
         tokens
           ? tokens.map((tkn) =>
-            tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
-              ? updatedToken
-              : tkn
-          )
+              tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
+                ? updatedToken
+                : tkn
+            )
           : undefined;
 
       setTokens(() =>
@@ -329,6 +329,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
               <Typography className={classes.selectedChainName} type="body1">
                 {selectedChains.to.name}
               </Typography>
+              <CaretDown />
             </div>
           </div>
           <div className={classes.rightBox}>
@@ -342,8 +343,8 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
           </div>
         </div>
       </CardRedesign>
-      <div className={classes.button}>
-        <Button disabled={!amount || amount.isZero() || inputError !== undefined} type="submit">
+      <div className={classes.button} >
+        <Button disabled={!amount || amount.isZero() || inputError !== undefined} type="submit" >
           Continue
         </Button>
         {amount && inputError && <ErrorMessage error={inputError} />}

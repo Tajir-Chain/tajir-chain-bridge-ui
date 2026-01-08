@@ -75,18 +75,19 @@ export const LoginRedesign: FC = () => {
           <Typography className={classes.appName} type="body1">
             <ArrowDoubleIcon className={classes.appNameIcon} /> {appName}
           </Typography>
-          <Typography className={classes.networkName} type="body1">
+          {/* <Typography className={classes.networkName} type="body1">
             {name ? name : env.chains[1].name}
-          </Typography>
+          </Typography> */}
         </div>
-        <div className={classes.networkBoxWrapper}>
-          <NetworkBoxRedesign />
-        </div>
+
         <div className={classes.cardWrap}>
           <WalletListRedesign onSelectWallet={onCheckAndConnectProvider} />
           {connectedProvider.status === "failed" && (
             <ErrorMessage error={connectedProvider.error} />
           )}
+        </div>
+        <div className={classes.networkBoxWrapper}>
+          <NetworkBoxRedesign />
         </div>
         {ethereumChain.chainId !== EthereumChainId.MAINNET && (
           <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />

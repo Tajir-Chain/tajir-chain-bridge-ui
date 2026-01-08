@@ -60,7 +60,7 @@ export const useTokenSelectorHeaderStyles = createUseStyles((theme: Theme) => ({
 export const useTokenSelectorHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
   backButton: {
     alignItems: "center",
-    background: theme.palette.white,
+    background: theme.palette.grey.light,
     border: 0,
     borderRadius: "50%",
     cursor: "pointer",

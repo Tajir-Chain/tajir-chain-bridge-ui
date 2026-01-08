@@ -24,7 +24,7 @@ export const Button: FC<ButtonProps> = ({ children, disabled, isLoading, onClick
       {children}
       {isLoading && (
         <span className={addSpinnerSpacing ? classes.paddedSpinner : ""}>
-          <Spinner color="#fff" size={24} />
+          <Spinner color="#000" size={24} />
         </span>
       )}
     </button>

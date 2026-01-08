@@ -3,10 +3,9 @@ import { useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
-import ArrowRightIcon from "src/assets/icons/arrow-right-purple.svg?react";
+import ArrowRightIconGreen from "src/assets/icons/arrow-right-green.svg?react";
 import CopyIcon from "src/assets/icons/copy-outlined.svg?react";
-import CornerWhiteIcon from "src/assets/icons/corner-right-white.svg?react";
-import MetaMaskIcon from "src/assets/icons/metamask.svg?react";
+import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
 import WarningIcon from "src/assets/icons/warning.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
@@ -64,7 +63,7 @@ export const NetworkBoxRedesign = () => {
       case "Smart Contract":
       default: {
         return {
-          icon: <ArrowRightIcon />,
+          icon: <ArrowRightIconGreen />,
           onClick: () => window.open(value, "_blank"),
         };
       }
@@ -147,12 +146,12 @@ export const NetworkBoxRedesign = () => {
 
           <a
             className={classes.buttonRounded}
-            href="https://discord.gg/77vtmKNbkf"
+            href="https://discord.com"
             rel="noopener noreferrer"
             target="_blank"
           >
+            <div className={classes.reportTitle}> Report an issue </div>
             <WarningIcon className={classes.reportIcon} />
-            <div className={classes.reportTitle}> Report an issue</div>
           </a>
         </div>
         <button
@@ -165,14 +164,13 @@ export const NetworkBoxRedesign = () => {
           onClick={onAddNetwork}
         >
           <div className={classes.buttonIconAndTitle}>
-            <MetaMaskIcon className={classes.buttonIcon} />
-            Add to MetaMask
+            Add To MetaMask
           </div>
           <div>
-            <CornerWhiteIcon className={classes.buttonArrow} />
+            <ArrowRight className={classes.buttonArrow} />
           </div>
         </button>
-        <Divider />
+        {/* <Divider />
         <div className={classes.list}>
           {details.map(({ label, link, value }) => {
             const { icon, onClick } = getListValueObject(label, link ?? String(value) ?? "");
@@ -188,7 +186,7 @@ export const NetworkBoxRedesign = () => {
               </Typography>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </CardRedesign>
   );

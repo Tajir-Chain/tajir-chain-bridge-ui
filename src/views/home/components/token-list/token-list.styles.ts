@@ -148,7 +148,7 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     "&:hover": {
       background: theme.palette.grey.main,
     },
-    background: theme.palette.white,
+    background: "red",
     border: "none",
     borderRadius: 8,
     cursor: "pointer",
