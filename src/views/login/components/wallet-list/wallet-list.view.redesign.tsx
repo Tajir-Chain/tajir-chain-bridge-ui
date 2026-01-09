@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { WalletIconRedesign } from "../wallet-icon/wallet-icon.view.redesign";
+import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { WalletName } from "src/domain";
 import { useWalletListRedesignStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { CardRedesign } from "src/views/shared/card/card.view.redesign";
 import { Typography } from "src/views/shared/typography/typography.view";
-import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
 
 type WalletListProps = {
   onSelectWallet: (walletName: WalletName) => void;

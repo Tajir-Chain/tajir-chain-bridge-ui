@@ -1,9 +1,3 @@
-export const getEnv = (key: keyof ImportMetaEnv, defaultValue: string): string  => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const value = import.meta.env[key];
-  return typeof value === "string" ? value : defaultValue;
-};
-
 export type Theme = {
   breakpoints: {
     downLg: string;
@@ -39,7 +33,12 @@ export type Theme = {
       light: string;
       main: string;
     };
-    white: string;
+    white: {
+      dark: string;
+      light: string;
+      main: string;
+      mainRedesign: string;
+    };
   };
   spacing: (value: number) => number;
 };
@@ -53,33 +52,46 @@ export const theme: Theme = {
   hoverTransition: "all 150ms",
   maxWidth: 644,
   palette: {
-    black: getEnv("VITE_THEME_COLOR_BLACK", "#0a0b0d"),
+    black: "#0a0b0d",
+
     error: {
-      light: getEnv("VITE_THEME_COLOR_ERROR_LIGHT", "rgba(232,67,12,0.1)"),
-      main: getEnv("VITE_THEME_COLOR_ERROR_MAIN", "#e8430d"),
+      light: "rgba(232,67,12,0.1)",
+      main: "#e8430d",
     },
+
     grey: {
-      dark: getEnv("VITE_THEME_COLOR_GREY_DARK", "#78798d"),
-      light: getEnv("VITE_THEME_COLOR_GREY_LIGHT", "#FBFBFB"),
-      main: getEnv("VITE_THEME_COLOR_GREY_MAIN", "#e2e5ee"),
-      veryDark: getEnv("VITE_THEME_COLOR_GREY_VERY_DARK", "#363740"),
+      dark: "#78798d",
+      light: "#FBFBFB",
+      main: "#e2e5ee",
+      veryDark: "#363740",
     },
+
     primary: {
-      dark: getEnv("VITE_THEME_COLOR_PRIMARY_DARK", "#5a1cc3"),
-      light: getEnv("VITE_THEME_COLOR_PRIMARY_LIGHT", "#EEE8FF"),
-      main: getEnv("VITE_THEME_COLOR_PRIMARY_MAIN", "#7b3fe4"),
-      mainRedesign: getEnv("VITE_THEME_COLOR_PRIMARY_MAIN_REDESIGN", "#8950FA"),
+      dark: "#2f8f77",          // darker shade of #41C9AB
+      light: "#41C9AB",         // lighter/base shade
+      main: "#41C9AB",          // base green
+      mainRedesign: "#33b89a",  // slightly different for redesign
     },
+
     success: {
-      light: getEnv("VITE_THEME_COLOR_SUCCESS_LIGHT", "rgba(0,255,0,0.1)"),
-      main: getEnv("VITE_THEME_COLOR_SUCCESS_MAIN", "#54DC04"),
+      light: "rgba(0,255,0,0.1)",
+      main: "#54DC04",
     },
-    transparency: getEnv("VITE_THEME_COLOR_TRANSPARENCY", "rgba(8,17,50,0.5)"),
+
+    transparency: "rgba(8,17,50,0.5)",
+
     warning: {
-      light: getEnv("VITE_THEME_COLOR_WARNING_LIGHT", "rgba(225,126,38,0.1)"),
-      main: getEnv("VITE_THEME_COLOR_WARNING_MAIN", "#e17e26"),
+      light: "rgba(225,126,38,0.1)",
+      main: "#e17e26",
     },
-    white: getEnv("VITE_THEME_COLOR_WHITE", "#ffffff"),
+
+    white: {
+      dark: "#e6e6e6",
+      light: "#ffffff",
+      main: "#fefefe",
+      mainRedesign: "#ffffff",
+    },
   },
+
   spacing: (value: number): number => value * 8,
 };

@@ -5,19 +5,26 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 import { Token } from "src/domain";
 import { formatTokenAmount } from "src/utils/amounts";
 import { useAmountInputRedesignStyles } from "src/views/home/components/amount-input/amount-input.styles";
-import { Typography } from "src/views/shared/typography/typography.view";
+// import { Typography } from "src/views/shared/typography/typography.view";
 
 type AmountInputProps = {
   balance: BigNumber;
   onChange: (params: { amount?: BigNumber; error?: string }) => void;
+  readOnly?: boolean;
   token: Token;
   value?: BigNumber;
 };
 
-export const AmountInputRedesign: FC<AmountInputProps> = ({ balance, onChange, token, value }) => {
+export const AmountInputRedesign: FC<AmountInputProps> = ({
+  balance,
+  onChange,
+  readOnly,
+  token,
+  value,
+}) => {
   const defaultInputValue = value ? formatTokenAmount(value, token) : "";
   const [inputValue, setInputValue] = useState(defaultInputValue);
- const classes = useAmountInputRedesignStyles(inputValue.length);
+  const classes = useAmountInputRedesignStyles(inputValue.length);
 
   const processOnChangeCallback = (amount?: BigNumber) => {
     if (amount) {
@@ -43,38 +50,25 @@ export const AmountInputRedesign: FC<AmountInputProps> = ({ balance, onChange, t
     }
   };
 
-  const onMax = () => {
-    if (balance.gt(0)) {
-      setInputValue(formatTokenAmount(balance, token));
-      processOnChangeCallback(balance);
-    } else {
-      setInputValue("");
-      processOnChangeCallback();
-    }
-  };
-
   useEffect(() => {
-    // Reset the input when the chain or the token are changed
+    // Keep the visual input value in sync with the external BigNumber value
     if (value === undefined) {
       setInputValue("");
+    } else {
+      setInputValue(formatTokenAmount(value, token));
     }
-  }, [value]);
+  }, [token, value]);
 
   return (
     <div className={classes.wrapper}>
- 
       <input
         autoFocus
         className={classes.amountInput}
-        onChange={onInputChange}
+        onChange={readOnly ? undefined : onInputChange}
         placeholder="0.00"
+        readOnly={readOnly}
         value={inputValue}
       />
-    <button className={classes.maxButton} disabled={balance.eq(0)} onClick={onMax} type="button" >
-     <Typography className={classes.maxText} type="body2">
-      MAX
-     </Typography>
-    </button>
     </div>
   );
 };

@@ -33,7 +33,7 @@ export const useNetworkSelectorStyles = createUseStyles((theme: Theme) => ({
 export const useNetworkSelectorRedesignStyles = createUseStyles((theme: Theme) => ({
   networkButton: {
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: "fff",
     border: "1px solid rgba(0, 0, 0, 0.05)", 
     borderRadius: 8,
     cursor: "pointer",

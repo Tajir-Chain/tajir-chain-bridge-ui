@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useListStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.transparency,
+    background: theme.palette.white,
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -87,7 +87,7 @@ export const useListStyles = createUseStyles((theme: Theme) => ({
 export const useListRedesignStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.transparency,
+    background: theme.palette.white,
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -96,26 +96,25 @@ export const useListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   button: {
     "&:hover": {
-      background: theme.palette.primary.light,
-      
+      background: "#41C9AB",
     },
     "&:not(:first-of-type)": {
       marginTop: theme.spacing(1),
     },
     alignItems: "center",
-    
 
-background: theme.palette.grey.light,
+    background: theme.palette.grey.light,
     border: "none",
     borderRadius: 8,
     cursor: "pointer",
     display: "flex",
     gap: theme.spacing(1),
-    margin:[theme.spacing(0.5), theme.spacing(1)],
+    margin: [theme.spacing(0.5), theme.spacing(1)],
     padding: theme.spacing(2),
     transition: theme.hoverTransition,
   },
   card: {
+    backgroundColor:"white",
     maxWidth: 426,
     padding: theme.spacing(2),
     width: "100%",

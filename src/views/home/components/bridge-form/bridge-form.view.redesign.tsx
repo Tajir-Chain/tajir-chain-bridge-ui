@@ -62,6 +62,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     setInputError(error);
   };
 
+  const getFromBalance = () => {
+    if (balanceFrom && isAsyncTaskDataAvailable(balanceFrom)) {
+      return balanceFrom.data;
+    }
+    return BigNumber.from(0);
+  };
+
   const onChainButtonClick = (from: Chain) => {
     if (env) {
       const to = env.chains.find((chain) => chain.key !== from.key);
@@ -274,6 +281,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   }
 
   const symbol = isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
+  const fromBalance = getFromBalance();
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <CardRedesign className={classes.card}>
@@ -291,9 +299,69 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
               </Typography>
               <CaretDown />
             </button>
+
+            <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+              <Typography className={classes.tokenSelectorSymbol} type="h2">
+                {symbol}
+              </Typography>
+              <CaretDown />
+            </button>
           </div>
           <div className={classes.rightBox}>
-            <Typography type="body2">Balance</Typography>
+            <div className={classes.topActionsRow}>
+              <div className={classes.topQuickActions}>
+                <button
+                  className={classes.topQuickActionButton}
+                  disabled={fromBalance.eq(0)}
+                  onClick={() => {
+                    if (!fromBalance.eq(0)) {
+                      const nextAmount = fromBalance.mul(25).div(100);
+                      setAmount(nextAmount);
+                      setInputError(undefined);
+                    }
+                  }}
+                  type="button"
+                >
+                  <Typography className={classes.topQuickActionText} type="body2">
+                    25%
+                  </Typography>
+                </button>
+                <button
+                  className={classes.topQuickActionButton}
+                  disabled={fromBalance.eq(0)}
+                  onClick={() => {
+                    if (!fromBalance.eq(0)) {
+                      const nextAmount = fromBalance.mul(50).div(100);
+                      setAmount(nextAmount);
+                      setInputError(undefined);
+                    }
+                  }}
+                  type="button"
+                >
+                  <Typography className={classes.topQuickActionText} type="body2">
+                    50%
+                  </Typography>
+                </button>
+                <button
+                  className={classes.topQuickActionButton}
+                  disabled={fromBalance.eq(0)}
+                  onClick={() => {
+                    if (!fromBalance.eq(0)) {
+                      setAmount(fromBalance);
+                      setInputError(undefined);
+                    }
+                  }}
+                  type="button"
+                >
+                  <Typography className={classes.topQuickActionText} type="body2">
+                    Max
+                  </Typography>
+                </button>
+              </div>
+              <Typography className={classes.balanceLabel} type="body2">
+                Balance
+              </Typography>
+            </div>
             <TokenBalanceRedesign
               chainId={selectedChains.from.key}
               spinnerSize={14}
@@ -302,19 +370,9 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
             />
           </div>
         </div>
-        <div className={`${classes.row} ${classes.middleRow}`}>
-          <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
-            <Typography className={classes.tokenSelectorSymbol} type="h2">
-              {symbol}
-            </Typography>
-            <CaretDown />
-          </button>
+        <div className={`${classes.row}`}>
           <AmountInputRedesign
-            balance={
-              balanceFrom && isAsyncTaskDataAvailable(balanceFrom)
-                ? balanceFrom.data
-                : BigNumber.from(0)
-            }
+            balance={fromBalance}
             onChange={onAmountInputChange}
             token={token}
             value={amount}
@@ -331,6 +389,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
               </Typography>
               <CaretDown />
             </div>
+
+            <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+              <Typography className={classes.tokenSelectorSymbol} type="h2">
+                {symbol}
+              </Typography>
+              <CaretDown />
+            </button>
           </div>
           <div className={classes.rightBox}>
             <Typography type="body2">Balance</Typography>
@@ -342,9 +407,18 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
             />
           </div>
         </div>
+        <div className={`${classes.row}`}>
+          <AmountInputRedesign
+            balance={fromBalance}
+            onChange={onAmountInputChange}
+            readOnly
+            token={token}
+            value={amount}
+          />
+        </div>
       </CardRedesign>
-      <div className={classes.button} >
-        <Button disabled={!amount || amount.isZero() || inputError !== undefined} type="submit" >
+      <div className={classes.button}>
+        <Button disabled={!amount || amount.isZero() || inputError !== undefined} type="submit">
           Continue
         </Button>
         {amount && inputError && <ErrorMessage error={inputError} />}

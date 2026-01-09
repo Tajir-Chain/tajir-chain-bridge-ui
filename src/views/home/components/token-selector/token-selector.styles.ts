@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useTokenSelectorStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.transparency,
+    background: theme.palette.white,
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -26,7 +26,7 @@ export const useTokenSelectorRedesignStyles = createUseStyles((theme: Theme) => 
   background: {
     alignItems: "center",
     alignSelf: "center",
-    background: theme.palette.transparency,
+    background: theme.palette.white,
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -34,6 +34,7 @@ export const useTokenSelectorRedesignStyles = createUseStyles((theme: Theme) => 
     width: "100%",
   },
   card: {
+    backgroundColor: theme.palette.white.light,
     display: "flex",
     flexDirection: "column",
     height: 515,

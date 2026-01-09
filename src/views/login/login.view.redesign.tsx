@@ -63,7 +63,7 @@ export const LoginRedesign: FC = () => {
     return null;
   }
 
-  const name = env.networkName;
+  // const name = env.networkName;
   const ethereumChain = env.chains[0];
   const deploymentName = getDeploymentName(ethereumChain);
   const appName = deploymentName !== undefined ? `${deploymentName} Bridge` : "Bridge";
@@ -98,14 +98,14 @@ export const LoginRedesign: FC = () => {
         <ConfirmationModal
           message={
             <Typography type="body1">
-              DISCLAIMER: This version of the Polygon zkEVM will require frequent maintenance and
+              DISCLAIMER: This version of the Tajir Bridge will require frequent maintenance and
               may be restarted if upgrades are needed.
             </Typography>
           }
           onClose={() => setShowPolicyModal(false)}
           onConfirm={onConnectProvider}
           showCancelButton={false}
-          title={`Welcome to the Polygon zkEVM ${deploymentName || ""}`}
+          title={`Welcome to the Tajir Bridge ${deploymentName || ""}`}
         />
       )}
     </div>

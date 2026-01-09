@@ -71,7 +71,7 @@ export const useBridgeFormStyles = createUseStyles((theme: Theme) => ({
   },
   middleRow: {
     borderTop: `1px solid ${theme.palette.grey.light}`,
-    marginTop: theme.spacing(1.25),
+    marginTop: theme.spacing(0),
     padding: [theme.spacing(2), 0, 0],
   },
   rightBox: {
@@ -126,17 +126,20 @@ export const useBridgeFormStyles = createUseStyles((theme: Theme) => ({
 }));
 
 export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
+  balanceLabel: {
+    color: "#666666",
+  },
   button: {
     alignItems: "center",
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(2),
-    margin: [theme.spacing(3), "auto"],  
+    margin: [theme.spacing(3), "auto"],
   },
   card: {
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(2.5),
+    gap: theme.spacing(0.5),
     maxWidth: theme.maxWidth,
   },
   form: {
@@ -172,28 +175,26 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    marginTop: theme.spacing(1),
     [theme.breakpoints.downM]: {
       maxWidth: "57%",
     },
-  },
-  middleRow: {
-    marginTop: theme.spacing(1.25),
   },
   rightBox: {
     alignItems: "flex-end",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     maxWidth: "40%",
     textOverflow: "ellipsis",
     transition: theme.hoverTransition,
     whiteSpace: "nowrap",
+    
   },
   row: {
     display: "flex",
     justifyContent: "space-between",
     maxWidth: "100%",
-    paddingBottom: theme.spacing(0.5),
     [theme.breakpoints.downM]: {
       gap: 6,
     },
@@ -202,6 +203,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+    
   },
   spinner: {
     margin: "auto",
@@ -225,7 +227,6 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
       padding: `${theme.spacing(0.75)}px ${theme.spacing(1.25)}px`,
     },
   },
-
   tokenSelector: {
     alignItems: "center",
     border: "1px solid rgba(0, 0, 0, 0.07)",
@@ -233,7 +234,8 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     cursor: "pointer",
     display: "flex",
     gap: theme.spacing(1),
-    maxWidth: "50%",
+    margin: [theme.spacing(2), theme.spacing(1.25)],
+    maxWidth: "100%",
     overflow: "hidden",
     padding: [theme.spacing(1), theme.spacing(1.25)],
     textOverflow: "ellipsis",
@@ -249,5 +251,33 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+  },
+  topActionsRow: {
+    alignItems: "center",
+    display: "flex",
+    gap: theme.spacing(1.5),
+    marginBottom: theme.spacing(0.25),
+  },
+  topQuickActionButton: {
+    "&:disabled": {
+      cursor: "default",
+      opacity: 0.4,
+    },
+    "&:not(:disabled)": {
+      cursor: "pointer",
+    },
+    background: "#F7F7F7",
+    border: "1px solid rgba(0, 0, 0, 0.06)",
+    borderRadius: 999,
+    color: theme.palette.black,
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1.5)}px`,
+  },
+  topQuickActions: {
+    display: "flex",
+    gap: theme.spacing(1),
+  },
+  topQuickActionText: {
+    color: "#222222",
+    fontWeight: 500,
   },
 }));

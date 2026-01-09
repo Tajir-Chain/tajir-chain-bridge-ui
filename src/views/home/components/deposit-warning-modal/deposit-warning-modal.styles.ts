@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useDepositWarningModalStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.transparency,
+    background: theme.palette.white,
     display: "flex",
     height: "100vh",
     justifyContent: "center",

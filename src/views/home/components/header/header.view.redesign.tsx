@@ -46,7 +46,7 @@ export const HeaderRedesign: FC = () => {
                 : 62,
         }}
       >
-        {networkName}
+        {/* {networkName} */}
       </div>
       <div className={`${classes.block} ${classes.rightBlock}`}>
         <NetworkSelectorRedesign />

@@ -26,7 +26,7 @@ export const useSnackbarStyles = createUseStyles((theme: Theme) => ({
     width: 16,
   },
   message: {
-    color: theme.palette.white,
+    color: theme.palette.white.light,
     flex: 1,
     lineHeight: "24px",
     margin: [0, theme.spacing(1.5)],

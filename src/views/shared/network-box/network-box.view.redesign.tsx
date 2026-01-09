@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
 import ArrowRightIconGreen from "src/assets/icons/arrow-right-green.svg?react";
-import CopyIcon from "src/assets/icons/copy-outlined.svg?react";
 import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
+import CopyIcon from "src/assets/icons/copy-outlined.svg?react";
 import WarningIcon from "src/assets/icons/warning.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
@@ -14,10 +14,10 @@ import { useUIContext } from "src/contexts/ui.context";
 import { Message } from "src/domain";
 import { useCallIfMounted } from "src/hooks/use-call-if-mounted";
 import { isAsyncTaskDataAvailable, isMetaMaskUserRejectedRequestError } from "src/utils/types";
-import { Divider } from "src/views/divider/divider.view";
 import { ExternalLink } from "src/views/shared/external-link/external-link.view";
 import { useNetworkBoxRedesignStyles } from "src/views/shared/network-box/network-box.styles";
 import { Typography } from "src/views/shared/typography/typography.view";
+// import { Divider } from "src/views/divider/divider.view";
 
 type ListValueObject = {
   icon: JSX.Element;
@@ -170,8 +170,8 @@ export const NetworkBoxRedesign = () => {
             <ArrowRight className={classes.buttonArrow} />
           </div>
         </button>
-        {/* <Divider />
-        <div className={classes.list}>
+        {/* <Divider /> */}
+        <div className={classes.list} style={{ display: "none" }}>
           {details.map(({ label, link, value }) => {
             const { icon, onClick } = getListValueObject(label, link ?? String(value) ?? "");
             return (
@@ -186,7 +186,7 @@ export const NetworkBoxRedesign = () => {
               </Typography>
             );
           })}
-        </div> */}
+        </div>
       </div>
     </CardRedesign>
   );

@@ -9,8 +9,7 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
       border: "none",
       display: "block",
       maxHeight: 30,
-      opacity: 0.6,
-      transition: "transform 0.3s ease",
+      opacity: 1,
       width: 30,
       zIndex: 99,
     },
@@ -68,48 +67,48 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
 
     [theme.breakpoints.downM]: {
       alignItems: "center",
-      backgroundColor: theme.palette.white,
+      backdropFilter: "blur(10px)",
+      backgroundColor: "rgba(255, 255, 255, 0.95)",
       borderRadius: 12,
-      boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.15)",
       flexDirection: "column",
       fontSize: 22,
       gap: theme.spacing(2),
       justifyContent: "center",
       padding: theme.spacing(3),
-      position: "absolute",
+      position: "fixed",
       right: 24,
       textAlign: "center",
       top: 70,
       width: "90vw",
-      zIndex: 99,
+      zIndex: 1100,
     },
   },
   logo: {
     cursor: "pointer",
   },
-  openedBurgerMenuIcon: {
-    transform: "rotate(90deg) ",
-  },
+  openedBurgerMenuIcon: {},
 
   wrapper: {
     alignItems: "center",
+    backgroundColor: "#fff",
+    borderBottom: "1px solid #e0e0e0",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
     display: "flex",
     justifyContent: "space-between",
-    top: 0,
     left: 0,
-    right: 0,
-    zIndex: 1000,
-    paddingInline: theme.spacing(5),
-    paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
-    backgroundColor: "#fff", // Add white background
-    borderBottom: "1px solid #e0e0e0", // Add bottom border (light gray)
-    boxShadow: "0 2px 4px rgba(0,0,0,0.05)", // optional subtle shadow
+    paddingInline: theme.spacing(5), 
+    paddingTop: theme.spacing(2),
+    right: 0,
+    top: 0,
+
+    zIndex: 1000,
 
     [theme.breakpoints.downM]: {
+      paddingBottom: theme.spacing(1),
       paddingInline: theme.spacing(3),
       paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
     },
   },
 }));

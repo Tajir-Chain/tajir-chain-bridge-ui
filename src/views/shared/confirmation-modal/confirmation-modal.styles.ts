@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useConfirmationModalStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.transparency,
+    background: "transparent",
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -27,6 +27,8 @@ export const useConfirmationModalStyles = createUseStyles((theme: Theme) => ({
     transition: theme.hoverTransition,
   },
   card: {
+    backgroundColor: theme.palette.grey.main,
+    border: "1px solid theme.palette.grey.main",
     display: "flex",
     flexDirection: "column",
     marginLeft: theme.spacing(1),
@@ -38,6 +40,7 @@ export const useConfirmationModalStyles = createUseStyles((theme: Theme) => ({
       marginTop: theme.spacing(30),
       padding: theme.spacing(4),
     },
+
   },
   textContainer: {
     "& p": {

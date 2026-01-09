@@ -7,7 +7,7 @@ export const useTokenListStyles = createUseStyles((theme: Theme) => ({
     "&:hover": {
       background: theme.palette.grey.main,
     },
-    background: theme.palette.white,
+    background: "theme.palette.white",
     border: "none",
     borderRadius: 8,
     cursor: "pointer",
@@ -23,6 +23,7 @@ export const useTokenListStyles = createUseStyles((theme: Theme) => ({
     height: "100%",
     justifyContent: "center",
     textAlign: "center",
+
   },
   clearSearchButton: {
     "&:hover": {
@@ -148,7 +149,6 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     "&:hover": {
       background: theme.palette.grey.main,
     },
-    background: "red",
     border: "none",
     borderRadius: 8,
     cursor: "pointer",
@@ -193,7 +193,7 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
       width: "4px",
     },
     "&::-webkit-scrollbar-thumb": {
-      backgroundColor: theme.palette.grey.main,
+      backgroundColor: "theme.palette.grey.main",
     },
     "&::-webkit-scrollbar-thumb:hover": {
       backgroundColor: theme.palette.grey.dark,
@@ -207,14 +207,17 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
   searchInput: {
     border: 0,
     outline: 0,
+
     padding: [theme.spacing(2), 0],
     width: "100%",
+    
   },
   searchInputContainer: {
     alignItems: "center",
     borderBottom: `1px solid ${theme.palette.grey.light}`,
     display: "flex",
     marginBottom: theme.spacing(2),
+    padding: theme.spacing(1),
     width: "100%",
   },
   tokenBalance: {
@@ -222,9 +225,9 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   tokenBalanceWrapper: {
     marginLeft: "auto",
-     [theme.breakpoints["downM"]]: {
-       marginLeft: 0,
-    }
+    [theme.breakpoints["downM"]]: {
+      marginLeft: 0,
+    },
   },
   tokenButton: {
     "&:hover": {
@@ -232,7 +235,7 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     },
 
     alignItems: "center",
-    background: theme.palette.grey.light,
+    background: "theme.palette.grey.light",
     border: "none",
     borderRadius: 8,
     cursor: "pointer",
@@ -242,8 +245,6 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     padding: theme.spacing(2),
     transition: theme.hoverTransition,
     width: "99%",
-
-
   },
   tokenButtonWrapper: {
     "&:not(:first-of-type)": {
@@ -251,7 +252,6 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     },
 
     position: "relative",
-
   },
   tokenIcon: {
     marginRight: theme.spacing(1),
@@ -281,16 +281,17 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     alignItems: "center",
     display: "flex",
     marginRight: 48,
-       [theme.breakpoints.downM]: {
-         alignItems: "flex-start",
+    [theme.breakpoints.downM]: {
+      alignItems: "flex-start",
       flexDirection: "column",
-      
+
       gap: theme.spacing(1),
       margin: 0,
       padding: 0,
-    }
+    },
   },
   tokenList: {
+    backgroundColor: theme.palette.white.light,
     display: "flex",
     flexDirection: "column",
     height: "100%",
