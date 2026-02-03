@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useHeaderLinksRedesignStyles } from "./header-links.styles";
-import ArrowRight  from "src/assets/icons/arrow-right.svg?react";
-import BurgerMenuIcon  from "src/assets/icons/burger-menu.svg?react";
-import LogoGatewayfm  from "src/assets/icons/logo-gatewayfm.svg?react";
+import ArrowRight from "src/assets/icons/arrow-right.svg?react";
+import BurgerMenuIcon from "src/assets/icons/burger-menu.svg?react";
+import LogoGatewayfm from "src/assets/icons/logo-gatewayfm.svg?react";
 
 type LinkItem = { title: string; url: string };
 
@@ -63,7 +63,7 @@ export const HeaderLinks = () => {
       <div className={classes.linksAndLogoContainer}>
         <LogoGatewayfm
           className={classes.logo}
-          onClick={() => window.open("#", "_blank")}
+          onClick={() => (window.location.href = "/")}
         />
         <div ref={burgerIconRef}>
           <BurgerMenuIcon
@@ -90,7 +90,7 @@ export const HeaderLinks = () => {
           ))}
         </div>
       </div>
-      
+
       {/* <button className={classes.button} onClick={redirectToPrestoOnboarding}> */}
       <button className={classes.button}>
         Deploy rollup <ArrowRight className={classes.icon} />

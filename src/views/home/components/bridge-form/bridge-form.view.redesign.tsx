@@ -172,10 +172,10 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
       const getUpdatedTokens = (tokens: Token[] | undefined, updatedToken: Token) =>
         tokens
           ? tokens.map((tkn) =>
-              tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
-                ? updatedToken
-                : tkn
-            )
+            tkn.address === updatedToken.address && tkn.chainId === updatedToken.chainId
+              ? updatedToken
+              : tkn
+          )
           : undefined;
 
       setTokens(() =>
@@ -299,13 +299,6 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
               </Typography>
               <CaretDown />
             </button>
-
-            <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
-              <Typography className={classes.tokenSelectorSymbol} type="h2">
-                {symbol}
-              </Typography>
-              <CaretDown />
-            </button>
           </div>
           <div className={classes.rightBox}>
             <div className={classes.topActionsRow}>
@@ -370,7 +363,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
             />
           </div>
         </div>
-        <div className={`${classes.row}`}>
+        <div className={classes.inputRow}>
+          <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+            <Typography className={classes.tokenSelectorSymbol} type="h2">
+              {symbol}
+            </Typography>
+            <CaretDown />
+          </button>
           <AmountInputRedesign
             balance={fromBalance}
             onChange={onAmountInputChange}
@@ -389,13 +388,6 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
               </Typography>
               <CaretDown />
             </div>
-
-            <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
-              <Typography className={classes.tokenSelectorSymbol} type="h2">
-                {symbol}
-              </Typography>
-              <CaretDown />
-            </button>
           </div>
           <div className={classes.rightBox}>
             <Typography type="body2">Balance</Typography>
@@ -407,7 +399,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
             />
           </div>
         </div>
-        <div className={`${classes.row}`}>
+        <div className={classes.inputRow}>
+          <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+            <Typography className={classes.tokenSelectorSymbol} type="h2">
+              {symbol}
+            </Typography>
+            <CaretDown />
+          </button>
           <AmountInputRedesign
             balance={fromBalance}
             onChange={onAmountInputChange}

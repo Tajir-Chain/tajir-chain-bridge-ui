@@ -16,14 +16,14 @@ export const AppHead = () => {
         {env?.faviconPath ? (
           <link href={env.faviconPath} rel="icon" type="image/svg+xml" />
         ) : (
-          <link href="/faviconZkEVM.ico" rel="icon" type="image/svg+xml" />
+          <link href="https://res.cloudinary.com/dd98ifrkd/image/upload/v1767863617/609DD8F3-B622-4A2D-99E7-12316BC973C4-fotor-bg-remover-2025112012277_1_4_jls0lm.svg" rel="icon" type="image/svg+xml" />
         )}
         <link href="/logo192.png" rel="apple-touch-icon" />
         <link href="/manifest.json" rel="manifest" />
         {env?.networkName ? (
           <title>{env.networkName} Bridge</title>
         ) : (
-          <title>Polygon zkEVM Bridge</title>
+          <title>Tajir Chain Bridge</title>
         )}
       </Helmet>
     </HelmetProvider>

@@ -45,7 +45,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         {showBrandComponents && (
           <div className={classes.poweredLogoBox}>
             Powered by{" "}
-            <LogoGatewayfm onClick={() => window.open("https://gateway.fm/", "_blank")} />
+            <LogoGatewayfm onClick={() => window.open("https://bridge.tajir-devnet.gateway.fm/", "_blank")} />
           </div>
         )}
       </div>

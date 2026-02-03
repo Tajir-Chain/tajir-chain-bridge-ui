@@ -105,7 +105,7 @@ export const useHeaderRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   sideButton: {
     alignItems: "center",
-        border: "1px solid rgba(0, 0, 0, 0.07)",
+    border: "1px solid rgba(0, 0, 0, 0.07)",
     borderRadius: 50,
     cursor: "pointer ",
     display: "flex",

@@ -49,7 +49,6 @@ export const useAmountInputRedesignStyles = createUseStyles((theme: Theme) => ({
     },
     backgroundColor: "transparent",
     border: "none",
-    borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
     borderRadius: 0,
     fontSize: "20px",
     lineHeight: "24px",
@@ -90,10 +89,10 @@ export const useAmountInputRedesignStyles = createUseStyles((theme: Theme) => ({
     flex: 1,
     flexDirection: "column",
     gap: theme.spacing(1),
-    marginLeft: theme.spacing(1),
-    marginTop: theme.spacing(-2),
+    marginLeft: theme.spacing(2),
+    marginTop: 0,
     [theme.breakpoints.upSm]: {
-      marginLeft: theme.spacing(2.5),
+      marginLeft: theme.spacing(4),
     },
   },
 }));

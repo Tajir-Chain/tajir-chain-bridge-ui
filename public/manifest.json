@@ -1,7 +1,6 @@
 {
-
-  "short_name": "Polygon zkEVM Bridge",
-  "name": "Polygon zkEVM Bridge",
+  "short_name": "Tajir Chain Bridge",
+  "name": "Tajir Chain Bridge",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

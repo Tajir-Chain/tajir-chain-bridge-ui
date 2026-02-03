@@ -97,8 +97,7 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
 
   contentWrapperBody: {
     backgroundColor: theme.palette.white,
-    borderRadius: 14,
-    borderTopLeftRadius: 0,
+    borderRadius: 24,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -111,9 +110,7 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
     },
   },
 
-  displayAllSelectedSelected: {
-    borderTopLeftRadius: 0,
-  },
+
 
   emptyMessage: {
     alignSelf: "center",
@@ -126,19 +123,18 @@ export const useActivityRedesignStyles = createUseStyles((theme: Theme) => ({
   },
 
   filterBox: {
-    "&:not(:first-of-type)": {},
     alignItems: "center",
     backgroundColor: theme.palette.grey.main,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderRadius: 24,
     cursor: "pointer",
     display: "flex",
-    padding: [[theme.spacing(1), theme.spacing(1)]],
+    padding: [[theme.spacing(1), theme.spacing(2)]],
     transition: theme.hoverTransition,
   },
 
   filterBoxes: {
     display: "flex",
+    gap: theme.spacing(2),
     marginTop: theme.spacing(5),
     maxWidth: theme.maxWidth,
     width: "100%",

@@ -103,6 +103,7 @@ export const useBridgeFormStyles = createUseStyles((theme: Theme) => ({
     [theme.breakpoints.upSm]: {
       gap: theme.spacing(1.25),
     },
+
   },
   tokenSelector: {
     "&:hover": {
@@ -135,12 +136,14 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     flexDirection: "column",
     gap: theme.spacing(2),
     margin: [theme.spacing(3), "auto"],
+
   },
   card: {
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(0.5),
+    gap: theme.spacing(2),
     maxWidth: theme.maxWidth,
+
   },
   form: {
     margin: "auto",
@@ -148,8 +151,8 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   fromChain: {
     alignItems: "center",
-    background: "#F7F7F7",
-    border: "1px solid #F7F7F7",
+    background: "#f0f0f0",
+    border: "1px solid #f0f0f0",
     borderRadius: 16,
     cursor: "pointer",
     display: "flex",
@@ -170,6 +173,13 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
       width: 24,
     },
   },
+  inputRow: {
+    alignItems: "center",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.08)",
+    display: "flex",
+    justifyContent: "space-between",
+    paddingBottom: theme.spacing(1),
+  },
   leftBox: {
     alignItems: "flex-start",
     display: "flex",
@@ -179,6 +189,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     [theme.breakpoints.downM]: {
       maxWidth: "57%",
     },
+
   },
   rightBox: {
     alignItems: "flex-end",
@@ -189,9 +200,10 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     textOverflow: "ellipsis",
     transition: theme.hoverTransition,
     whiteSpace: "nowrap",
-    
+
   },
   row: {
+    alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
     maxWidth: "100%",
@@ -203,7 +215,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
-    
+
   },
   spinner: {
     margin: "auto",
@@ -211,8 +223,8 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   toChain: {
     alignItems: "center",
-    background: "#F7F7F7",
-    border: "1px solid #F7F7F7",
+    background: "#f0f0f0",
+    border: "1px solid #f0f0f0",
     borderRadius: 16,
     display: "flex",
     gap: theme.spacing(0.75),
@@ -234,16 +246,16 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     cursor: "pointer",
     display: "flex",
     gap: theme.spacing(1),
-    margin: [theme.spacing(2), theme.spacing(1.25)],
+    margin: 0,
+    marginTop: theme.spacing(1.5),
     maxWidth: "100%",
     overflow: "hidden",
-    padding: [theme.spacing(1), theme.spacing(1.25)],
+    padding: [theme.spacing(1), theme.spacing(1)],
     textOverflow: "ellipsis",
     transition: theme.hoverTransition,
     [theme.breakpoints.upSm]: {
       backgroundColor: theme.palette.white,
       gap: theme.spacing(2),
-      padding: [theme.spacing(1.5), theme.spacing(2)],
       whiteSpace: "nowrap",
     },
   },
@@ -271,6 +283,7 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     borderRadius: 999,
     color: theme.palette.black,
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1.5)}px`,
+
   },
   topQuickActions: {
     display: "flex",

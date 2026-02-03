@@ -339,9 +339,8 @@ export const ActivityRedesign: FC = () => {
           All
         </Typography>
         <Typography
-          className={`${classes.filterNumberBox} ${
-            displayAll ? classes.filterNumberBoxSelected : ""
-          }`}
+          className={`${classes.filterNumberBox} ${displayAll ? classes.filterNumberBoxSelected : ""
+            }`}
           type="body2"
         >
           {all}
@@ -355,9 +354,8 @@ export const ActivityRedesign: FC = () => {
           Pending
         </Typography>
         <Typography
-          className={`${classes.filterNumberBox} ${
-            !displayAll ? classes.filterNumberBoxSelected : ""
-          }`}
+          className={`${classes.filterNumberBox} ${!displayAll ? classes.filterNumberBoxSelected : ""
+            }`}
           type="body2"
         >
           {pending}
@@ -373,9 +371,7 @@ export const ActivityRedesign: FC = () => {
         {" "}
         <Tabs all={0} pending={0} />
         <div
-          className={`${classes.contentWrapperBody} ${
-            displayAll ? classes.displayAllSelectedSelected : ""
-            } ${classes.loaderBox}`}
+          className={`${classes.contentWrapperBody} ${classes.loaderBox}`}
         >
           <PageLoader />
         </div>
@@ -418,9 +414,7 @@ export const ActivityRedesign: FC = () => {
                 <Tabs all={allBridges.length} pending={pendingBridges.data.length} />
 
                 <div
-                  className={`${classes.contentWrapperBody} ${
-                    displayAll ? classes.displayAllSelectedSelected : ""
-                  }`}
+                  className={`${classes.contentWrapperBody}`}
                 >
                   {filteredList.length ? (
                     <div className={classes.scrollArea}>
