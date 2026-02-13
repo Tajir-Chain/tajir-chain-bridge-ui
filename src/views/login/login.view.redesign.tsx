@@ -5,7 +5,6 @@ import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redes
 import { WalletListRedesign } from "./components/wallet-list/wallet-list.view.redesign";
 import { routerStateParser } from "src/adapters/browser";
 import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
-import ArrowDoubleIcon from "src/assets/icons/arrow-double.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
@@ -66,15 +65,14 @@ export const LoginRedesign: FC = () => {
   // const name = env.networkName;
   const ethereumChain = env.chains[0];
   const deploymentName = getDeploymentName(ethereumChain);
-  const appName = deploymentName !== undefined ? `${deploymentName} Bridge` : "Bridge";
 
   return (
     <div className={classes.login}>
       <div className={classes.contentWrapper}>
         <div className={classes.networkTopBox}>
-          <Typography className={classes.appName} type="body1">
+          {/* <Typography className={classes.appName} type="body1">
             <ArrowDoubleIcon className={classes.appNameIcon} /> {appName}
-          </Typography>
+          </Typography> */}
           {/* <Typography className={classes.networkName} type="body1">
             {name ? name : env.chains[1].name}
           </Typography> */}
@@ -90,7 +88,8 @@ export const LoginRedesign: FC = () => {
           <NetworkBoxRedesign />
         </div>
         {ethereumChain.chainId !== EthereumChainId.MAINNET && (
-          <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />
+          <InfoBanner message="Connect with tajir devnet environment" />
+          // <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />
         )}
       </div>
 

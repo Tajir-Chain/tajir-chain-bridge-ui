@@ -4,6 +4,13 @@ import { Theme } from "src/styles/theme";
 
 export const useTextMatchFormStyles = createUseStyles((theme: Theme) => ({
   checkbox: {
+    "&:checked": {
+      accentColor: theme.palette.primary.main,
+    },
+    "&:checked::after": {
+      backgroundColor: theme.palette.primary.main,
+      borderColor: theme.palette.primary.main,
+    },
     height: 18,
     width: 18,
   },

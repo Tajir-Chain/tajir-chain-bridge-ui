@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useConfirmationModalStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: "transparent",
+    background: "#FFFFFF",
     display: "flex",
     height: "100vh",
     justifyContent: "center",

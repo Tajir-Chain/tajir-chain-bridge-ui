@@ -5,7 +5,7 @@ import { Theme } from "src/styles/theme";
 export const useDepositWarningModalStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.white,
+    background: "#FFFFFF",
     display: "flex",
     height: "100vh",
     justifyContent: "center",
@@ -18,7 +18,7 @@ export const useDepositWarningModalStyles = createUseStyles((theme: Theme) => ({
     "&:hover": {
       color: theme.palette.black,
     },
-    background: "transparent",
+    background: theme.palette.white,
     border: 0,
     color: theme.palette.grey.dark,
     cursor: "pointer",

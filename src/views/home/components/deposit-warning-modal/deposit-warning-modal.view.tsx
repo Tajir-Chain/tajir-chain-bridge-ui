@@ -1,9 +1,6 @@
 import { FC } from "react";
 import {
   DEPOSIT_CHECK_WORD,
-  POLYGON_PRIVACY_POLICY_URL,
-  POLYGON_TERMS_AND_CONDITIONS_URL,
-  POLYGON_ZKEVM_RISK_DISCLOSURES_URL,
 } from "src/constants";
 import { useEnvContext } from "src/contexts/env.context";
 
@@ -43,10 +40,10 @@ export const DepositWarningModal: FC<DepositWarningModalProps> = ({
               ? networkName + " Beta (powered by Polygon)"
               : "Polygon zkEVM Mainnet Beta"}
             . There are risks associated with your use of the Mainnet Beta here. You agree to the{" "}
-            <ExternalLink href={POLYGON_TERMS_AND_CONDITIONS_URL}>Terms of Use</ExternalLink>,
+            <ExternalLink href="/">Terms of Use</ExternalLink>,
             including{" "}
-            <ExternalLink href={POLYGON_ZKEVM_RISK_DISCLOSURES_URL}>those risks</ExternalLink>, and
-            the <ExternalLink href={POLYGON_PRIVACY_POLICY_URL}>Privacy Policy</ExternalLink>.
+            <ExternalLink href="/">those risks</ExternalLink>, and
+            the <ExternalLink href="/">Privacy Policy</ExternalLink>.
             <br />
             <br />
             To do so, type <b className={classes.exampleText}>{DEPOSIT_CHECK_WORD}</b> below to

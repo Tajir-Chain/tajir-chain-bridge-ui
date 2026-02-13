@@ -44,7 +44,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   const callIfMounted = useCallIfMounted();
   const env = useEnvContext();
   const { getErc20TokenBalance, tokens: defaultTokens } = useTokensContext();
-  const { connectedProvider } = useProvidersContext();
+  const { changeNetwork, connectedProvider } = useProvidersContext();
   const [balanceFrom, setBalanceFrom] = useState<AsyncTask<BigNumber, string>>({
     status: "pending",
   });
@@ -77,6 +77,11 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
         setSelectedChains({ from, to });
         setChains(undefined);
         setAmount(undefined);
+        
+        // Also update the provider network to keep NetworkSelector in sync
+        changeNetwork(from).catch((error) => {
+          console.error("Failed to change network:", error);
+        });
       }
     }
   };

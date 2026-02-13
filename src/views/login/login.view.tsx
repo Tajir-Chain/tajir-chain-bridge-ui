@@ -64,15 +64,14 @@ export const Login: FC = () => {
   const logo = env.logoPath;
   const ethereumChain = env.chains[0];
   const deploymentName = getDeploymentName(ethereumChain);
-  const appName = deploymentName !== undefined ? `${deploymentName} Bridge` : "Bridge";
 
   return (
     <div className={classes.login}>
       <div className={classes.contentWrapper}>
         {logo ? <img className={classes.logo} src={logo}></img> : <Logo className={classes.logo} />}
-        <Typography className={classes.appName} type="body1">
+        {/* <Typography className={classes.appName} type="body1">
           {appName}
-        </Typography>
+        </Typography> */}
         <div className={classes.networkBoxWrapper}>
           <NetworkBox />
         </div>
