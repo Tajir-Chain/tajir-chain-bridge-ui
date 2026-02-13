@@ -16,6 +16,11 @@ export const useHeaderLinksRedesignStyles = createUseStyles((theme: Theme) => ({
   },
 
   button: {
+    "&:disabled": {
+      backgroundColor: "#E8D4A0",
+      cursor: "inherit",
+      opacity: 0.7,
+    },
     alignItems: "center",
     alignSelf: "flex-end",
     backgroundColor: "#F3CD52",

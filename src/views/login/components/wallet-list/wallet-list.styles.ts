@@ -32,7 +32,10 @@ export const useWalletListStyles = createUseStyles((theme: Theme) => ({
 export const useWalletListRedesignStyles = createUseStyles((theme: Theme) => ({
   button: {
     "&:disabled": {
+      backgroundColor: "#E8D4A0",
+      border: "1px solid #E8D4A0",
       cursor: "inherit",
+      opacity: 0.7,
     },
     alignItems: "center",
     appearance: "none",

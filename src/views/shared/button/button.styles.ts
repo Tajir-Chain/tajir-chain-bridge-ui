@@ -5,9 +5,9 @@ import { Theme } from "src/styles/theme";
 export const useButtonStyles = createUseStyles((theme: Theme) => ({
   button: {
     "&:disabled": {
-      backgroundColor: theme.palette.grey.dark,
+      backgroundColor: "#E8D4A0",
       cursor: "default",
-      opacity: 0.4,
+      opacity: 0.7,
     },
     "&:hover&:not(:disabled)": {
       backgroundColor: theme.palette.primary.dark,

@@ -36,19 +36,43 @@ export const AmountInputRedesign: FC<AmountInputProps> = ({
     }
   };
 
-  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    const decimals = token.decimals;
-    const regexToken = `^(?!0\\d|\\.)\\d*(?:\\.\\d{0,${decimals}})?$`;
-    const INPUT_REGEX = new RegExp(regexToken);
-    const isInputValid = INPUT_REGEX.test(value);
-    const amount = value.length > 0 && isInputValid ? parseUnits(value, token.decimals) : undefined;
+const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const value = event.target.value;
+  const decimals = token.decimals;
+  const regexToken = `^(?!0\\d|\\.)\\d*(?:\\.\\d{0,${decimals}})?$`;
+  const INPUT_REGEX = new RegExp(regexToken);
+  const isInputValid = INPUT_REGEX.test(value);
 
-    if (isInputValid) {
-      setInputValue(value);
-      processOnChangeCallback(amount);
+  // Only update if input is valid
+  if (!isInputValid) {
+    return;
+  }
+
+  // Always update input visually
+  setInputValue(value);
+
+  // If empty, reset
+  if (!value) {
+    processOnChangeCallback(undefined);
+    return;
+  }
+
+  try {
+    const amount = parseUnits(value, token.decimals);
+
+    // Only allow values greater than 0
+    if (amount.lte(0)) {
+      processOnChangeCallback(undefined);
+      return;
     }
-  };
+
+    processOnChangeCallback(amount);
+  } catch (error) {
+    // parseUnits throws error for invalid decimal formats
+    processOnChangeCallback(undefined);
+  }
+};
+
 
   useEffect(() => {
     // Keep the visual input value in sync with the external BigNumber value
