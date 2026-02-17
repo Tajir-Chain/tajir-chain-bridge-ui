@@ -36,52 +36,55 @@ export const AmountInputRedesign: FC<AmountInputProps> = ({
     }
   };
 
-const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-  const value = event.target.value;
-  const decimals = token.decimals;
-  const regexToken = `^(?!0\\d|\\.)\\d*(?:\\.\\d{0,${decimals}})?$`;
-  const INPUT_REGEX = new RegExp(regexToken);
-  const isInputValid = INPUT_REGEX.test(value);
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const decimals = token.decimals;
+    const regexToken = `^(?!0\\d)\\d*(?:\\.\\d{0,${decimals}})?$`;
+    const INPUT_REGEX = new RegExp(regexToken);
+    const isInputValid = INPUT_REGEX.test(value);
 
-  // Only update if input is valid
-  if (!isInputValid) {
-    return;
-  }
+    // Only update if input is valid
+    if (!isInputValid) {
+      return;
+    }
 
-  // Always update input visually
-  setInputValue(value);
+    // Always update input visually
+    setInputValue(value);
 
-  // If empty, reset
-  if (!value) {
-    processOnChangeCallback(undefined);
-    return;
-  }
-
-  try {
-    const amount = parseUnits(value, token.decimals);
-
-    // Only allow values greater than 0
-    if (amount.lte(0)) {
+    // If empty, reset
+    if (!value) {
       processOnChangeCallback(undefined);
       return;
     }
 
-    processOnChangeCallback(amount);
-  } catch (error) {
-    // parseUnits throws error for invalid decimal formats
-    processOnChangeCallback(undefined);
-  }
-};
+    try {
+      const amount = parseUnits(value, token.decimals);
+      processOnChangeCallback(amount);
+    } catch (error) {
+      // parseUnits throws error for invalid decimal formats
+      processOnChangeCallback(undefined);
+    }
+  };
 
 
   useEffect(() => {
-    // Keep the visual input value in sync with the external BigNumber value
     if (value === undefined) {
-      setInputValue("");
-    } else {
+      if (inputValue !== "") {
+        setInputValue("");
+      }
+      return;
+    }
+
+    try {
+      // Check if the current input value represents the same numeric value as the prop
+      const currentAmount = inputValue ? parseUnits(inputValue, token.decimals) : undefined;
+      if (!currentAmount || !currentAmount.eq(value)) {
+        setInputValue(formatTokenAmount(value, token));
+      }
+    } catch {
       setInputValue(formatTokenAmount(value, token));
     }
-  }, [token, value]);
+  }, [token, value, inputValue]);
 
   return (
     <div className={classes.wrapper}>

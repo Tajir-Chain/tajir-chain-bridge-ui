@@ -100,6 +100,8 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
   login: {
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
+    minHeight: "100vh",
     padding: [0, theme.spacing(2)],
   },
   logo: {
@@ -129,5 +131,4 @@ export const useLoginRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     marginBottom: theme.spacing(5),
   },
-
 }));

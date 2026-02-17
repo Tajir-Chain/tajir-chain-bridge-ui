@@ -4,7 +4,8 @@ import { ethers } from "ethers";
 import { defaultAbiCoder } from "ethers/lib/utils";
 import { L2Icon } from "./assets/network-icon";
 import EthChainIcon from "src/assets/icons/chains/ethereum.svg?react";
-import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
+// import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
+import TajirChainIcon from "src/assets/icons/chains/tajir.svg?react";
 import { Chain, Currency, EthereumChain, ProviderError, Token, ZkEVMChain } from "src/domain";
 import { Bridge__factory } from "src/types/contracts/bridge";
 import { ProofOfEfficiency__factory } from "src/types/contracts/proof-of-efficiency";
@@ -155,7 +156,7 @@ export const getChains = ({
         bridgeContractAddress: polygonZkEVM.bridgeContractAddress,
         chainId: polygonZkEVMNetwork.chainId,
         explorerUrl: polygonZkEVM.explorerUrl,
-        Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : PolygonZkEVMChainIcon,
+        Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : TajirChainIcon,
         key: "polygon-zkevm",
         name: polygonZkEVMNetworkName,
         nativeCurrency: {

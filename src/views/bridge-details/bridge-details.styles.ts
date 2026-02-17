@@ -19,12 +19,7 @@ export const useBridgeDetailsRedesignStyles = createUseStyles((theme: Theme) => 
     padding: "4px 8px",
 
     [theme.breakpoints.downM]: {
-      backgroundColor: theme.palette.primary.light,
-      borderRadius: "8px",
       fontSize: 16,
-      justifyContent: "center",
-      padding: theme.spacing(1),
-      width: "100%",
     },
   },
   amount: {
