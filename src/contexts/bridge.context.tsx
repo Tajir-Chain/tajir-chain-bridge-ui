@@ -729,7 +729,12 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
 
       const { gasPrice, maxFeePerGas } = await from.provider.getFeeData();
 
-      if (maxFeePerGas) {
+      // cdk-erigon (L2) does not support EIP-1559 dynamic fee transactions
+      // even though it returns baseFeePerGas in block headers (part of zkEVM
+      // gas mechanism). Force legacy transactions for the L2 network.
+      const isL2 = from.key === "polygon-zkevm";
+
+      if (maxFeePerGas && !isL2) {
         return { data: { gasLimit, maxFeePerGas }, type: "eip-1559" };
       } else {
         const legacyGasPrice = gasPrice || (await from.provider.getGasPrice());

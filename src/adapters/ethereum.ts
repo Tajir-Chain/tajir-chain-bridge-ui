@@ -124,7 +124,10 @@ const approve = async ({
   });
 
   if (!hasAllowance) {
-    const tx = await erc20Contract.approve(spender, ethersConstants.MaxUint256);
+    // cdk-erigon (L2) does not support EIP-1559 transactions, force legacy
+    const isL2 = from.key === "polygon-zkevm";
+    const overrides = isL2 ? { type: 0 } : {};
+    const tx = await erc20Contract.approve(spender, ethersConstants.MaxUint256, overrides);
 
     await tx.wait();
   }
