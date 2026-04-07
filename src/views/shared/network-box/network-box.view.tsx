@@ -40,6 +40,11 @@ export const NetworkBox: FC = () => {
     type: "success-msg",
   };
 
+  const alreadyAddedMsg: Message = {
+    text: `${polygonZkEVMChain.name} network is already added`,
+    type: "success-msg",
+  };
+
   const onAddNetwork = (): void => {
     setIsAddNetworkButtonDisabled(true);
     addNetwork(polygonZkEVMChain)
@@ -53,6 +58,8 @@ export const NetworkBox: FC = () => {
           void parseError(error).then((parsed) => {
             if (parsed === "wrong-network") {
               openSnackbar(successMsg);
+            } else if (parsed === "already-added") {
+              openSnackbar(alreadyAddedMsg);
             } else if (isMetaMaskUserRejectedRequestError(error) === false) {
               notifyError(error);
             }
