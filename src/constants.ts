@@ -134,48 +134,49 @@ export const getChains = ({
       wethToken,
       metadata,
     ]) => [
-      {
-        bridgeContractAddress: ethereum.bridgeContractAddress,
-        chainId: ethereumNetwork.chainId,
-        explorerUrl: ethereum.explorerUrl,
-        Icon: EthChainIcon,
-        key: "ethereum",
-        name: getEthereumNetworkName(ethereumNetwork.chainId),
-        nativeCurrency: {
-          decimals: 18,
-          name: "Ether",
-          symbol: "ETH",
-          wrapped: { address: wethToken, chainId: polygonZkEVMNetwork.chainId },
+        {
+          bridgeContractAddress: ethereum.bridgeContractAddress,
+          chainId: ethereumNetwork.chainId,
+          explorerUrl: ethereum.explorerUrl,
+          Icon: EthChainIcon,
+          key: "ethereum",
+          name: getEthereumNetworkName(ethereumNetwork.chainId),
+          nativeCurrency: {
+            decimals: 18,
+            name: "Ether",
+            symbol: "WETH",
+
+            wrapped: { address: wethToken, chainId: polygonZkEVMNetwork.chainId },
+          },
+          networkId: 0,
+          poeContractAddress: ethereum.poeContractAddress,
+          provider: ethereumProvider,
+          rollupManagerAddress: ethereum.rollupManagerAddress,
         },
-        networkId: 0,
-        poeContractAddress: ethereum.poeContractAddress,
-        provider: ethereumProvider,
-        rollupManagerAddress: ethereum.rollupManagerAddress,
-      },
-      {
-        bridgeContractAddress: polygonZkEVM.bridgeContractAddress,
-        chainId: polygonZkEVMNetwork.chainId,
-        explorerUrl: polygonZkEVM.explorerUrl,
-        Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : TajirChainIcon,
-        key: "polygon-zkevm",
-        name: polygonZkEVMNetworkName,
-        nativeCurrency: {
-          decimals: metadata.decimals,
-          name: metadata.name,
-          symbol: metadata.symbol,
-          wrapped: { address: gasToken, chainId: ethereumNetwork.chainId },
+        {
+          bridgeContractAddress: polygonZkEVM.bridgeContractAddress,
+          chainId: polygonZkEVMNetwork.chainId,
+          explorerUrl: polygonZkEVM.explorerUrl,
+          Icon: polygonZkEVM.iconUrl ? L2Icon(polygonZkEVM.iconUrl) : TajirChainIcon,
+          key: "polygon-zkevm",
+          name: polygonZkEVMNetworkName,
+          nativeCurrency: {
+            decimals: metadata.decimals,
+            name: metadata.name,
+            symbol: metadata.symbol,
+            wrapped: { address: gasToken, chainId: ethereumNetwork.chainId },
+          },
+          networkId: polygonZkEVM.networkId,
+          provider: polygonZkEVMProvider,
         },
-        networkId: polygonZkEVM.networkId,
-        provider: polygonZkEVMProvider,
-      },
-    ]
+      ]
   );
 };
 
 const decodeGasTokenMetadata = (
   metadata: string
 ): { decimals: number; name: string; symbol: string } => {
-  const defaultValues = ["Ether", "ETH", 18];
+  const defaultValues = ["WETH", "WETH", 18];
 
   let encoded;
   if (metadata === "0x") {

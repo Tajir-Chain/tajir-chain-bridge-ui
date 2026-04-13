@@ -229,32 +229,44 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
       if (!provider) {
         return Promise.reject(new Error("No provider is available"));
       }
-      if (!provider.provider.request) {
+      const { request } = provider.provider;
+      if (!request) {
         return Promise.reject(
           new Error("No request method is available from the provider to add an Ethereum chain")
         );
       }
-      return provider.provider
-        .request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              blockExplorerUrls: [chain.explorerUrl],
-              chainId: hexValue(chain.chainId),
-              chainName: chain.name,
-              nativeCurrency: chain.nativeCurrency,
-              rpcUrls: [chain.provider.connection.url],
-            },
-          ],
-        })
-        .then(async () => {
-          if (isAsyncTaskDataAvailable(connectedProvider)) {
-            const { chainId } = await connectedProvider.data.provider.getNetwork();
 
-            if (chainId !== chain.chainId) {
-              throw "wrong-network";
-            }
+      return request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: hexValue(chain.chainId) }],
+      })
+        .then(() => {
+          throw "already-added";
+        })
+        .catch(async (error) => {
+          if (isMetaMaskUnknownChainError(error)) {
+            return request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  blockExplorerUrls: [chain.explorerUrl],
+                  chainId: hexValue(chain.chainId),
+                  chainName: chain.name,
+                  nativeCurrency: chain.nativeCurrency,
+                  rpcUrls: [chain.provider.connection.url],
+                },
+              ],
+            }).then(async () => {
+              if (isAsyncTaskDataAvailable(connectedProvider)) {
+                const { chainId } = await connectedProvider.data.provider.getNetwork();
+
+                if (chainId !== chain.chainId) {
+                  throw "wrong-network";
+                }
+              }
+            });
           }
+          throw error;
         })
         .catch((error) => {
           if (!isMetaMaskResourceUnavailableError(error)) {

@@ -44,7 +44,7 @@ export const ActivityRedesign: FC = () => {
   const [lastLoadedItem, setLastLoadedItem] = useState(0);
   const [total, setTotal] = useState(0);
   const [wrongNetworkBridges, setWrongNetworkBridges] = useState<string[]>([]);
-  const [areBridgesDisabled, setAreBridgesDisabled] = useState<boolean>(false);
+  const [finalisingBridges, setFinalisingBridges] = useState<string[]>([]);
   const classes = useActivityRedesignStyles();
 
   const fetchBridgesAbortController = useRef<AbortController | null>(null);
@@ -63,7 +63,7 @@ export const ActivityRedesign: FC = () => {
 
   const onClaim = (bridge: Bridge) => {
     if (bridge.status === "on-hold") {
-      setAreBridgesDisabled(true);
+      setFinalisingBridges((prev) => [...prev, bridge.id]);
       claim({
         bridge,
       })
@@ -87,6 +87,7 @@ export const ActivityRedesign: FC = () => {
           });
         })
         .finally(() => {
+          setFinalisingBridges((prev) => prev.filter((id) => id !== bridge.id));
           if (isAsyncTaskDataAvailable<Bridge[], undefined, true>(apiBridges)) {
             getPendingBridges(apiBridges.data)
               .then((data) => {
@@ -98,8 +99,7 @@ export const ActivityRedesign: FC = () => {
                 callIfMounted(() => {
                   notifyError(error);
                 });
-              })
-              .finally(() => setAreBridgesDisabled(false));
+              });
           }
         });
     }
@@ -444,7 +444,7 @@ export const ActivityRedesign: FC = () => {
                               <BridgeCardRedesign
                                 bridge={bridge}
                                 env={env}
-                                isFinaliseDisabled={areBridgesDisabled}
+                                isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
                                 lastVerifiedBatch={lastVerifiedBatch}
                                 networkError={wrongNetworkBridges.includes(bridge.id)}
                                 onClaim={() => onClaim(bridge)}

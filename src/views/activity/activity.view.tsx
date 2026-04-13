@@ -44,7 +44,7 @@ export const Activity: FC = () => {
   const [lastLoadedItem, setLastLoadedItem] = useState(0);
   const [total, setTotal] = useState(0);
   const [wrongNetworkBridges, setWrongNetworkBridges] = useState<string[]>([]);
-  const [areBridgesDisabled, setAreBridgesDisabled] = useState<boolean>(false);
+  const [finalisingBridges, setFinalisingBridges] = useState<string[]>([]);
   const classes = useActivityStyles();
 
   const fetchBridgesAbortController = useRef<AbortController | null>(null);
@@ -63,7 +63,7 @@ export const Activity: FC = () => {
 
   const onClaim = (bridge: Bridge) => {
     if (bridge.status === "on-hold") {
-      setAreBridgesDisabled(true);
+      setFinalisingBridges((prev) => [...prev, bridge.id]);
       claim({
         bridge,
       })
@@ -87,6 +87,7 @@ export const Activity: FC = () => {
           });
         })
         .finally(() => {
+          setFinalisingBridges((prev) => prev.filter((id) => id !== bridge.id));
           if (isAsyncTaskDataAvailable<Bridge[], undefined, true>(apiBridges)) {
             getPendingBridges(apiBridges.data)
               .then((data) => {
@@ -98,8 +99,7 @@ export const Activity: FC = () => {
                 callIfMounted(() => {
                   notifyError(error);
                 });
-              })
-              .finally(() => setAreBridgesDisabled(false));
+              });
           }
         });
     }
@@ -428,7 +428,7 @@ export const Activity: FC = () => {
                       <BridgeCard
                         bridge={bridge}
                         env={env}
-                        isFinaliseDisabled={areBridgesDisabled}
+                        isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
                         lastVerifiedBatch={lastVerifiedBatch}
                         networkError={wrongNetworkBridges.includes(bridge.id)}
                         onClaim={() => onClaim(bridge)}

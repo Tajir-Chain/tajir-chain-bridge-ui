@@ -78,6 +78,14 @@ export const NetworkBoxRedesign = () => {
     [polygonZkEVMChain?.name]
   );
 
+  const alreadyAddedMsg: Message = useMemo(
+    () => ({
+      text: `${polygonZkEVMChain?.name ?? "Polygon"} network is already added`,
+      type: "success-msg",
+    }),
+    [polygonZkEVMChain?.name]
+  );
+
   const details = useMemo(
     () => [
       { icon: "", label: "RPC URL", value: polygonZkEVMChain?.provider.connection.url },
@@ -119,6 +127,8 @@ export const NetworkBoxRedesign = () => {
           void parseError(error).then((parsed) => {
             if (parsed === "wrong-network") {
               openSnackbar(successMsg);
+            } else if (parsed === "already-added") {
+              openSnackbar(alreadyAddedMsg);
             } else if (isMetaMaskUserRejectedRequestError(error) === false) {
               notifyError(error);
             }

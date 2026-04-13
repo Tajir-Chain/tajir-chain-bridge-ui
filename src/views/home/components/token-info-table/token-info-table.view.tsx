@@ -61,27 +61,66 @@ export const TokenInfoTable: FC<TokenInfoTableProps> = ({ className, token }) =>
   const polygonZkEVM = env.chains[1];
 
   if (isTokenEther(token, ethereum)) {
+    const ethereumAddress = ethersConstants.AddressZero;
     const ethereumRow = (
       <div className={classes.row}>
         <Typography className={classes.alignRow} type="body2">
           <ethereum.Icon className={classes.chainIcon} />
           L1 token address
         </Typography>
-        <Typography className={classes.alignRow} type="body1">
-          {getShortenedEthereumAddress(ethersConstants.AddressZero)}
-        </Typography>
+        <div className={classes.rowRightBlock}>
+          <Typography className={classes.tokenAddress} type="body1">
+            {getShortenedEthereumAddress(ethereumAddress)}
+          </Typography>
+          <button
+            className={classes.button}
+            onClick={() => {
+              copyToClipboard(ethereumAddress);
+            }}
+          >
+            <CopyIcon className={classes.copyIcon} />
+          </button>
+          <a
+            className={classes.button}
+            href={`${ethereum.explorerUrl}/address/${ethereumAddress}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <NewWindowIcon className={classes.newWindowIcon} />
+          </a>
+        </div>
       </div>
     );
 
+    const polygonZkEVMAddress = token.wrappedToken?.address ?? ethersConstants.AddressZero;
     const polygonZkEVMRow = (
       <div className={classes.row}>
         <Typography className={classes.alignRow} type="body2">
           <polygonZkEVM.Icon className={classes.chainIcon} />
           L2 token address
         </Typography>
-        <Typography className={classes.alignRow} type="body1">
-          {getShortenedEthereumAddress(token.wrappedToken?.address ?? ethersConstants.AddressZero)}
-        </Typography>
+        <div className={classes.rowRightBlock}>
+          <Typography className={classes.tokenAddress} type="body1">
+            {getShortenedEthereumAddress(polygonZkEVMAddress)}
+          </Typography>
+          <button
+            className={classes.button}
+            disabled={!polygonZkEVMAddress || polygonZkEVMAddress === ethersConstants.AddressZero}
+            onClick={() => {
+              copyToClipboard(polygonZkEVMAddress);
+            }}
+          >
+            <CopyIcon className={classes.copyIcon} />
+          </button>
+          <a
+            className={classes.button}
+            href={`${polygonZkEVM.explorerUrl}/address/${polygonZkEVMAddress}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <NewWindowIcon className={classes.newWindowIcon} />
+          </a>
+        </div>
       </div>
     );
 
