@@ -873,7 +873,15 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
         }
       );
 
-      const metadata = token.symbol !== "ETH"
+      // For native-ETH claims (origin token address is 0x0 on L1), the L2 bridge
+      // emits an empty metadata field in BridgeEvent. L1 bridge recomputes the
+      // leaf hash from the metadata we pass, so it MUST be "0x" or the SMT proof
+      // fails with InvalidSmtProof(). The previous `token.symbol !== "ETH"` check
+      // was fragile: if getToken resolved a non-"ETH" symbol for origAddr=0x0 at
+      // runtime (e.g., via fetchedTokens cache), metadata was wrongly filled with
+      // ERC20 info. isTokenEther(token, to) checks against the destination chain,
+      // which is the semantic we actually want: "is this becoming native on to?".
+      const metadata = !isTokenEther(token, to)
         ? await getErc20TokenEncodedMetadata({ chain: from, token })
         : "0x";
 
