@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { Token } from "src/domain";
 import { formatTokenAmount } from "src/utils/amounts";
-import { isWETH } from "src/utils/tokens";
+import { getDisplaySymbol } from "src/utils/tokens";
 import { isAsyncTaskDataAvailable } from "src/utils/types";
 import { Spinner } from "src/views/shared/spinner/spinner.view";
 import { useTokenBalanceRedesignStyles } from "src/views/shared/token-balance/token-balance.styles";
@@ -25,7 +25,7 @@ export const TokenBalanceRedesign: FC<TokenBalanceProps> = ({ chainId, spinnerSi
   </div>
  );
 
- const symbol = isWETH(token, chainId) ? "WETH" : token.symbol;
+ const symbol = getDisplaySymbol(token, chainId);
 
  if (!token.balance) {
   return loader;

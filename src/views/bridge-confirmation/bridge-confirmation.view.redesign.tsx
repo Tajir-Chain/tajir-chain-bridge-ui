@@ -23,7 +23,7 @@ import { routes } from "src/routes";
 import { formatFiatAmount, formatTokenAmount, multiplyAmounts } from "src/utils/amounts";
 import { calculateMaxTxFee } from "src/utils/fees";
 import { getCurrencySymbol } from "src/utils/labels";
-import { isTokenEther, selectTokenAddress } from "src/utils/tokens";
+import { getDisplaySymbol, isTokenEther, selectTokenAddress } from "src/utils/tokens";
 import {
   isAsyncTaskDataAvailable,
   isEthersInsufficientFundsError,
@@ -404,9 +404,8 @@ export const BridgeConfirmationRedesign: FC = () => {
       FIAT_DISPLAY_PRECISION
     );
 
-  const tokenAmountString = `${
-    maxAmountConsideringFee.gt(0) ? formatTokenAmount(maxAmountConsideringFee, token) : "0"
-  } ${token.symbol}`;
+  const tokenAmountString = `${maxAmountConsideringFee.gt(0) ? formatTokenAmount(maxAmountConsideringFee, token) : "0"
+    } ${getDisplaySymbol(token, from.key)}`;
 
   const fiatAmountString = env.fiatExchangeRates.areEnabled
     ? `${currencySymbol}${fiatAmount ? formatFiatAmount(fiatAmount) : "--"}`
@@ -421,8 +420,8 @@ export const BridgeConfirmationRedesign: FC = () => {
   const feeErrorString = maxAmountConsideringFee.isNegative()
     ? `${feeBaseErrorString}\nYou need at least ${absMaxPossibleAmountConsideringFee} extra ETH`
     : maxAmountConsideringFee.eq(0)
-    ? `${feeBaseErrorString}\nThe maximum transferable amount is 0 after considering the fee`
-    : undefined;
+      ? `${feeBaseErrorString}\nThe maximum transferable amount is 0 after considering the fee`
+      : undefined;
 
   const etherFeeString = `${formatTokenAmount(fee, etherToken)} ${etherToken.symbol}`;
   const fiatFeeString = fiatFee ? `${currencySymbol}${formatFiatAmount(fiatFee)}` : undefined;

@@ -24,4 +24,11 @@ const isWETH = (token: Token, chainId: string): boolean => {
   }
 };
 
-export { isTokenEther, selectTokenAddress, isWETH };
+const getDisplaySymbol = (token: Token, chainKey: string): string => {
+  if (token.symbol === "ETH" || token.symbol === "WETH") {
+    return chainKey === "ethereum" ? "ETH" : "WETH";
+  }
+  return token.symbol;
+};
+
+export { isTokenEther, selectTokenAddress, isWETH, getDisplaySymbol };
