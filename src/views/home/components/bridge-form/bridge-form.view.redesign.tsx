@@ -11,7 +11,7 @@ import { useProvidersContext } from "src/contexts/providers.context";
 import { useTokensContext } from "src/contexts/tokens.context";
 import { AsyncTask, Chain, FormData, Token } from "src/domain";
 import { useCallIfMounted } from "src/hooks/use-call-if-mounted";
-import { isTokenEther, isWETH, selectTokenAddress } from "src/utils/tokens";
+import { getDisplaySymbol, isTokenEther, selectTokenAddress } from "src/utils/tokens";
 import { isAsyncTaskDataAvailable } from "src/utils/types";
 import { useBridgeFormRedesignStyles } from "src/views/home/components/bridge-form/bridge-form.styles";
 import { Button } from "src/views/shared/button/button.view";
@@ -55,7 +55,8 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   const [amount, setAmount] = useState<BigNumber>();
   const [chains, setChains] = useState<Chain[]>();
   const [tokens, setTokens] = useState<Token[]>();
-  const [isTokenListOpen, setIsTokenListOpen] = useState(false);
+  const [activeTokenSelector, setActiveTokenSelector] = useState<"from" | "to" | null>(null);
+  const [tokensSide, setTokensSide] = useState<"from" | "to">("from");
 
   const onAmountInputChange = ({ amount, error }: { amount?: BigNumber; error?: string }) => {
     setAmount(amount);
@@ -77,7 +78,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
         setSelectedChains({ from, to });
         setChains(undefined);
         setAmount(undefined);
-        
+
         // Also update the provider network to keep NetworkSelector in sync
         changeNetwork(from).catch((error) => {
           console.error("Failed to change network:", error);
@@ -86,18 +87,21 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     }
   };
 
-  const onTokenDropdownClick = () => {
-    setIsTokenListOpen(true);
+  const onTokenDropdownClick = (side: "from" | "to") => {
+    if (tokensSide !== side) {
+      setTokensSide(side);
+    }
+    setActiveTokenSelector(side);
   };
 
   const onSelectToken = (token: Token) => {
     setToken(token);
-    setIsTokenListOpen(false);
+    setActiveTokenSelector(null);
     setAmount(undefined);
   };
 
   const onCloseTokenSelector = () => {
-    setIsTokenListOpen(false);
+    setActiveTokenSelector(null);
   };
 
   const onAddToken = (token: Token) => {
@@ -155,8 +159,8 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   useEffect(() => {
     // Load all the tokens for the selected chain without their balance
     if (selectedChains && defaultTokens) {
-      const { from } = selectedChains;
-      const chainTokens = [...defaultTokens, ...getChainCustomTokens(from)];
+      const activeChain = tokensSide === "from" ? selectedChains.from : selectedChains.to;
+      const chainTokens = [...defaultTokens, ...getChainCustomTokens(activeChain)];
 
       setTokens(
         chainTokens.map((token) => ({
@@ -167,13 +171,15 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
         }))
       );
     }
-  }, [defaultTokens, selectedChains]);
+  }, [defaultTokens, selectedChains, tokensSide]);
 
   useEffect(() => {
     // Load the balances of all the tokens of the primary chain (from)
     const areTokensPending = tokens?.some((tkn) => tkn.balance?.status === "pending");
 
     if (selectedChains && tokens && areTokensPending) {
+      const activeChain = tokensSide === "from" ? selectedChains.from : selectedChains.to;
+
       const getUpdatedTokens = (tokens: Token[] | undefined, updatedToken: Token) =>
         tokens
           ? tokens.map((tkn) =>
@@ -185,7 +191,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
 
       setTokens(() =>
         tokens.map((token: Token) => {
-          getTokenBalance(token, selectedChains.from)
+          getTokenBalance(token, activeChain)
             .then((balance): void => {
               callIfMounted(() => {
                 const updatedToken: Token = {
@@ -217,7 +223,7 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
         })
       );
     }
-  }, [callIfMounted, defaultTokens, getTokenBalance, selectedChains, tokens]);
+  }, [callIfMounted, defaultTokens, getTokenBalance, selectedChains, tokens, tokensSide]);
 
   useEffect(() => {
     // Load the balance of the selected token in both networks
@@ -285,7 +291,8 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     );
   }
 
-  const symbol = isWETH(token, selectedChains.from.key) ? "WETH" : token.symbol;
+  const fromSymbol = getDisplaySymbol(token, selectedChains.from.key);
+  const toSymbol = getDisplaySymbol(token, selectedChains.to.key);
   const fromBalance = getFromBalance();
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
@@ -369,9 +376,9 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
           </div>
         </div>
         <div className={classes.inputRow}>
-          <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+          <button className={classes.tokenSelector} onClick={() => onTokenDropdownClick("from")} type="button">
             <Typography className={classes.tokenSelectorSymbol} type="h2">
-              {symbol}
+              {fromSymbol}
             </Typography>
             <CaretDown />
           </button>
@@ -405,9 +412,9 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
           </div>
         </div>
         <div className={classes.inputRow}>
-          <button className={classes.tokenSelector} onClick={onTokenDropdownClick} type="button">
+          <button className={classes.tokenSelector} onClick={() => onTokenDropdownClick("to")} type="button">
             <Typography className={classes.tokenSelectorSymbol} type="h2">
-              {symbol}
+              {toSymbol}
             </Typography>
             <CaretDown />
           </button>
@@ -433,10 +440,14 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
           onClose={() => setChains(undefined)}
         />
       )}
-      {isTokenListOpen && (
+      {activeTokenSelector !== null && (
         <TokenSelectorRedesign
           account={account}
-          chains={selectedChains}
+          chains={
+            activeTokenSelector === "from"
+              ? selectedChains
+              : { from: selectedChains.to, to: selectedChains.from }
+          }
           onAddToken={onAddToken}
           onClose={onCloseTokenSelector}
           onRemoveToken={onRemoveToken}
