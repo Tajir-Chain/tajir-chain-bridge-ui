@@ -156,7 +156,7 @@ export const NetworkBoxRedesign = () => {
 
           <a
             className={classes.buttonRounded}
-            href="https://discord.com"
+            href="https://t.me/TajirChainCommunity_EN"
             rel="noopener noreferrer"
             target="_blank"
           >
