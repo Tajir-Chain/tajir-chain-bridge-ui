@@ -22,6 +22,7 @@ import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
 import { AsyncTask, Chain, ConnectedProvider, Env, EthereumEvent, WalletName } from "src/domain";
 import { getChecksumAddress } from "src/utils/addresses";
+import { isMobileDevice } from "src/utils/mobile";
 import {
   isAsyncTaskDataAvailable,
   isMetaMaskResourceUnavailableError,
@@ -137,6 +138,13 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
                 });
               }
             } else {
+              if (isMobileDevice()) {
+                const dappUrl = window.location.host + window.location.pathname;
+                window.location.href = `https://metamask.app.link/dapp/${dappUrl}`;
+                return setConnectedProvider({
+                  status: "pending",
+                });
+              }
               return setConnectedProvider({
                 error: `We can't detect your wallet.\nPlease make sure that the ${WalletName.METAMASK} extension is installed and active in your browser`,
                 status: "failed",
