@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { CardRedesign } from "../card/card.view.redesign";
 import { parseError } from "src/adapters/error";
@@ -11,7 +11,7 @@ import { useEnvContext } from "src/contexts/env.context";
 import { useErrorContext } from "src/contexts/error.context";
 import { useProvidersContext } from "src/contexts/providers.context";
 import { useUIContext } from "src/contexts/ui.context";
-import { Message } from "src/domain";
+import { Chain, Message } from "src/domain";
 import { useCallIfMounted } from "src/hooks/use-call-if-mounted";
 import { isAsyncTaskDataAvailable, isMetaMaskUserRejectedRequestError } from "src/utils/types";
 import { ExternalLink } from "src/views/shared/external-link/external-link.view";
@@ -35,6 +35,71 @@ export const NetworkBoxRedesign = () => {
 
   const ethereumChain = env?.chains[0];
   const polygonZkEVMChain = env?.chains[1];
+
+  const [discoveredChainIds, setDiscoveredChainIds] = useState<number[]>([]);
+  const [activeChainInBox, setActiveChainInBox] = useState<Chain | undefined>(polygonZkEVMChain);
+
+  // 1. Session Memory: Track all chainIds encountered in this session
+  useEffect(() => {
+    const ethereum = window.ethereum;
+    if (ethereum) {
+      // Record initial chain
+      if (ethereum.chainId) {
+        const id = parseInt(ethereum.chainId, 16);
+        setDiscoveredChainIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
+      }
+
+      // Record any changes
+      const handleChainChanged = (chainId: unknown) => {
+        if (typeof chainId === "string") {
+          const id = parseInt(chainId, 16);
+          setDiscoveredChainIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
+        }
+      };
+
+      if (ethereum.on) {
+        ethereum.on("chainChanged", handleChainChanged);
+      }
+      return () => {
+        if (ethereum.removeListener) {
+          ethereum.removeListener("chainChanged", handleChainChanged);
+        }
+      };
+    }
+  }, []);
+
+  // 2. Dynamic Switching: Show the "other" chain in the box
+  useEffect(() => {
+    const ethereum = window.ethereum;
+    if (ethereum?.chainId && ethereumChain && polygonZkEVMChain) {
+      const currentId = parseInt(ethereum.chainId, 16);
+      if (currentId === ethereumChain.chainId) {
+        setActiveChainInBox(polygonZkEVMChain);
+      } else if (currentId === polygonZkEVMChain.chainId) {
+        setActiveChainInBox(ethereumChain);
+      }
+    }
+  }, [discoveredChainIds, ethereumChain, polygonZkEVMChain]);
+
+  const isNetworkAlreadyAdded = useMemo(() => {
+    const targetChain = activeChainInBox;
+    if (!targetChain) {
+      return false;
+    }
+    // Check if it's in our session memory
+    return discoveredChainIds.includes(targetChain.chainId);
+  }, [discoveredChainIds, activeChainInBox]);
+
+  const buttonText = useMemo(() => {
+    if (isNetworkAlreadyAdded) {
+      return "Network Added";
+    }
+    const networkName = activeChainInBox?.name ?? "";
+    if (isAsyncTaskDataAvailable(connectedProvider)) {
+      return `Switch to ${networkName}`;
+    }
+    return window.innerWidth < 788 ? `Add ${networkName}` : `Add ${networkName} To MetaMask`;
+  }, [isNetworkAlreadyAdded, connectedProvider, activeChainInBox]);
 
   // const name = env?.networkName;
   const symbol = env?.networkSymbol;
@@ -113,11 +178,16 @@ export const NetworkBoxRedesign = () => {
 
   const onAddNetwork = (): void => {
     setIsAddNetworkButtonDisabled(true);
-    if (!polygonZkEVMChain) {
+    const targetChain = activeChainInBox;
+    if (!targetChain) {
       return;
     }
-    addNetwork(polygonZkEVMChain)
+    addNetwork(targetChain)
       .then(() => {
+        // Record as discovered
+        setDiscoveredChainIds((prev) =>
+          prev.includes(targetChain.chainId) ? prev : [...prev, targetChain.chainId]
+        );
         callIfMounted(() => {
           openSnackbar(successMsg);
         });
@@ -128,6 +198,10 @@ export const NetworkBoxRedesign = () => {
             if (parsed === "wrong-network") {
               openSnackbar(successMsg);
             } else if (parsed === "already-added") {
+              // Even if it failed with "already-added", record it in memory!
+              setDiscoveredChainIds((prev) =>
+                prev.includes(targetChain.chainId) ? prev : [...prev, targetChain.chainId]
+              );
               openSnackbar(alreadyAddedMsg);
             } else if (isMetaMaskUserRejectedRequestError(error) === false) {
               notifyError(error);
@@ -142,7 +216,7 @@ export const NetworkBoxRedesign = () => {
       });
   };
 
-  if (!env || !ethereumChain || !polygonZkEVMChain) {
+  if (!env || !ethereumChain || !polygonZkEVMChain || !activeChainInBox) {
     return null;
   }
 
@@ -166,16 +240,10 @@ export const NetworkBoxRedesign = () => {
         </div>
         <button
           className={classes.button}
-          disabled={
-            isAddNetworkButtonDisabled ||
-            (isAsyncTaskDataAvailable(connectedProvider) &&
-              connectedProvider.data.chainId === polygonZkEVMChain.chainId)
-          }
+          disabled={isAddNetworkButtonDisabled || isNetworkAlreadyAdded}
           onClick={onAddNetwork}
         >
-          <div className={classes.buttonIconAndTitle}>
-            Add To MetaMask
-          </div>
+          <div className={classes.buttonIconAndTitle}>{buttonText}</div>
           <div>
             <ArrowRight className={classes.buttonArrow} />
           </div>
