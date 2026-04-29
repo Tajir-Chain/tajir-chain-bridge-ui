@@ -5,6 +5,9 @@ import { defaultAbiCoder } from "ethers/lib/utils";
 import { L2Icon } from "./assets/network-icon";
 import EthChainIcon from "src/assets/icons/chains/ethereum.svg?react";
 // import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
+// eslint-disable-next-line import/no-duplicates
+import tajirIconUrl from "src/assets/icons/chains/tajir.svg";
+// eslint-disable-next-line import/no-duplicates
 import TajirChainIcon from "src/assets/icons/chains/tajir.svg?react";
 import { Chain, Currency, EthereumChain, ProviderError, Token, ZkEVMChain } from "src/domain";
 import { Bridge__factory } from "src/types/contracts/bridge";
@@ -211,7 +214,7 @@ export const getGasToken = (chain: Chain): Token => {
     address: chain.nativeCurrency.wrapped.address,
     chainId: chain.nativeCurrency.wrapped.chainId,
     decimals: chain.nativeCurrency.decimals,
-    logoURI: ETH_TOKEN_LOGO_URI,
+    logoURI: tajirIconUrl,
     name: chain.nativeCurrency.name,
     symbol: chain.nativeCurrency.symbol,
     wrappedToken: { address: ethers.constants.AddressZero, chainId: chain.chainId },
