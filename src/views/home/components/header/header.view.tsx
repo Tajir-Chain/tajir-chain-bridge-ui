@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
+import Logo from "src/assets/icons/chains/tajir.svg?react";
 import ClockIcon from "src/assets/icons/clock.svg?react";
 import SettingIcon from "src/assets/icons/setting.svg?react";
-import Logo from "src/assets/polygon-zkevm-logo.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { routes } from "src/routes";
 import { areSettingsVisible } from "src/utils/feature-toggles";

@@ -230,7 +230,7 @@ export const NetworkBoxRedesign = () => {
 
           <a
             className={classes.buttonRounded}
-            href="https://t.me/TajirChainCommunity_EN"
+            href="https://t.me/TajirChain"
             rel="noopener noreferrer"
             target="_blank"
           >
