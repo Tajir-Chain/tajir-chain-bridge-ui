@@ -18,7 +18,7 @@ import { useIntersection } from "src/hooks/use-intersection";
 import { RollupManager__factory } from "src/types/contracts/rollup-manager";
 import { isAsyncTaskDataAvailable, isMetaMaskUserRejectedRequestError } from "src/utils/types";
 import { useActivityRedesignStyles } from "src/views/activity/activity.styles";
-import { InfiniteScroll } from "src/views/activity/components/infinite-scroll/infinite-scroll.view";
+import { Button } from "src/views/shared/button/button.view";
 import { Card } from "src/views/shared/card/card.view";
 import { PageLoader } from "src/views/shared/page-loader/page-loader.view";
 import { Typography } from "src/views/shared/typography/typography.view";
@@ -402,7 +402,9 @@ export const ActivityRedesign: FC = () => {
     case "loading-more-items":
     case "reloading": {
       const allBridges = mergeBridges(apiBridges.data, pendingBridges.data);
-      const filteredList = displayAll ? allBridges : pendingBridges.data;
+      const filteredList = displayAll
+        ? allBridges
+        : allBridges.filter((b) => b.status !== "completed");
 
       return (
         <div>
@@ -411,54 +413,63 @@ export const ActivityRedesign: FC = () => {
             <div className={classes.contentWrapper}>
               <HeaderRedesign backTo={{ routeKey: "home" }} title="Activity" />
               <div className={classes.wrapper}>
-                <Tabs all={allBridges.length} pending={pendingBridges.data.length} />
+                <Tabs
+                  all={allBridges.length}
+                  pending={allBridges.filter((b) => b.status !== "completed").length}
+                />
 
                 <div
                   className={`${classes.contentWrapperBody}`}
                 >
                   {filteredList.length ? (
                     <div className={classes.scrollArea}>
-                      <InfiniteScroll
-                        isLoading={apiBridges.status === "loading-more-items"}
-                        onLoadNextPage={onLoadNextPage}
-                      >
-                        {filteredList.map((bridge) =>
-                          bridge.status === "pending" ? (
-                            <div
-                              className={classes.bridgeCardwrapper}
-                              key={bridge.depositTxHash || bridge.claimTxHash}
-                            >
-                              <BridgeCardRedesign
-                                bridge={bridge}
-                                env={env}
-                                isFinaliseDisabled={true}
-                                lastVerifiedBatch={lastVerifiedBatch}
-                                networkError={false}
-                                showFiatAmount={
-                                  env !== undefined && env.fiatExchangeRates.areEnabled
-                                }
-                              />
-                            </div>
-                          ) : (
-                            <div className={classes.bridgeCardwrapper} key={bridge.id}>
-                              <BridgeCardRedesign
-                                bridge={bridge}
-                                env={env}
-                                isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
-                                lastVerifiedBatch={lastVerifiedBatch}
-                                networkError={wrongNetworkBridges.includes(bridge.id)}
-                                onClaim={() => onClaim(bridge)}
-                                showFiatAmount={
-                                  env !== undefined && env.fiatExchangeRates.areEnabled
-                                }
-                              />
-                            </div>
-                          )
-                        )}
-                      </InfiniteScroll>
+                      {filteredList.map((bridge) =>
+                        bridge.status === "pending" ? (
+                          <div
+                            className={classes.bridgeCardwrapper}
+                            key={bridge.depositTxHash || bridge.claimTxHash}
+                          >
+                            <BridgeCardRedesign
+                              bridge={bridge}
+                              env={env}
+                              isFinaliseDisabled={true}
+                              lastVerifiedBatch={lastVerifiedBatch}
+                              networkError={false}
+                              showFiatAmount={
+                                env !== undefined && env.fiatExchangeRates.areEnabled
+                              }
+                            />
+                          </div>
+                        ) : (
+                          <div className={classes.bridgeCardwrapper} key={bridge.id}>
+                            <BridgeCardRedesign
+                              bridge={bridge}
+                              env={env}
+                              isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
+                              lastVerifiedBatch={lastVerifiedBatch}
+                              networkError={wrongNetworkBridges.includes(bridge.id)}
+                              onClaim={() => onClaim(bridge)}
+                              showFiatAmount={
+                                env !== undefined && env.fiatExchangeRates.areEnabled
+                              }
+                            />
+                          </div>
+                        )
+                      )}
                     </div>
                   ) : (
                     <EmptyMessage />
+                  )}
+                  {apiBridges.data.length < total && (
+                    <div className={classes.loadMoreWrapper}>
+                      <Button
+                        disabled={apiBridges.status === "reloading"}
+                        isLoading={apiBridges.status === "loading-more-items"}
+                        onClick={onLoadNextPage}
+                      >
+                        Load Older Transactions
+                      </Button>
+                    </div>
                   )}
                 </div>
               </div>{" "}

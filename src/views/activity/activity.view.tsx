@@ -17,7 +17,7 @@ import { RollupManager__factory } from "src/types/contracts/rollup-manager";
 import { isAsyncTaskDataAvailable, isMetaMaskUserRejectedRequestError } from "src/utils/types";
 import { useActivityStyles } from "src/views/activity/activity.styles";
 import { BridgeCard } from "src/views/activity/components/bridge-card/bridge-card.view";
-import { InfiniteScroll } from "src/views/activity/components/infinite-scroll/infinite-scroll.view";
+import { Button } from "src/views/shared/button/button.view";
 import { Card } from "src/views/shared/card/card.view";
 import { Header } from "src/views/shared/header/header.view";
 import { PageLoader } from "src/views/shared/page-loader/page-loader.view";
@@ -391,7 +391,9 @@ export const Activity: FC = () => {
     case "loading-more-items":
     case "reloading": {
       const allBridges = mergeBridges(apiBridges.data, pendingBridges.data);
-      const filteredList = displayAll ? allBridges : pendingBridges.data;
+      const filteredList = displayAll
+        ? allBridges
+        : allBridges.filter((b) => b.status !== "completed");
 
       return (
         <>
@@ -399,47 +401,56 @@ export const Activity: FC = () => {
           <div className={classes.stickyContent} ref={headerBorderTarget}>
             <div className={classes.contentWrapper}>
               <Header backTo={{ routeKey: "home" }} title="Activity" />
-              <Tabs all={allBridges.length} pending={pendingBridges.data.length} />
+              <Tabs
+                all={allBridges.length}
+                pending={allBridges.filter((b) => b.status !== "completed").length}
+              />
             </div>
           </div>
           <div className={classes.contentWrapper}>
             {filteredList.length ? (
-              <InfiniteScroll
-                isLoading={apiBridges.status === "loading-more-items"}
-                onLoadNextPage={onLoadNextPage}
-              >
-                {filteredList.map((bridge) =>
-                  bridge.status === "pending" ? (
-                    <div
-                      className={classes.bridgeCardwrapper}
-                      key={bridge.depositTxHash || bridge.claimTxHash}
-                    >
-                      <BridgeCard
-                        bridge={bridge}
-                        env={env}
-                        isFinaliseDisabled={true}
-                        lastVerifiedBatch={lastVerifiedBatch}
-                        networkError={false}
-                        showFiatAmount={env !== undefined && env.fiatExchangeRates.areEnabled}
-                      />
-                    </div>
-                  ) : (
-                    <div className={classes.bridgeCardwrapper} key={bridge.id}>
-                      <BridgeCard
-                        bridge={bridge}
-                        env={env}
-                        isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
-                        lastVerifiedBatch={lastVerifiedBatch}
-                        networkError={wrongNetworkBridges.includes(bridge.id)}
-                        onClaim={() => onClaim(bridge)}
-                        showFiatAmount={env !== undefined && env.fiatExchangeRates.areEnabled}
-                      />
-                    </div>
-                  )
-                )}
-              </InfiniteScroll>
+              filteredList.map((bridge) =>
+                bridge.status === "pending" ? (
+                  <div
+                    className={classes.bridgeCardwrapper}
+                    key={bridge.depositTxHash || bridge.claimTxHash}
+                  >
+                    <BridgeCard
+                      bridge={bridge}
+                      env={env}
+                      isFinaliseDisabled={true}
+                      lastVerifiedBatch={lastVerifiedBatch}
+                      networkError={false}
+                      showFiatAmount={env !== undefined && env.fiatExchangeRates.areEnabled}
+                    />
+                  </div>
+                ) : (
+                  <div className={classes.bridgeCardwrapper} key={bridge.id}>
+                    <BridgeCard
+                      bridge={bridge}
+                      env={env}
+                      isFinaliseDisabled={finalisingBridges.includes(bridge.id)}
+                      lastVerifiedBatch={lastVerifiedBatch}
+                      networkError={wrongNetworkBridges.includes(bridge.id)}
+                      onClaim={() => onClaim(bridge)}
+                      showFiatAmount={env !== undefined && env.fiatExchangeRates.areEnabled}
+                    />
+                  </div>
+                )
+              )
             ) : (
               <EmptyMessage />
+            )}
+            {apiBridges.data.length < total && (
+              <div className={classes.loadMoreWrapper}>
+                <Button
+                  disabled={apiBridges.status === "reloading"}
+                  isLoading={apiBridges.status === "loading-more-items"}
+                  onClick={onLoadNextPage}
+                >
+                  Load Older Transactions
+                </Button>
+              </div>
             )}
           </div>
         </>
