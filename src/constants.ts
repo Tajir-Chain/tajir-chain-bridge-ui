@@ -53,7 +53,7 @@ export const SNACKBAR_AUTO_HIDE_DURATION = 5 * 1000; //5s in ms
 
 export const AUTO_REFRESH_RATE = 10 * 1000; //10s in ms
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 50;
 
 export const PENDING_TX_TIMEOUT = 30 * 60 * 1000; // 30min in ms
 
