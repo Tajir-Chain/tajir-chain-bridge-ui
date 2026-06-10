@@ -42,3 +42,4 @@ COPY scripts/entrypoint.sh /entrypoint.sh
 # Make html dir writable by nginx user (uid 101) for sed placeholder substitution
 RUN chmod +x /entrypoint.sh && chown -R nginx:nginx /usr/share/nginx/html
 ENTRYPOINT ["/entrypoint.sh"]
+ 
