@@ -111,6 +111,7 @@ export type Env = {
         url?: string;
       };
   reportForm: ReportFormEnvEnabled | ReportFormEnvDisabled;
+  walletConnectProjectId: string;
 };
 
 export type RouterState = {

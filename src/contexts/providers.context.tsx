@@ -169,7 +169,7 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
           const { chainId } = await ethereumChain.provider.getNetwork();
           const walletConnectProvider = await EthereumProvider.init({
             chains: [chainId],
-            projectId: "YOUR_PROJECT_ID",
+            projectId: env.walletConnectProjectId,
             rpcMap: {
               [chainId]: ethereumChain.provider.connection.url,
             },

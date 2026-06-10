@@ -39,6 +39,7 @@ type Env = {
   VITE_REPORT_FORM_PLATFORM_ENTRY?: string;
   VITE_REPORT_FORM_URL?: string;
   VITE_REPORT_FORM_URL_ENTRY?: string;
+  VITE_WALLET_CONNECT_PROJECT_ID: string;
 };
 
 type GetFiatExchangeRatesEnvParams = Pick<
@@ -196,6 +197,7 @@ const envToDomain = ({
   VITE_REPORT_FORM_PLATFORM_ENTRY,
   VITE_REPORT_FORM_URL,
   VITE_REPORT_FORM_URL_ENTRY,
+  VITE_WALLET_CONNECT_PROJECT_ID,
 }: Env): Promise<domain.Env> => {
   const polygonZkEVMNetworkId = z.coerce.number().positive().parse(VITE_POLYGON_ZK_EVM_NETWORK_ID);
   const isOutdatedNetworkModalEnabled = stringBooleanParser.parse(
@@ -277,6 +279,7 @@ const envToDomain = ({
         VITE_REPORT_FORM_URL,
         VITE_REPORT_FORM_URL_ENTRY,
       }),
+      walletConnectProjectId: VITE_WALLET_CONNECT_PROJECT_ID,
     };
   });
 };
@@ -318,6 +321,7 @@ const envParser = StrictSchema<Env, domain.Env>()(
       VITE_REPORT_FORM_PLATFORM_ENTRY: z.string().optional(),
       VITE_REPORT_FORM_URL: z.string().optional(),
       VITE_REPORT_FORM_URL_ENTRY: z.string().optional(),
+      VITE_WALLET_CONNECT_PROJECT_ID: z.string(),
     })
     .transform(envToDomain)
 );
