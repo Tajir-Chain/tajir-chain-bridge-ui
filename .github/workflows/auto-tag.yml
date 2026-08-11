@@ -160,6 +160,28 @@ jobs:
           build-args: |
             VERSION=${{ steps.version.outputs.new_tag }}
 
+      # ── Step 3.5: Trivy GATE — block the tag + push on HIGH/CRITICAL ─────────
+      - name: Install Trivy
+        if: steps.version.outputs.skip != 'true'
+        run: |
+          TRIVY_VERSION=0.71.0
+          wget -qO /tmp/trivy.tar.gz \
+            "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
+          sudo tar -xzf /tmp/trivy.tar.gz -C /usr/local/bin trivy
+
+      - name: Trivy scan (blocks tag + push)
+        if: steps.version.outputs.skip != 'true'
+        run: |
+          FIRST_TAG=$(echo "${{ steps.version.outputs.image_tags }}" | cut -d',' -f1)
+          trivy image --severity HIGH,CRITICAL --scanners vuln --exit-code 1 "$FIRST_TAG"
+
+      - name: Notify Slack (Trivy passed)
+        if: steps.version.outputs.skip != 'true'
+        run: |
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data "{\"text\": \"✅ *${{ github.repository }}: Trivy scan passed* — no HIGH/CRITICAL. Proceeding to tag + push \`${{ steps.version.outputs.new_tag }}\`.\"}" \
+            "${{ secrets.SLACK_WEBHOOK_URL }}" || true
+
       # ── Step 4: Create git tag (only if build succeeded) ────────────────────
       - name: Create git tag
         if: steps.version.outputs.skip != 'true'
