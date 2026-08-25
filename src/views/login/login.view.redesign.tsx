@@ -88,7 +88,7 @@ export const LoginRedesign: FC = () => {
           <NetworkBoxRedesign />
         </div>
         {ethereumChain.chainId !== EthereumChainId.MAINNET && (
-          <InfoBanner message="Connect with tajir testnet environment" />
+          <InfoBanner message={`Connect with ${import.meta.env.VITE_ENVIRONMENT_NAME ? String(import.meta.env.VITE_ENVIRONMENT_NAME) : 'tajir testnet'} environment`} />
           // <InfoBanner message={`Connect with ${ethereumChain.name} environment`} />
         )}
       </div>

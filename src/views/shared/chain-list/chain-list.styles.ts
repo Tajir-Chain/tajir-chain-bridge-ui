@@ -114,7 +114,7 @@ export const useListRedesignStyles = createUseStyles((theme: Theme) => ({
     transition: theme.hoverTransition,
   },
   card: {
-    backgroundColor:"white",
+    backgroundColor: "white",
     maxWidth: 426,
     padding: theme.spacing(2),
     width: "100%",

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import { NetworkBoxRedesign } from "../shared/network-box/network-box.view.redesign";
 import { BridgeFormRedesign } from "./components/bridge-form/bridge-form.view.redesign";
 import { HeaderRedesign } from "./components/header/header.view.redesign";
@@ -76,6 +77,17 @@ export const HomeRedesign = (): JSX.Element => {
        onSubmit={onCheckShowDepositWarningAndSubmitForm}
       />
       <NetworkBoxRedesign />
+      <Typography className={classes.exploreText} type="body2">
+       Can&apos;t find your chain?{" "}
+       <a
+        className={classes.exploreLink}
+        href="https://ui.agglayer.dev/"
+        rel="noopener noreferrer"
+        target="_blank"
+       >
+        Explore more
+       </a>
+      </Typography>
      </div>
      {depositWarningModal.status === "open" && (
       <DepositWarningModal

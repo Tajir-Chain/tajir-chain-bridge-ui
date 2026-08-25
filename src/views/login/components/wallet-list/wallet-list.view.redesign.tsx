@@ -22,7 +22,7 @@ export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
     <CardRedesign>
       <div className={classes.cardBox}>
         <Typography type="h1">Connect a wallet</Typography>
-        <div className={classes.smallTitle}>Connect with tajir testnet environment</div>
+        <div className={classes.smallTitle}>Connect with {import.meta.env.VITE_ENVIRONMENT_NAME ? String(import.meta.env.VITE_ENVIRONMENT_NAME) : 'tajir testnet'} environment</div>
         {/* <div className={classes.smallTitle}>Connect with {ethereumChain?.name} environment</div> */}
         
         <ul className={classes.walletList}>
