@@ -25,6 +25,7 @@ import { Typography } from "src/views/shared/typography/typography.view";
 type BridgeFormProps = {
   account: string;
   formData?: FormData;
+  onLoaded?: (loaded: boolean) => void;
   onResetForm: () => void;
   onSubmit: (formData: FormData) => void;
 };
@@ -37,6 +38,7 @@ type SelectedChains = {
 export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   account,
   formData,
+  onLoaded,
   onResetForm,
   onSubmit,
 }) => {
@@ -283,7 +285,13 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
     }
   }, [formData, onResetForm]);
 
-  if (!env || !selectedChains || !tokens || !token) {
+  const isLoaded = !!(env && selectedChains && tokens && token);
+
+  useEffect(() => {
+    onLoaded?.(isLoaded);
+  }, [isLoaded, onLoaded]);
+
+  if (!isLoaded) {
     return (
       <div className={classes.spinner}>
         <Spinner />

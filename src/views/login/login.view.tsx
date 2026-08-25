@@ -6,7 +6,7 @@ import { getPolicyCheck, setPolicyCheck } from "src/adapters/storage";
 import Logo from "src/assets/icons/chains/tajir.svg?react";
 import { useEnvContext } from "src/contexts/env.context";
 import { useProvidersContext } from "src/contexts/providers.context";
-import { EthereumChainId, PolicyCheck, WalletName } from "src/domain";
+import { EthereumChainId, PolicyCheck } from "src/domain";
 import { routes } from "src/routes";
 import { getDeploymentName } from "src/utils/labels";
 import { WalletList } from "src/views/login/components/wallet-list/wallet-list.view";
@@ -20,7 +20,6 @@ import { Typography } from "src/views/shared/typography/typography.view";
 
 export const Login: FC = () => {
   const classes = useLoginStyles();
-  const [selectedWallet, setSelectedWallet] = useState<WalletName>();
   const [showPolicyModal, setShowPolicyModal] = useState(false);
   const navigate = useNavigate();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -31,15 +30,14 @@ export const Login: FC = () => {
   const onConnectProvider = () => {
     setPolicyCheck();
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    selectedWallet && connectProvider(selectedWallet);
+    connectProvider();
     setShowPolicyModal(false);
   };
 
-  const onCheckAndConnectProvider = (walletName: WalletName) => {
-    setSelectedWallet(walletName);
+  const onCheckAndConnectProvider = () => {
     const checked = getPolicyCheck();
     if (checked === PolicyCheck.Checked) {
-      void connectProvider(walletName);
+      void connectProvider();
     } else {
       setShowPolicyModal(true);
     }

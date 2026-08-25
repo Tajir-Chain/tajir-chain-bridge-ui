@@ -49,11 +49,12 @@ export const useSnackbarStyles = createUseStyles((theme: Theme) => ({
     transition: theme.hoverTransition,
   },
   root: {
-    bottom: theme.spacing(3),
+    bottom: theme.spacing(1),
     left: 0,
     position: "fixed",
     right: 0,
     width: "100%",
+    zIndex: 9999,
   },
   wrapper: {
     alignItems: "center",

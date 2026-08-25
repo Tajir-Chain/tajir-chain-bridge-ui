@@ -36,50 +36,49 @@ export const NetworkBoxRedesign = () => {
   const ethereumChain = env?.chains[0];
   const polygonZkEVMChain = env?.chains[1];
 
-  const [discoveredChainIds, setDiscoveredChainIds] = useState<number[]>([]);
+  const isNumberArray = (val: unknown): val is number[] => Array.isArray(val) && val.every((item) => typeof item === "number");
+
+  const [discoveredChainIds, setDiscoveredChainIds] = useState<number[]>(() => {
+    const saved = localStorage.getItem("discoveredChainIds");
+    if (saved) {
+      try { 
+        const parsed: unknown = JSON.parse(saved); 
+        if (isNumberArray(parsed)) {
+          return parsed;
+        }
+      } catch (e) { 
+        return []; 
+      }
+    }
+    return [];
+  });
+
   const [activeChainInBox, setActiveChainInBox] = useState<Chain | undefined>(polygonZkEVMChain);
 
-  // 1. Session Memory: Track all chainIds encountered in this session
+  // Keep localStorage in sync
   useEffect(() => {
-    const ethereum = window.ethereum;
-    if (ethereum) {
-      // Record initial chain
-      if (ethereum.chainId) {
-        const id = parseInt(ethereum.chainId, 16);
-        setDiscoveredChainIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
-      }
+    localStorage.setItem("discoveredChainIds", JSON.stringify(discoveredChainIds));
+  }, [discoveredChainIds]);
 
-      // Record any changes
-      const handleChainChanged = (chainId: unknown) => {
-        if (typeof chainId === "string") {
-          const id = parseInt(chainId, 16);
-          setDiscoveredChainIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
-        }
-      };
-
-      if (ethereum.on) {
-        ethereum.on("chainChanged", handleChainChanged);
-      }
-      return () => {
-        if (ethereum.removeListener) {
-          ethereum.removeListener("chainChanged", handleChainChanged);
-        }
-      };
+  // 1. Session Memory: Track all chainIds encountered via connectedProvider
+  useEffect(() => {
+    if (isAsyncTaskDataAvailable(connectedProvider)) {
+      const currentId = connectedProvider.data.chainId;
+      setDiscoveredChainIds((prev) => (prev.includes(currentId) ? prev : [...prev, currentId]));
     }
-  }, []);
+  }, [connectedProvider]);
 
   // 2. Dynamic Switching: Show the "other" chain in the box
   useEffect(() => {
-    const ethereum = window.ethereum;
-    if (ethereum?.chainId && ethereumChain && polygonZkEVMChain) {
-      const currentId = parseInt(ethereum.chainId, 16);
+    if (isAsyncTaskDataAvailable(connectedProvider) && ethereumChain && polygonZkEVMChain) {
+      const currentId = connectedProvider.data.chainId;
       if (currentId === ethereumChain.chainId) {
         setActiveChainInBox(polygonZkEVMChain);
       } else if (currentId === polygonZkEVMChain.chainId) {
         setActiveChainInBox(ethereumChain);
       }
     }
-  }, [discoveredChainIds, ethereumChain, polygonZkEVMChain]);
+  }, [connectedProvider, ethereumChain, polygonZkEVMChain]);
 
   const isNetworkAlreadyAdded = useMemo(() => {
     const targetChain = activeChainInBox;
@@ -95,11 +94,8 @@ export const NetworkBoxRedesign = () => {
       return "Network Added";
     }
     const networkName = activeChainInBox?.name ?? "";
-    if (isAsyncTaskDataAvailable(connectedProvider)) {
-      return `Switch to ${networkName}`;
-    }
-    return window.innerWidth < 788 ? `Add ${networkName}` : `Add ${networkName} To MetaMask`;
-  }, [isNetworkAlreadyAdded, connectedProvider, activeChainInBox]);
+    return window.innerWidth < 788 ? `Add ${networkName}` : `Add ${networkName} To Wallet`;
+  }, [isNetworkAlreadyAdded, activeChainInBox]);
 
   // const name = env?.networkName;
   const symbol = env?.networkSymbol;
