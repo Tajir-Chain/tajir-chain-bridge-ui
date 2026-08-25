@@ -69,7 +69,7 @@ export const LoginRedesign: FC = () => {
 
         <div className={classes.cardWrap}>
           <WalletListRedesign onSelectWallet={onCheckAndConnectProvider} />
-          {connectedProvider.status === "failed" && (
+          {connectedProvider.status === "failed" && connectedProvider.error !== "Disconnected" && (
             <ErrorMessage error={connectedProvider.error} />
           )}
         </div>
@@ -77,7 +77,7 @@ export const LoginRedesign: FC = () => {
           <NetworkBoxRedesign />
         </div>
         {ethereumChain.chainId !== EthereumChainId.MAINNET && (
-          <InfoBanner message={`Connect with ${import.meta.env.VITE_ENVIRONMENT_NAME ? String(import.meta.env.VITE_ENVIRONMENT_NAME) : 'tajir'} environment`} />
+          <InfoBanner message={`Connect with ${import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME ? String(import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME) : 'TajirChain'} environment`} />
         )}
       </div>
 

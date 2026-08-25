@@ -28,6 +28,7 @@ export const HomeRedesign = (): JSX.Element => {
  const [depositWarningModal, setDepositWarningModal] = useState<ModalState<FormData>>({
   status: "closed",
  });
+ const [isBridgeFormLoaded, setIsBridgeFormLoaded] = useState(false);
 
  const onSubmitForm = (formData: FormData, hideDepositWarning?: boolean) => {
   if (hideDepositWarning) {
@@ -79,21 +80,26 @@ export const HomeRedesign = (): JSX.Element => {
       <BridgeFormRedesign
        account={connectedProvider.data.account}
        formData={formData}
+       onLoaded={setIsBridgeFormLoaded}
        onResetForm={onResetForm}
        onSubmit={onCheckShowDepositWarningAndSubmitForm}
       />
-      <NetworkBoxRedesign />
-      <Typography className={classes.exploreText} type="body2">
-       Can&apos;t find your chain?{" "}
-       <a
-        className={classes.exploreLink}
-        href="https://ui.agglayer.dev/"
-        rel="noopener noreferrer"
-        target="_blank"
-       >
-        Explore more
-       </a>
-      </Typography>
+      {isBridgeFormLoaded && (
+       <>
+        <NetworkBoxRedesign />
+        <Typography className={classes.exploreText} type="body2">
+         Can&apos;t find your chain?{" "}
+         <a
+          className={classes.exploreLink}
+          href="https://ui.agglayer.dev/"
+          rel="noopener noreferrer"
+          target="_blank"
+         >
+          Explore more
+         </a>
+        </Typography>
+       </>
+      )}
      </div>
      {depositWarningModal.status === "open" && (
       <DepositWarningModal

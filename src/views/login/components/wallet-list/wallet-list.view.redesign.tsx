@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { WalletIconRedesign } from "../wallet-icon/wallet-icon.view.redesign";
 import ArrowRight from "src/assets/icons/arrow-right.svg?react";
+import TajirWalletIcon from "src/assets/icons/tajirwallet.svg?react";
 // import { useEnvContext } from "src/contexts/env.context";
-import { WalletName } from "src/domain";
 import { useWalletListRedesignStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { CardRedesign } from "src/views/shared/card/card.view.redesign";
 import { Typography } from "src/views/shared/typography/typography.view";
@@ -20,7 +19,7 @@ export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
     <CardRedesign>
       <div className={classes.cardBox}>
         <Typography type="h1">Connect a wallet</Typography>
-        <div className={classes.smallTitle}>Connect with {import.meta.env.VITE_ENVIRONMENT_NAME ? String(import.meta.env.VITE_ENVIRONMENT_NAME) : 'tajir'} environment</div>
+        <div className={classes.smallTitle}>Connect with {import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME ? String(import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME) : 'TajirChain'} environment</div>
 
         <ul className={classes.walletList}>
           <li
@@ -31,10 +30,9 @@ export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
             <div className={classes.walletInfo}>
               <button className={classes.button}>
                 <div className={classes.buttonWalletTitle}>
-                  <WalletIconRedesign
+                  <TajirWalletIcon
                     className={classes.walletIcon}
-                    size="sm"
-                    walletName={WalletName.WALLET_CONNECT}
+                    style={{ height: 24, width: 24 }}
                   />
                   {isMobile ? "Connect wallet" : " Connect using web wallet"}
                 </div>
