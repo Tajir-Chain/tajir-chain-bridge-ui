@@ -20,6 +20,7 @@ find /usr/share/nginx/html/assets -name '*.js' | while read f; do
     -e "s|__VITE_POLYGON_ZK_EVM_NETWORK_ID__|${POLYGON_ZK_EVM_NETWORK_ID:-}|g" \
     -e "s|__VITE_POLYGON_ZK_EVM_NETWORK_NAME__|${POLYGON_ZK_EVM_NETWORK_NAME:-}|g" \
     -e "s|__VITE_BRIDGE_API_URL__|${BRIDGE_API_URL:-}|g" \
+    -e "s|__VITE_REOWN_PROJECT_ID__|${REOWN_PROJECT_ID:-}|g" \
     -e "s|__VITE_RESOLVE_RELATIVE_URLS__|${RESOLVE_RELATIVE_URLS:-false}|g" \
     -e "s|__VITE_ENABLE_FIAT_EXCHANGE_RATES__|${ENABLE_FIAT_EXCHANGE_RATES:-false}|g" \
     -e "s|__VITE_ENABLE_OUTDATED_NETWORK_MODAL__|${ENABLE_OUTDATED_NETWORK_MODAL:-false}|g" \
