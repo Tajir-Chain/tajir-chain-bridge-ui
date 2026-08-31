@@ -18,10 +18,8 @@ export const useTokenBalanceRedesignStyles = createUseStyles((theme: Theme) => (
   },
   tokenBalance: {
     [theme.breakpoints.downM]: {
+      flexShrink: 0,
       maxWidth: "100%",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
     },
   },
 }));

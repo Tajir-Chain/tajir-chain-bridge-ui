@@ -229,7 +229,7 @@ export const TokenListRedesign: FC<TokenListProps> = ({
                         size={24}
                         url={logoPath || token.logoURI}
                       />
-                      <Typography type="body1">{token.name}</Typography>
+                      <Typography className={classes.tokenName} type="body1">{token.name}</Typography>
                     </div>
                   </button>
                   <button
@@ -252,7 +252,7 @@ export const TokenListRedesign: FC<TokenListProps> = ({
                     role="button"
                   >
                     <div className={classes.tokenInfoWithBalance}>
-                      <Typography type="body1">
+                      <Typography className={classes.tokenName} type="body1">
                         {token.name === "ETH" ? "Native Token" : token.name}
                       </Typography>
                       <div className={classes.tokenBalanceWrapper}>

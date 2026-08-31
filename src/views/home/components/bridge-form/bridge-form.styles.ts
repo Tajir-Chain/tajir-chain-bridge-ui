@@ -136,14 +136,18 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     flexDirection: "column",
     gap: theme.spacing(2),
     margin: [theme.spacing(3), "auto"],
-
+    [theme.breakpoints.downM]: {
+      margin: [theme.spacing(1.5), "auto"],
+    },
   },
   card: {
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(2),
     maxWidth: theme.maxWidth,
-
+    [theme.breakpoints.downM]: {
+      padding: theme.spacing(1.5),
+    }
   },
   form: {
     margin: "auto",
@@ -161,9 +165,17 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     marginTop: theme.spacing(0.5),
     padding: [theme.spacing(0.75), theme.spacing(1.25)],
     [theme.breakpoints.downM]: {
-      gap: theme.spacing(1.25),
-      maxWidth: "100%",
+      gap: theme.spacing(0.5),
+      maxWidth: "125px",
+      padding: `${theme.spacing(0.5)}px ${theme.spacing(0.75)}px`,
     },
+  },
+  headerRow: {
+    alignItems: "flex-end",
+    display: "flex",
+    justifyContent: "space-between",
+    paddingBottom: theme.spacing(0.5),
+    width: "100%",
   },
   icons: {
     height: 20,
@@ -180,36 +192,16 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "space-between",
     paddingBottom: theme.spacing(1),
   },
-  leftBox: {
-    alignItems: "flex-start",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    marginTop: theme.spacing(1),
-    [theme.breakpoints.downM]: {
-      maxWidth: "57%",
-    },
-
+  inputRowLast: {
+    borderBottom: "none",
+    paddingBottom: 0,
   },
-  rightBox: {
-    alignItems: "flex-end",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    maxWidth: "40%",
-    textOverflow: "ellipsis",
-    transition: theme.hoverTransition,
-    whiteSpace: "nowrap",
-
-  },
-  row: {
+  mainRow: {
     alignItems: "center",
     display: "flex",
     justifyContent: "space-between",
-    maxWidth: "100%",
-    [theme.breakpoints.downM]: {
-      gap: 6,
-    },
+    paddingBottom: theme.spacing(1),
+    width: "100%",
   },
   selectedChainName: {
     overflow: "hidden",
@@ -235,8 +227,9 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
       gap: theme.spacing(1.25),
     },
     [theme.breakpoints.downM]: {
-      maxWidth: "100%",
-      padding: `${theme.spacing(0.75)}px ${theme.spacing(1.25)}px`,
+      gap: theme.spacing(0.5),
+      maxWidth: "125px",
+      padding: `${theme.spacing(0.5)}px ${theme.spacing(0.75)}px`,
     },
   },
   tokenSelector: {
@@ -269,6 +262,10 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     gap: theme.spacing(1.5),
     marginBottom: theme.spacing(0.25),
+    [theme.breakpoints.downM]: {
+      flexShrink: 0,
+      gap: theme.spacing(0.5),
+    },
   },
   topQuickActionButton: {
     "&:disabled": {
@@ -283,14 +280,23 @@ export const useBridgeFormRedesignStyles = createUseStyles((theme: Theme) => ({
     borderRadius: 999,
     color: theme.palette.black,
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1.5)}px`,
+    [theme.breakpoints.downM]: {
+      padding: `${theme.spacing(0.25)}px ${theme.spacing(0.75)}px`,
+    },
 
   },
   topQuickActions: {
     display: "flex",
     gap: theme.spacing(1),
+    [theme.breakpoints.downM]: {
+      gap: theme.spacing(0.5),
+    },
   },
   topQuickActionText: {
     color: "#222222",
     fontWeight: 500,
+    [theme.breakpoints.downM]: {
+      fontSize: "11px",
+    },
   },
 }));
