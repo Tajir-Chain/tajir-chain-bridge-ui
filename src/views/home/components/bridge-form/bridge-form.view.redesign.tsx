@@ -305,83 +305,81 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
   return (
     <form className={classes.form} onSubmit={onFormSubmit}>
       <CardRedesign className={classes.card}>
-        <div className={classes.row}>
-          <div className={classes.leftBox}>
-            <Typography type="body2">From</Typography>
-            <button
-              className={classes.fromChain}
-              onClick={() => setChains(env.chains)}
-              type="button"
-            >
-              <selectedChains.from.Icon />
-              <Typography className={classes.selectedChainName} type="body1">
-                {selectedChains.from.name}
-              </Typography>
-              <CaretDown />
-            </button>
-          </div>
-          <div className={classes.rightBox}>
-            <div className={classes.topActionsRow}>
-              <div className={classes.topQuickActions}>
-                <button
-                  className={classes.topQuickActionButton}
-                  disabled={fromBalance.eq(0)}
-                  onClick={() => {
-                    if (!fromBalance.eq(0)) {
-                      const nextAmount = fromBalance.mul(25).div(100);
-                      setAmount(nextAmount);
-                      setInputError(undefined);
-                    }
-                  }}
-                  type="button"
-                >
-                  <Typography className={classes.topQuickActionText} type="body2">
-                    25%
-                  </Typography>
-                </button>
-                <button
-                  className={classes.topQuickActionButton}
-                  disabled={fromBalance.eq(0)}
-                  onClick={() => {
-                    if (!fromBalance.eq(0)) {
-                      const nextAmount = fromBalance.mul(50).div(100);
-                      setAmount(nextAmount);
-                      setInputError(undefined);
-                    }
-                  }}
-                  type="button"
-                >
-                  <Typography className={classes.topQuickActionText} type="body2">
-                    50%
-                  </Typography>
-                </button>
-                <button
-                  className={classes.topQuickActionButton}
-                  disabled={fromBalance.eq(0)}
-                  onClick={() => {
-                    if (!fromBalance.eq(0)) {
-                      setAmount(fromBalance);
-                      setInputError(undefined);
-                    }
-                  }}
-                  type="button"
-                >
-                  <Typography className={classes.topQuickActionText} type="body2">
-                    Max
-                  </Typography>
-                </button>
-              </div>
-              <Typography className={classes.balanceLabel} type="body2">
-                Balance
-              </Typography>
+        <div className={classes.headerRow}>
+          <Typography type="body2">From</Typography>
+          <div className={classes.topActionsRow}>
+            <div className={classes.topQuickActions}>
+              <button
+                className={classes.topQuickActionButton}
+                disabled={fromBalance.eq(0)}
+                onClick={() => {
+                  if (!fromBalance.eq(0)) {
+                    const nextAmount = fromBalance.mul(25).div(100);
+                    setAmount(nextAmount);
+                    setInputError(undefined);
+                  }
+                }}
+                type="button"
+              >
+                <Typography className={classes.topQuickActionText} type="body2">
+                  25%
+                </Typography>
+              </button>
+              <button
+                className={classes.topQuickActionButton}
+                disabled={fromBalance.eq(0)}
+                onClick={() => {
+                  if (!fromBalance.eq(0)) {
+                    const nextAmount = fromBalance.mul(50).div(100);
+                    setAmount(nextAmount);
+                    setInputError(undefined);
+                  }
+                }}
+                type="button"
+              >
+                <Typography className={classes.topQuickActionText} type="body2">
+                  50%
+                </Typography>
+              </button>
+              <button
+                className={classes.topQuickActionButton}
+                disabled={fromBalance.eq(0)}
+                onClick={() => {
+                  if (!fromBalance.eq(0)) {
+                    setAmount(fromBalance);
+                    setInputError(undefined);
+                  }
+                }}
+                type="button"
+              >
+                <Typography className={classes.topQuickActionText} type="body2">
+                  Max
+                </Typography>
+              </button>
             </div>
-            <TokenBalanceRedesign
-              chainId={selectedChains.from.key}
-              spinnerSize={14}
-              token={{ ...token, balance: balanceFrom }}
-              typographyProps={{ type: "body1" }}
-            />
+            <Typography className={classes.balanceLabel} type="body2">
+              Balance
+            </Typography>
           </div>
+        </div>
+        <div className={classes.mainRow}>
+          <button
+            className={classes.fromChain}
+            onClick={() => setChains(env.chains)}
+            type="button"
+          >
+            <selectedChains.from.Icon />
+            <Typography className={classes.selectedChainName} type="body1">
+              {selectedChains.from.name}
+            </Typography>
+            <CaretDown />
+          </button>
+          <TokenBalanceRedesign
+            chainId={selectedChains.from.key}
+            spinnerSize={14}
+            token={{ ...token, balance: balanceFrom }}
+            typographyProps={{ type: "body1" }}
+          />
         </div>
         <div className={classes.inputRow}>
           <button className={classes.tokenSelector} onClick={() => onTokenDropdownClick("from")} type="button">
@@ -398,28 +396,26 @@ export const BridgeFormRedesign: FC<BridgeFormProps> = ({
           />
         </div>
 
-        <div className={classes.row}>
-          <div className={classes.leftBox}>
-            <Typography type="body2">To</Typography>
-            <div className={classes.toChain}>
-              <selectedChains.to.Icon />
-              <Typography className={classes.selectedChainName} type="body1">
-                {selectedChains.to.name}
-              </Typography>
-              <CaretDown />
-            </div>
-          </div>
-          <div className={classes.rightBox}>
-            <Typography type="body2">Balance</Typography>
-            <TokenBalanceRedesign
-              chainId={selectedChains.to.key}
-              spinnerSize={14}
-              token={{ ...token, balance: balanceTo }}
-              typographyProps={{ type: "body1" }}
-            />
-          </div>
+        <div className={classes.headerRow}>
+          <Typography type="body2">To</Typography>
+          <Typography className={classes.balanceLabel} type="body2">Balance</Typography>
         </div>
-        <div className={classes.inputRow}>
+        <div className={classes.mainRow}>
+          <div className={classes.toChain}>
+            <selectedChains.to.Icon />
+            <Typography className={classes.selectedChainName} type="body1">
+              {selectedChains.to.name}
+            </Typography>
+            <CaretDown />
+          </div>
+          <TokenBalanceRedesign
+            chainId={selectedChains.to.key}
+            spinnerSize={14}
+            token={{ ...token, balance: balanceTo }}
+            typographyProps={{ type: "body1" }}
+          />
+        </div>
+        <div className={`${classes.inputRow} ${classes.inputRowLast}`}>
           <button className={classes.tokenSelector} onClick={() => onTokenDropdownClick("to")} type="button">
             <Typography className={classes.tokenSelectorSymbol} type="h2">
               {toSymbol}

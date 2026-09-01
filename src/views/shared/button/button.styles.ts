@@ -23,8 +23,14 @@ export const useButtonStyles = createUseStyles((theme: Theme) => ({
     justifyContent: "center",
     lineHeight: "24px",
     minWidth: "260px",
-    padding: [theme.spacing(2), theme.spacing(10)],
+    padding: `${theme.spacing(2)}px ${theme.spacing(10)}px`,
     transition: theme.hoverTransition,
+    [theme.breakpoints.downM]: {
+      fontSize: "16px",
+      lineHeight: "20px",
+      minWidth: "200px",
+      padding: `${theme.spacing(1.5)}px ${theme.spacing(4)}px`,
+    },
   },
   paddedSpinner: {
     paddingLeft: theme.spacing(1.5),

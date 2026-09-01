@@ -167,26 +167,31 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
   },
   clearSearchButton: {
     "&:hover": {
-      background: theme.palette.black,
+      background: "rgba(0, 0, 0, 0.05)",
     },
     alignItems: "center",
-    background: theme.palette.grey.dark,
+    background: "transparent",
     border: 0,
     borderRadius: "50%",
     cursor: "pointer",
     display: "flex",
-    height: 16,
+    height: 24,
     justifyContent: "center",
-    padding: theme.spacing(0.5),
+    padding: 0,
     transition: theme.hoverTransition,
-    width: 16,
+    width: 24,
   },
   clearSearchButtonIcon: {
+    "& path": {
+      fill: "#666666",
+    },
     "& rect": {
-      fill: theme.palette.white,
-      stroke: theme.palette.white,
+      fill: "#666666",
+      stroke: "#666666",
       strokeWidth: 2,
     },
+    height: 12,
+    width: 12,
   },
   list: {
     "&::-webkit-scrollbar": {
@@ -205,23 +210,34 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     marginRight: theme.spacing(1.25),
   },
   searchInput: {
+    backgroundColor: "transparent",
     border: 0,
     outline: 0,
-
     padding: [theme.spacing(2), 0],
     width: "100%",
-    
+    [theme.breakpoints.downM]: {
+      fontSize: 14,
+      padding: [theme.spacing(1), 0],
+    },
   },
   searchInputContainer: {
     alignItems: "center",
-    borderBottom: `1px solid ${theme.palette.grey.light}`,
+    backgroundColor: "#F7F7F7",
+    border: `1px solid rgba(0, 0, 0, 0.08)`,
+    borderRadius: 12,
     display: "flex",
     marginBottom: theme.spacing(2),
-    padding: theme.spacing(1),
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1.5)}px`,
     width: "100%",
+    [theme.breakpoints.downM]: {
+      marginBottom: theme.spacing(1),
+    },
   },
   tokenBalance: {
     color: theme.palette.black,
+    [theme.breakpoints.downM]: {
+      fontSize: 12,
+    },
   },
   tokenBalanceWrapper: {
     marginLeft: "auto",
@@ -245,6 +261,9 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     padding: theme.spacing(2),
     transition: theme.hoverTransition,
     width: "99%",
+    [theme.breakpoints.downM]: {
+      padding: `${theme.spacing(1)}px ${theme.spacing(1.5)}px`,
+    },
   },
   tokenButtonWrapper: {
     "&:not(:first-of-type)": {
@@ -295,5 +314,10 @@ export const useTokenListRedesignStyles = createUseStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
+  },
+  tokenName: {
+    [theme.breakpoints.downM]: {
+      fontSize: 14,
+    },
   },
 }));
