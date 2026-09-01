@@ -87,12 +87,15 @@ export const useListStyles = createUseStyles((theme: Theme) => ({
 export const useListRedesignStyles = createUseStyles((theme: Theme) => ({
   background: {
     alignItems: "center",
-    background: theme.palette.white,
+    background: "rgba(0, 0, 0, 0.4)",
     display: "flex",
     height: "100vh",
     justifyContent: "center",
-    padding: [0, theme.spacing(1)],
+    padding: theme.spacing(3), // default to 24px padding (makes it narrower)
     width: "100%",
+    [theme.breakpoints.upSm]: {
+      padding: theme.spacing(4),
+    }
   },
   button: {
     "&:hover": {

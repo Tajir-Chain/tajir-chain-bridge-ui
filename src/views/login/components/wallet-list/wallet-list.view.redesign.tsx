@@ -1,7 +1,9 @@
 import { FC } from "react";
 
 import ArrowRight from "src/assets/icons/arrow-right.svg?react";
-import TajirWalletIcon from "src/assets/icons/tajirwallet.svg?react";
+import MetaMaskLogo from "src/assets/logo/metamask.png";
+import TajirWalletLogo from "src/assets/logo/tajir-wallet.png";
+import WalletConnectLogo from "src/assets/logo/wallet-connect.png";
 // import { useEnvContext } from "src/contexts/env.context";
 import { useWalletListRedesignStyles } from "src/views/login/components/wallet-list/wallet-list.styles";
 import { CardRedesign } from "src/views/shared/card/card.view.redesign";
@@ -13,7 +15,6 @@ type WalletListProps = {
 
 export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
   const classes = useWalletListRedesignStyles();
-  const isMobile = window.innerWidth < 788;
 
   return (
     <CardRedesign>
@@ -30,11 +31,13 @@ export const WalletListRedesign: FC<WalletListProps> = ({ onSelectWallet }) => {
             <div className={classes.walletInfo}>
               <button className={classes.button}>
                 <div className={classes.buttonWalletTitle}>
-                  <TajirWalletIcon
-                    className={classes.walletIcon}
-                    style={{ height: 24, width: 24 }}
-                  />
-                  {isMobile ? "Connect wallet" : " Connect using web wallet"}
+                  <div className={classes.iconStack}>
+                    <img alt="WalletConnect" className={classes.stackedIcon} src={WalletConnectLogo} />
+                    <img alt="MetaMask" className={classes.stackedIcon} src={MetaMaskLogo} />
+                    <img alt="Tajir Wallet" className={classes.stackedIcon} src={TajirWalletLogo} />
+                  </div>
+                  <span className={classes.buttonTextDesktop}>Connect using web wallet</span>
+                  <span className={classes.buttonTextMobile}>Connect web wallet</span>
                 </div>
                 <ArrowRight />
               </button>

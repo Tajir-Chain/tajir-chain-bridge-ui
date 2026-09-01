@@ -89,13 +89,19 @@ export const NetworkBoxRedesign = () => {
     return discoveredChainIds.includes(targetChain.chainId);
   }, [discoveredChainIds, activeChainInBox]);
 
+  const isConnected = isAsyncTaskDataAvailable(connectedProvider);
+
   const buttonText = useMemo(() => {
+    if (!isConnected) {
+      return "Connect Wallet First";
+    }
+
     if (isNetworkAlreadyAdded) {
       return "Network Added";
     }
     const networkName = activeChainInBox?.name ?? "";
     return window.innerWidth < 788 ? `Add ${networkName}` : `Add ${networkName} To Wallet`;
-  }, [isNetworkAlreadyAdded, activeChainInBox]);
+  }, [isConnected, isNetworkAlreadyAdded, activeChainInBox]);
 
   // const name = env?.networkName;
   const symbol = env?.networkSymbol;
@@ -173,9 +179,14 @@ export const NetworkBoxRedesign = () => {
   );
 
   const onAddNetwork = (): void => {
+    if (!isConnected) {
+      return;
+    }
+
     setIsAddNetworkButtonDisabled(true);
     const targetChain = activeChainInBox;
     if (!targetChain) {
+      setIsAddNetworkButtonDisabled(false);
       return;
     }
     addNetwork(targetChain)
@@ -236,7 +247,7 @@ export const NetworkBoxRedesign = () => {
         </div>
         <button
           className={classes.button}
-          disabled={isAddNetworkButtonDisabled || isNetworkAlreadyAdded}
+          disabled={isAddNetworkButtonDisabled || isNetworkAlreadyAdded || !isConnected}
           onClick={onAddNetwork}
         >
           <div className={classes.buttonIconAndTitle}>{buttonText}</div>
