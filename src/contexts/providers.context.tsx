@@ -1,4 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
+import { defineChain } from "@reown/appkit/networks";
 import { createAppKit, useAppKit, useAppKitAccount, useAppKitNetwork, useAppKitProvider } from "@reown/appkit/react";
 import { Ethers5Adapter } from "@reown/appkit-adapter-ethers5";
 import { hexValue } from "ethers/lib/utils";
@@ -19,34 +20,44 @@ import {
   isAsyncTaskDataAvailable,
   isMetaMaskResourceUnavailableError,
   isMetaMaskUnknownChainError,
+  isMetaMaskUserRejectedRequestError,
 } from "src/utils/types";
+
 
 // AppKit Initialization
 const projectId = import.meta.env.VITE_REOWN_PROJECT_ID ? String(import.meta.env.VITE_REOWN_PROJECT_ID) : "YOUR_PROJECT_ID";
 
-const ethereumNetwork = {
+const ethereumNetwork = defineChain({
   blockExplorers: { default: { name: 'Etherscan', url: String(import.meta.env.VITE_ETHEREUM_EXPLORER_URL) } },
+  caipNetworkId: `eip155:${Number(import.meta.env.VITE_ETHEREUM_CHAIN_ID)}`,
+  chainNamespace: 'eip155',
   id: Number(import.meta.env.VITE_ETHEREUM_CHAIN_ID),
   name: 'Ethereum',
   nativeCurrency: { decimals: 18, name: 'Ether', symbol: 'ETH' },
-  network: 'ethereum',
   rpcUrls: { default: { http: [String(import.meta.env.VITE_ETHEREUM_RPC_URL)] } },
-};
+});
 
-const zkEvmNetwork = {
-  blockExplorers: { default: { name: 'Explorer', url: String(import.meta.env.VITE_POLYGON_ZK_EVM_EXPLORER_URL) } },
-  id: Number(import.meta.env.VITE_POLYGON_ZK_EVM_CHAIN_ID),
-  name: import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME ? String(import.meta.env.VITE_POLYGON_ZK_EVM_NETWORK_NAME) : 'TajirChain',
+const mainnetNetwork = defineChain({
+  blockExplorers: { default: { name: 'Etherscan', url: 'https://etherscan.io' } },
+  caipNetworkId: 'eip155:1',
+  chainNamespace: 'eip155',
+  id: 1,
+  name: 'Ethereum Mainnet',
   nativeCurrency: { decimals: 18, name: 'Ether', symbol: 'ETH' },
-  network: 'tajirchain',
-  rpcUrls: { default: { http: [String(import.meta.env.VITE_POLYGON_ZK_EVM_RPC_URL)] } },
-};
+  rpcUrls: { default: { http: ['https://cloudflare-eth.com'] } },
+});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const networks: [any, ...any[]] = [ethereumNetwork, zkEvmNetwork];
+const networks: [any, ...any[]] = [mainnetNetwork, ethereumNetwork];
+
+const TRUST_WALLET_ID = "4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0";
+const COINBASE_WALLET_ID = "fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa";
 
 createAppKit({
   adapters: [new Ethers5Adapter()],
+  allowUnsupportedChain: true,
+  allWallets: "HIDE", // Hides the "All Wallets" button
+  featuredWalletIds: [TRUST_WALLET_ID, COINBASE_WALLET_ID],
   features: {
     analytics: true,
     email: false,
@@ -61,6 +72,8 @@ createAppKit({
   networks,
   projectId,
 });
+
+
 
 type ProvidersContext ={
   addNetwork: (chain: Chain) => Promise<void>;
@@ -79,7 +92,7 @@ const providersContext = createContext<ProvidersContext>({
 });
 
 const ProvidersProvider: FC<PropsWithChildren> = (props) => {
-  const { open } = useAppKit();
+  const { close, open } = useAppKit();
   const { address, isConnected, status } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider('eip155');
   const { chainId } = useAppKitNetwork();
@@ -105,6 +118,13 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
           },
           status: "successful",
         });
+        
+        // Ensure the AppKit modal closes after a successful connection
+        try {
+          void close();
+        } catch (e) {
+          // ignore
+        }
       } catch (error) {
         setConnectedProvider({
           error: "An error occurred parsing the provider",
@@ -114,7 +134,8 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
     } else if (status === "disconnected") {
       setConnectedProvider({ error: "Disconnected", status: "failed" });
     }
-  }, [isConnected, walletProvider, address, chainId, status]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, chainId, isConnected, status, walletProvider]);
 
   const connectProvider = useCallback(
     async (): Promise<void> => {
@@ -210,11 +231,16 @@ const ProvidersProvider: FC<PropsWithChildren> = (props) => {
         isAsyncTaskDataAvailable(connectedProvider)
       ) {
         return switchNetwork(chain, connectedProvider.data.provider).catch((error) => {
-          if (isMetaMaskUnknownChainError(error)) {
-            return addNetwork(chain);
-          } else {
+          // If the user explicitly rejected the switch request, don't spam them with an add request
+          if (isMetaMaskUserRejectedRequestError(error)) {
             throw error;
           }
+          // Trust Wallet and WalletConnect often throw generic or incorrect error codes (like -32002) 
+          // when a chain is missing, instead of the standard 4902. 
+          // Safely fallback to addNetwork for any non-rejection error!
+          return addNetwork(chain).catch((addError) => {
+            throw addError;
+          });
         });
       } else {
         return Promise.reject(new Error(providersContextNotReadyErrorMsg));
