@@ -251,6 +251,7 @@ export type Gas =
       data: {
         gasLimit: BigNumber;
         maxFeePerGas: BigNumber;
+        maxPriorityFeePerGas?: BigNumber;
       };
       type: EIP1559GasType;
     }
