@@ -3,6 +3,9 @@ import { ethers } from "ethers";
 
 import { defaultAbiCoder } from "ethers/lib/utils";
 import { L2Icon } from "./assets/network-icon";
+// eslint-disable-next-line import/no-duplicates
+import ethTokenLogoUrl from "src/assets/icons/chains/ethereum.svg";
+// eslint-disable-next-line import/no-duplicates
 import EthChainIcon from "src/assets/icons/chains/ethereum.svg?react";
 // import PolygonZkEVMChainIcon from "src/assets/icons/chains/polygon-zkevm.svg?react";
 // eslint-disable-next-line import/no-duplicates
@@ -67,8 +70,7 @@ export const GAS_PRICE_INCREASE_PERCENTAGE = 50; // 50%
 
 export const DEPOSIT_CHECK_WORD = "I understand";
 
-export const ETH_TOKEN_LOGO_URI =
-  "https://raw.githubusercontent.com/Uniswap/interface/main/packages/ui/src/assets/logos/png/ethereum-logo.png";
+export const ETH_TOKEN_LOGO_URI = ethTokenLogoUrl;
 
 export const POLYGON_SUPPORT_URL = "https://support.polygon.technology";
 
