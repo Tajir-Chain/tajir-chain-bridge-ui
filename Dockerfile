@@ -1,6 +1,6 @@
 # =============================================================================
 # Stage 1: Build
-# node + all deps; discarded after build — nothing ships to the runtime image.
+# node + all deps; discarded after build — nothing ships to the runtime image. 
 # Vite bakes VITE_* values at build time; we use __PLACEHOLDER__ tokens so
 # the same image works across envs. entrypoint.sh subs real values via sed.
 # =============================================================================
