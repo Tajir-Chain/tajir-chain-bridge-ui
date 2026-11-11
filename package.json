@@ -15,8 +15,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@base-org/account": "2.4.0",
+    "@coinbase/wallet-sdk": "4.3.6",
     "@reown/appkit": "^1.8.23",
     "@reown/appkit-adapter-ethers5": "^1.8.23",
+    "@safe-global/safe-apps-provider": "0.18.6",
+    "@safe-global/safe-apps-sdk": "9.1.0",
     "@walletconnect/ethereum-provider": "^2.20.0",
     "axios": "^1.12.0",
     "copy-to-clipboard": "^3.3.3",

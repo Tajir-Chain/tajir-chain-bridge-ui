@@ -6,10 +6,10 @@
 # =============================================================================
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package.json ./
+COPY package.json package-lock.json ./
 COPY scripts ./scripts
 COPY abis ./abis
-RUN npm install
+RUN npm ci
 COPY . .
 RUN VITE_ETHEREUM_CHAIN_ID=__VITE_ETHEREUM_CHAIN_ID__ \
     VITE_ETHEREUM_RPC_URL=__VITE_ETHEREUM_RPC_URL__ \

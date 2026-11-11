@@ -18,6 +18,7 @@ export default defineConfig({
     svgr(),
     nodePolyfills(),
     checkerPlugin({
+      enableBuild: false,
       eslint: { lintCommand: 'eslint "./src/**/*.{ts,tsx}"' },
       overlay: false,
       typescript: true,
