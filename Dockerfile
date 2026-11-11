@@ -1,15 +1,15 @@
 # =============================================================================
 # Stage 1: Build
-# node + all deps; discarded after build — nothing ships to the runtime image.
+# node + all deps; discarded after build — nothing ships to the runtime image. 
 # Vite bakes VITE_* values at build time; we use __PLACEHOLDER__ tokens so
 # the same image works across envs. entrypoint.sh subs real values via sed.
 # =============================================================================
 FROM node:20-alpine AS builder
 WORKDIR /app
-COPY package.json ./
+COPY package.json package-lock.json ./
 COPY scripts ./scripts
 COPY abis ./abis
-RUN npm install
+RUN npm ci
 COPY . .
 RUN VITE_ETHEREUM_CHAIN_ID=__VITE_ETHEREUM_CHAIN_ID__ \
     VITE_ETHEREUM_RPC_URL=__VITE_ETHEREUM_RPC_URL__ \
