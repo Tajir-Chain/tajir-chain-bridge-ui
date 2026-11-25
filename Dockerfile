@@ -35,9 +35,14 @@ RUN VITE_ETHEREUM_CHAIN_ID=__VITE_ETHEREUM_CHAIN_ID__ \
     npm run build
 
 # =============================================================================
-# Stage 2: Runtime — nginx:alpine only, no node/npm/vite/node_modules
+# Stage 2: Runtime — nginx only, no node/npm/vite/node_modules
 # =============================================================================
-FROM nginx:alpine
+# ⚠ Pinned version AND digest — never the floating `nginx:alpine` tag. A
+# floating tag ships whatever nginx was current at build time, so rebuilding
+# an old commit silently brings back an old nginx. 1.31.8 (our image until
+# 2026-11) was vulnerable to Nginx2Shell; the fix is in 1.31.9+ (CVE-2026-125283
+# and others), 1.31.10 also fixes CVE-2026-132779. Bump deliberately.
+FROM nginx:1.31.10-alpine@sha256:aceb952b920393b7d0bc7b978927fc283370bea89fb082c6fef0ce18c60f96a9
 RUN apk upgrade --no-cache
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY deployment/nginx.conf /etc/nginx/conf.d/default.conf
